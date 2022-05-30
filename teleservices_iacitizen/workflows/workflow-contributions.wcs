@@ -642,7 +642,6 @@ Votre adminitration communale</body>
           <position>top</position>
           <to>
             <item role_id="_editor">_editor</item>
-            <item role_id="add8de33bdf84ea88821bbdd4f02360b" slug="administrateur-fonctionnel">Administrateur fonctionnel</item>
             <item role_id="e22806cf30a64a308d9c00d1c3efacae" slug="agent-ayant-acces-aux-fabriques">Agent ayant acces aux fabriques</item>
             <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf" slug="debug">Debug</item>
           </to>
