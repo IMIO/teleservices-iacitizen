@@ -1,0 +1,1210 @@
+<?xml version="1.0"?>
+<workflow id="90" url="">
+  <name>Contributions</name>
+  <slug>contributions</slug>
+  <category category_id="1" slug="contributions">Contributions</category>
+  <roles>
+    <role id="_editor">Destinataire</role>
+    <role id="_testeur">Testeur</role>
+  </roles><possible_status>
+    <status>
+      <id>recorded</id>
+      <name>En cours de validation</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="sendmail">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>Nouvel &#233;v&#233;nement re&#231;u</subject>
+          <body>Bonjour,
+
+Nous avons bien re&#231;u votre contribution, elle sera relue avant d'&#234;tre publi&#233;e. Vous serez tenu inform&#233; lors de sa publication.
+
+Votre contribution :
+
+{{form_details}}
+
+Cordialement,</body>
+          <condition>
+            <type>django</type>
+            <value>form_var_previous_status != "Information n&#233;cessaire"</value>
+          </condition>
+        </item><item id="2" type="sendmail">
+          <to>
+            <item role_id="_editor">_editor</item>
+          </to><subject>Nouvel &#233;v&#233;nement n&#176; {{ form_number }}</subject>
+          <body>Bonjour,
+
+{% if form_previous_status == "Information n&#233;cessaire" %}
+Un nouvelle information a &#233;t&#233; apport&#233;e pour la demande {{ form_number }} :
+{{ form_url_backoffice }}
+
+{% else %}
+Un nouvel &#233;v&#233;nement a &#233;t&#233; soumis :
+{{ form_url_backoffice }}
+
+{% endif %}</body>
+        </item><item id="3" type="editable">
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>recorded</status>
+          <label>Modifier</label>
+        </item><item id="4" type="commentable">
+          <label>Commentaire</label>
+          <button_label>Ajouter le commentaire</button_label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><varname>agent</varname>
+          <backoffice_info_text>&lt;p&gt;Quand vous cliquez sur &amp;quot;Ajouter le commentaire&amp;quot;, le commentaire devient visible par l'usager.&lt;/p&gt;</backoffice_info_text>
+          <required>False</required>
+        </item><item id="5" type="choice">
+          <label>&#10067; Envoyer une demande d'information</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>3</status>
+          <require_confirmation>False</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="6" type="choice">
+          <label>Refuser</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>deleted</status>
+          <require_confirmation>True</require_confirmation>
+          <backoffice_info_text>&lt;p&gt;Avant de refuser, vous devez imp&amp;eacute;rativement ajouter un commentaire motivant le refus.&lt;/p&gt;</backoffice_info_text>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="7" type="choice">
+          <label>Valider la publication</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>11</status>
+          <require_confirmation>False</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>deleted</id>
+      <name>Publication refus&#233;e</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="sendmail">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>Publication refus&#233;e</subject>
+          <body>Bonjour,
+
+Nous vous informons que votre publication a &#233;t&#233; refus&#233;e pour la raison suivante :
+
+{{ comment_agent }}
+
+Cordialement, 
+Votre administration communale</body>
+        </item>
+      </items>
+    </status><status>
+      <id>2</id>
+      <name>Contribution publi&#233;e</name>
+      <colour>00FF00</colour>
+      <forced_endpoint>true</forced_endpoint>
+      <visibility />
+      <items>
+        <item id="1" type="sendmail">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>Publication accept&#233;e</subject>
+          <body>Bonjour,
+
+Votre contribution a &#233;t&#233; publi&#233;e sur le site internet de l'administration communale.
+
+{{comment_agent}}
+
+Cordialement, 
+Votre adminitration communale</body>
+        </item><item id="2" type="editable">
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>12</status>
+          <label>Modifier la contribution</label>
+        </item>
+      </items>
+    </status><status>
+      <id>3</id>
+      <name>Information n&#233;cessaire</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="sendmail">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><mail_template>information-necessaire</mail_template>
+        </item><item id="2" type="commentable">
+          <label>Commentaire</label>
+          <button_label>Envoyer le commentaire</button_label>
+          <by>
+            <item role_id="_submitter">_submitter</item>
+          </by><varname>usager</varname>
+          <required>False</required>
+        </item><item id="3" type="jumponsubmit">
+          <status>recorded</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>11</id>
+      <name>Envoi vers le site web</name>
+      <colour>FF9999</colour>
+      <visibility />
+      <items>
+        <item id="1" type="jump">
+          <status>6</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_type  == "Actualit&#233;"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="2" type="jump">
+          <status>0</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_type  == "&#201;v&#233;nement"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="3" type="jump">
+          <status>7</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_type  == "Annuaire"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>0</id>
+      <name>Envoi event vers le site web</name>
+      <colour>FF99FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Envoi event vers le site Web</label>
+          <url>{{ passerelle_url }}plone-restapi/evenements/create</url>
+          <qs_data>
+            <item>
+              <name>uri</name>
+              <value>{{ form_option_plone_folder }}</value>
+            </item><item>
+              <name>publish</name>
+              <value>true</value>
+            </item>
+          </qs_data><method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>@type</name>
+              <value>imio.events.Event</value>
+            </item><item>
+              <name>title</name>
+              <value>{{ form_var_titre }}</value>
+            </item><item>
+              <name>type</name>
+              <value>organization</value>
+            </item><item>
+              <name>category</name>
+              <value>{{ form_var_categorie_raw }}</value>
+            </item><item>
+              <name>description</name>
+              <value>{{ form_var_description }}</value>
+            </item><item>
+              <name>facebook</name>
+              <value>{{ form_var_facebook }}</value>
+            </item><item>
+              <name>iam</name>
+              <value>{{ form_var_je_suis_raw }}</value>
+            </item><item>
+              <name>image</name>
+              <value>{{ form_var_image }}</value>
+            </item><item>
+              <name>instagram</name>
+              <value>{{ form_var_instagram }}</value>
+            </item><item>
+              <name>language</name>
+              <value>{{ form_var_langue_raw }}</value>
+            </item><item>
+              <name>site_url</name>
+              <value>{{ form_var_site_internet }}</value>
+            </item><item>
+              <name>twitter</name>
+              <value>{{ form_var_twitter }}</value>
+            </item><item>
+              <name>video_url</name>
+              <value>{{ form_var_video }}</value>
+            </item><item>
+              <name>contact_email</name>
+              <value>{{ form_var_courriel_contact }}</value>
+            </item><item>
+              <name>contact_name</name>
+              <value>{{ form_var_nom_contact }}</value>
+            </item><item>
+              <name>contact_phone</name>
+              <value>{{ form_var_tel_contact }}</value>
+            </item><item>
+              <name>end</name>
+              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin }}</value>
+            </item><item>
+              <name>event_type</name>
+              <value>{{ form_var_type_event_raw }}</value>
+            </item><item>
+              <name>event_url</name>
+              <value>{{ form_var_url_event }}</value>
+            </item><item>
+              <name>exclude_from_nav</name>
+              <value>{{ form_var_exclure }}</value>
+            </item><item>
+              <name>free_entry</name>
+              <value>{{ form_var_gratuit }}</value>
+            </item><item>
+              <name>geolocation/latitude</name>
+              <value>{{ form_var_carte_lat }}</value>
+            </item><item>
+              <name>geolocation/longitude</name>
+              <value>{{ form_var_carte_lon }}</value>
+            </item><item>
+              <name>number</name>
+              <value>{{ form_var_numero }}</value>
+            </item><item>
+              <name>online_participation</name>
+              <value>{{ form_var_participation }}</value>
+            </item><item>
+              <name>open_end</name>
+              <value>{{ form_var_duree_indeterminee }}</value>
+            </item><item>
+              <name>reduced_mobility_facilities</name>
+              <value>{{ form_var_accessible }}</value>
+            </item><item>
+              <name>start</name>
+              <value>{{ form_var_date_debut|date:"Y-m-d" }} {{ form_var_horaire_debut }}</value>
+            </item><item>
+              <name>street</name>
+              <value>{{ form_var_rue }}</value>
+            </item><item>
+              <name>taxonomy_event_public</name>
+              <value>{{ form_var_public_cible_raw }}</value>
+            </item><item>
+              <name>text</name>
+              <value>{{ form_var_texte|linebreaksbr }}</value>
+            </item><item>
+              <name>ticket_url</name>
+              <value>{{ form_var_billeterie }}</value>
+            </item><item>
+              <name>topics</name>
+              <value>{{ form_var_thematiques_raw }}</value>
+            </item><item>
+              <name>whole_day</name>
+              <value>{{ form_var_journee_entiere }}</value>
+            </item><item>
+              <name>zipcode</name>
+              <value>{{ form_var_code_postal }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>envoi</varname>
+          <action_on_app_error>1</action_on_app_error>
+          <action_on_4xx>1</action_on_4xx>
+          <action_on_5xx>1</action_on_5xx>
+          <action_on_bad_data>1</action_on_bad_data>
+          <action_on_network_errors>1</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="2" type="jump">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>6</id>
+      <name>Envoi news vers le site web</name>
+      <colour>FF99FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Envoi news vers le site Web</label>
+          <url>{{ passerelle_url }}plone-restapi/actualites/create</url>
+          <qs_data>
+            <item>
+              <name>uri</name>
+              <value>{{ form_option_plone_folder }}</value>
+            </item><item>
+              <name>publish</name>
+              <value>true</value>
+            </item>
+          </qs_data><method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>@type</name>
+              <value>imio.news.NewsItem</value>
+            </item><item>
+              <name>title</name>
+              <value>{{ form_var_titre }}</value>
+            </item><item>
+              <name>type</name>
+              <value>organization</value>
+            </item><item>
+              <name>category</name>
+              <value>{{ form_var_categorie_raw }}</value>
+            </item><item>
+              <name>description</name>
+              <value>{{ form_var_description }}</value>
+            </item><item>
+              <name>facebook</name>
+              <value>{{ form_var_facebook }}</value>
+            </item><item>
+              <name>iam</name>
+              <value>{{ form_var_je_suis_raw }}</value>
+            </item><item>
+              <name>image</name>
+              <value>{{ form_var_image }}</value>
+            </item><item>
+              <name>instagram</name>
+              <value>{{ form_var_instagram }}</value>
+            </item><item>
+              <name>language</name>
+              <value>{{ form_var_langue_raw }}</value>
+            </item><item>
+              <name>site_url</name>
+              <value>{{ form_var_site_internet }}</value>
+            </item><item>
+              <name>twitter</name>
+              <value>{{ form_var_twitter }}</value>
+            </item><item>
+              <name>video_url</name>
+              <value>{{ form_var_video }}</value>
+            </item><item>
+              <name>topics</name>
+              <value>{{ form_var_thematiques_raw }}</value>
+            </item><item>
+              <name>text</name>
+              <value>{{ form_var_texte |linebreaksbr }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>envoi</varname>
+          <action_on_app_error>1</action_on_app_error>
+          <action_on_4xx>1</action_on_4xx>
+          <action_on_5xx>1</action_on_5xx>
+          <action_on_bad_data>1</action_on_bad_data>
+          <action_on_network_errors>1</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="2" type="jump">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>7</id>
+      <name>Envoi contact vers le site web</name>
+      <colour>FF99FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Envoi contact vers le site Web</label>
+          <url>{{ passerelle_url }}plone-restapi/annuaire/create</url>
+          <qs_data>
+            <item>
+              <name>uri</name>
+              <value>{{ form_option_plone_folder }}</value>
+            </item><item>
+              <name>publish</name>
+              <value>true</value>
+            </item>
+          </qs_data><method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>@type</name>
+              <value>imio.directory.Contact</value>
+            </item><item>
+              <name>title</name>
+              <value>{{ form_var_titre }}</value>
+            </item><item>
+              <name>type</name>
+              <value>{{ form_var_type_contact_raw }}</value>
+            </item><item>
+              <name>category</name>
+              <value>{{ form_var_categorie_raw }}</value>
+            </item><item>
+              <name>country</name>
+              <value>{{ form_var_pays_raw }}</value>
+            </item><item>
+              <name>description</name>
+              <value>{{ form_var_description }}</value>
+            </item><item>
+              <name>iam</name>
+              <value>{{ form_var_je_suis_raw }}</value>
+            </item><item>
+              <name>image</name>
+              <value>{{ form_var_image }}</value>
+            </item><item>
+              <name>logo</name>
+              <value>{{ form_var_logo }}</value>
+            </item><item>
+              <name>language</name>
+              <value>{{ form_var_langue_raw }}</value>
+            </item><item>
+              <name>mails/0/label</name>
+              <value>{% if form_var_courriel %}Adresse principale{% endif %}</value>
+            </item><item>
+              <name>mails/0/mail_address</name>
+              <value>{{ form_var_courriel|default:'' }}</value>
+            </item><item>
+              <name>mails/0/type</name>
+              <value>{% if form_var_courriel %}work{% endif %}</value>
+            </item><item>
+              <name>city</name>
+              <value>{{ form_var_commune }}</value>
+            </item><item>
+              <name>complement</name>
+              <value>{{ form_var_complement_adresse }}</value>
+            </item><item>
+              <name>facilities</name>
+              <value>{{ form_var_categories_specifiques_raw }}</value>
+            </item><item>
+              <name>geolocation/latitude</name>
+              <value>{{ form_var_carte_lat }}</value>
+            </item><item>
+              <name>geolocation/longitude</name>
+              <value>{{ form_var_carte_lon }}</value>
+            </item><item>
+              <name>number</name>
+              <value>{{ form_var_numero }}</value>
+            </item><item>
+              <name>phones/0/label</name>
+              <value>{% if form_var_telephone_professionnel %}Num&#233;ro principal{% endif %}</value>
+            </item><item>
+              <name>phones/0/number</name>
+              <value>{{ form_var_telephone_professionnel|default:'' }}</value>
+            </item><item>
+              <name>phones/0/type</name>
+              <value>{% if form_var_telephone_professionnel %}work{% endif %}</value>
+            </item><item>
+              <name>phones/1/label</name>
+              <value>{% if form_var_telephone_mobile %}Num&#233;ro principal{% endif %}</value>
+            </item><item>
+              <name>phones/1/number</name>
+              <value>{{ form_var_telephone_mobile|default:'' }}</value>
+            </item><item>
+              <name>phones/1/type</name>
+              <value>{% if form_var_telephone_mobile %}cell{% endif %}</value>
+            </item><item>
+              <name>schedule/friday/afternoonend</name>
+              <value>{{ form_var_horaires_4_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/friday/afternoonstart</name>
+              <value>{{ form_var_horaires_4_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/friday/morningend</name>
+              <value>{{ form_var_horaires_4_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/friday/morningstart</name>
+              <value>{{ form_var_horaires_4_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/monday/afternoonend</name>
+              <value>{{ form_var_horaires_0_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/monday/afternoonstart</name>
+              <value>{{ form_var_horaires_0_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/monday/morningend</name>
+              <value>{{ form_var_horaires_0_1 |default:''}}</value>
+            </item><item>
+              <name>schedule/monday/morningstart</name>
+              <value>{{ form_var_horaires_0_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/afternoonend</name>
+              <value>{{ form_var_horaires_5_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/afternoonstart</name>
+              <value>{{ form_var_horaires_5_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/morningend</name>
+              <value>{{ form_var_horaires_5_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/morningstart</name>
+              <value>{{ form_var_horaires_5_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/afternoonend</name>
+              <value>{{ form_var_horaires_6_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/afternoonstart</name>
+              <value>{{ form_var_horaires_6_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/morningend</name>
+              <value>{{ form_var_horaires_6_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/morningstart</name>
+              <value>{{ form_var_horaires_6_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/afternoonend</name>
+              <value>{{ form_var_horaires_3_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/afternoonstart</name>
+              <value>{{ form_var_horaires_3_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/morningend</name>
+              <value>{{ form_var_horaires_3_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/morningstart</name>
+              <value>{{ form_var_horaires_3_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/afternoonend</name>
+              <value>{{ form_var_horaires_1_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/afternoonstart</name>
+              <value>{{ form_var_horaires_1_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/morningend</name>
+              <value>{{ form_var_horaires_1_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/morningstart</name>
+              <value>{{ form_var_horaires_1_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/afternoonend</name>
+              <value>{{ form_var_horaires_2_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/afternoonstart</name>
+              <value>{{ form_var_horaires_2_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/morningend</name>
+              <value>{{ form_var_horaires_2_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/morningstart</name>
+              <value>{{ form_var_horaires_2_0|default:'' }}</value>
+            </item><item>
+              <name>selected_entities</name>
+              <value>f571b73a16f34832a5fdd3683533b3cc</value>
+            </item><item>
+              <name>street</name>
+              <value>{{ form_var_rue }}</value>
+            </item><item>
+              <name>subtitle</name>
+              <value>{{ form_var_sous_titre }}</value>
+            </item><item>
+              <name>taxonomy_contact_category</name>
+              <value>{{ form_var_categories_raw }}</value>
+            </item><item>
+              <name>topics</name>
+              <value>{{ form_var_thematiques_raw }}</value>
+            </item><item>
+              <name>urls/0/type</name>
+              <value>{% if form_var_url_site_web %}website{% endif %}</value>
+            </item><item>
+              <name>urls/0/url</name>
+              <value>{{ form_var_url_site_web|default:'' }}</value>
+            </item><item>
+              <name>vat_number</name>
+              <value>{{ form_var_num_entreprise }}</value>
+            </item><item>
+              <name>zipcode</name>
+              <value>{{ form_var_code_postal }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>envoi</varname>
+          <action_on_app_error>1</action_on_app_error>
+          <action_on_4xx>1</action_on_4xx>
+          <action_on_5xx>1</action_on_5xx>
+          <action_on_bad_data>1</action_on_bad_data>
+          <action_on_network_errors>1</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="2" type="jump">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>1</id>
+      <name>Erreur technique</name>
+      <colour>FF0000</colour>
+      <visibility />
+      <items>
+        <item id="3" type="displaymsg">
+          <message>&lt;p&gt;Information technique pour l&#8217;analyse de l&#8217;erreur&#160;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;date&#183;heure&#160;: {{form_workflow_data_envoi_time}}&lt;/li&gt;
+&lt;li&gt;statut envoi&#160;: {{form_workflow_data_envoi_status}}&lt;/li&gt;
+&lt;li&gt;classe d&#8217;erreur : {{form_workflow_data_envoi_error_response_err_class}}&lt;/li&gt;
+&lt;li&gt;description de l&#8217;erreur : {{form_workflow_data_envoi_error_response_err_desc}}&lt;/li&gt;
+&lt;/ul&gt;</message>
+          <level>info</level>
+          <position>top</position>
+          <to>
+            <item role_id="_editor">_editor</item>
+            <item role_id="add8de33bdf84ea88821bbdd4f02360b" slug="administrateur-fonctionnel">Administrateur fonctionnel</item>
+            <item role_id="e22806cf30a64a308d9c00d1c3efacae" slug="agent-ayant-acces-aux-fabriques">Agent ayant acces aux fabriques</item>
+            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf" slug="debug">Debug</item>
+          </to>
+        </item><item id="1" type="choice">
+          <label>Rejeu</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>11</status>
+          <require_confirmation>False</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="2" type="choice">
+          <label>debug</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>recorded</status>
+          <require_confirmation>False</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item id="4" type="choice">
+          <label>Retour en arri&#232;re</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>recorded</status>
+          <require_confirmation>True</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>12</id>
+      <name>Modification de la contribution</name>
+      <colour>FF9999</colour>
+      <visibility />
+      <items>
+        <item id="1" type="jump">
+          <status>8</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_type  == "&#201;v&#233;nement"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="2" type="jump">
+          <status>9</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_type  == "Actualit&#233;"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item><item id="3" type="jump">
+          <status>10</status>
+          <condition>
+            <type>django</type>
+            <value>form_option_type  == "Annuaire"</value>
+          </condition><set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>8</id>
+      <name>Modification event vers le site web</name>
+      <colour>FF99FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Renvoi event vers le site Web</label>
+          <url>{{ passerelle_url }}plone-restapi/evenements/update</url>
+          <qs_data>
+            <item>
+              <name>uri</name>
+              <value>{{ form_option_plone_folder }}</value>
+            </item><item>
+              <name>uid</name>
+              <value>{{ envoi_response_data_uid }}</value>
+            </item>
+          </qs_data><method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>@type</name>
+              <value>imio.events.Event</value>
+            </item><item>
+              <name>title</name>
+              <value>{{ form_var_titre }}</value>
+            </item><item>
+              <name>type</name>
+              <value>organization</value>
+            </item><item>
+              <name>category</name>
+              <value>{{ form_var_categorie_raw }}</value>
+            </item><item>
+              <name>description</name>
+              <value>{{ form_var_description }}</value>
+            </item><item>
+              <name>facebook</name>
+              <value>{{ form_var_facebook }}</value>
+            </item><item>
+              <name>iam</name>
+              <value>{{ form_var_je_suis_raw }}</value>
+            </item><item>
+              <name>image</name>
+              <value>{{ form_var_image }}</value>
+            </item><item>
+              <name>instagram</name>
+              <value>{{ form_var_instagram }}</value>
+            </item><item>
+              <name>language</name>
+              <value>{{ form_var_langue_raw }}</value>
+            </item><item>
+              <name>site_url</name>
+              <value>{{ form_var_site_internet }}</value>
+            </item><item>
+              <name>twitter</name>
+              <value>{{ form_var_twitter }}</value>
+            </item><item>
+              <name>video_url</name>
+              <value>{{ form_var_video }}</value>
+            </item><item>
+              <name>contact_email</name>
+              <value>{{ form_var_courriel_contact }}</value>
+            </item><item>
+              <name>contact_name</name>
+              <value>{{ form_var_nom_contact }}</value>
+            </item><item>
+              <name>contact_phone</name>
+              <value>{{ form_var_tel_contact }}</value>
+            </item><item>
+              <name>end</name>
+              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin }}</value>
+            </item><item>
+              <name>event_type</name>
+              <value>{{ form_var_type_event_raw }}</value>
+            </item><item>
+              <name>event_url</name>
+              <value>{{ form_var_url_event }}</value>
+            </item><item>
+              <name>exclude_from_nav</name>
+              <value>{{ form_var_exclure }}</value>
+            </item><item>
+              <name>free_entry</name>
+              <value>{{ form_var_gratuit }}</value>
+            </item><item>
+              <name>geolocation/latitude</name>
+              <value>{{ form_var_carte_lat }}</value>
+            </item><item>
+              <name>geolocation/longitude</name>
+              <value>{{ form_var_carte_lon }}</value>
+            </item><item>
+              <name>number</name>
+              <value>{{ form_var_numero }}</value>
+            </item><item>
+              <name>online_participation</name>
+              <value>{{ form_var_participation }}</value>
+            </item><item>
+              <name>open_end</name>
+              <value>{{ form_var_duree_indeterminee }}</value>
+            </item><item>
+              <name>reduced_mobility_facilities</name>
+              <value>{{ form_var_accessible }}</value>
+            </item><item>
+              <name>start</name>
+              <value>{{ form_var_date_debut|date:"Y-m-d" }} {{ form_var_horaire_debut }}</value>
+            </item><item>
+              <name>street</name>
+              <value>{{ form_var_rue }}</value>
+            </item><item>
+              <name>taxonomy_event_public</name>
+              <value>{{ form_var_public_cible_raw }}</value>
+            </item><item>
+              <name>text</name>
+              <value>{{ form_var_texte|linebreaksbr }}</value>
+            </item><item>
+              <name>ticket_url</name>
+              <value>{{ form_var_billeterie }}</value>
+            </item><item>
+              <name>topics</name>
+              <value>{{ form_var_thematiques_raw }}</value>
+            </item><item>
+              <name>whole_day</name>
+              <value>{{ form_var_journee_entiere }}</value>
+            </item><item>
+              <name>zipcode</name>
+              <value>{{ form_var_code_postal }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>modification</varname>
+          <action_on_app_error>5</action_on_app_error>
+          <action_on_4xx>5</action_on_4xx>
+          <action_on_5xx>5</action_on_5xx>
+          <action_on_bad_data>5</action_on_bad_data>
+          <action_on_network_errors>5</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="2" type="jump">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>9</id>
+      <name>Modification news vers le site web</name>
+      <colour>FF99FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Renvoi news vers le site Web</label>
+          <url>{{ passerelle_url }}plone-restapi/actualites/update</url>
+          <qs_data>
+            <item>
+              <name>uri</name>
+              <value>{{ form_option_plone_folder }}</value>
+            </item><item>
+              <name>uid</name>
+              <value>{{ envoi_response_data_uid }}</value>
+            </item>
+          </qs_data><method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>@type</name>
+              <value>imio.news.NewsItem</value>
+            </item><item>
+              <name>title</name>
+              <value>{{ form_var_titre }}</value>
+            </item><item>
+              <name>type</name>
+              <value>organization</value>
+            </item><item>
+              <name>category</name>
+              <value>{{ form_var_categorie_raw }}</value>
+            </item><item>
+              <name>description</name>
+              <value>{{ form_var_description }}</value>
+            </item><item>
+              <name>facebook</name>
+              <value>{{ form_var_facebook }}</value>
+            </item><item>
+              <name>iam</name>
+              <value>{{ form_var_je_suis_raw }}</value>
+            </item><item>
+              <name>image</name>
+              <value>{{ form_var_image }}</value>
+            </item><item>
+              <name>instagram</name>
+              <value>{{ form_var_instagram }}</value>
+            </item><item>
+              <name>language</name>
+              <value>{{ form_var_langue_raw }}</value>
+            </item><item>
+              <name>site_url</name>
+              <value>{{ form_var_site_internet }}</value>
+            </item><item>
+              <name>twitter</name>
+              <value>{{ form_var_twitter }}</value>
+            </item><item>
+              <name>video_url</name>
+              <value>{{ form_var_video }}</value>
+            </item><item>
+              <name>topics</name>
+              <value>{{ form_var_thematiques_raw }}</value>
+            </item><item>
+              <name>text</name>
+              <value>{{ form_var_texte|linebreaksbr }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>modification</varname>
+          <action_on_app_error>5</action_on_app_error>
+          <action_on_4xx>5</action_on_4xx>
+          <action_on_5xx>5</action_on_5xx>
+          <action_on_bad_data>5</action_on_bad_data>
+          <action_on_network_errors>5</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="2" type="jump">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>10</id>
+      <name>Modification contact vers le site web</name>
+      <colour>FF99FF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Renvoi contact vers le site Web</label>
+          <url>{{ passerelle_url }}plone-restapi/annuaire/update</url>
+          <qs_data>
+            <item>
+              <name>uri</name>
+              <value>{{ form_option_plone_folder }}</value>
+            </item><item>
+              <name>uid</name>
+              <value>{{ envoi_response_data_uid }}</value>
+            </item>
+          </qs_data><method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>@type</name>
+              <value>imio.directory.Contact</value>
+            </item><item>
+              <name>title</name>
+              <value>{{ form_var_titre }}</value>
+            </item><item>
+              <name>type</name>
+              <value>{{ form_var_type_contact_raw }}</value>
+            </item><item>
+              <name>category</name>
+              <value>{{ form_var_categorie_raw }}</value>
+            </item><item>
+              <name>country</name>
+              <value>{{ form_var_pays_raw }}</value>
+            </item><item>
+              <name>description</name>
+              <value>{{ form_var_description }}</value>
+            </item><item>
+              <name>iam</name>
+              <value>{{ form_var_je_suis_raw }}</value>
+            </item><item>
+              <name>image</name>
+              <value>{{ form_var_image }}</value>
+            </item><item>
+              <name>logo</name>
+              <value>{{ form_var_logo }}</value>
+            </item><item>
+              <name>language</name>
+              <value>{{ form_var_langue_raw }}</value>
+            </item><item>
+              <name>mails/0/label</name>
+              <value>{% if form_var_courriel %}Adresse principale{% endif %}</value>
+            </item><item>
+              <name>mails/0/mail_address</name>
+              <value>{{ form_var_courriel|default:'' }}</value>
+            </item><item>
+              <name>mails/0/type</name>
+              <value>{% if form_var_courriel %}work{% endif %}</value>
+            </item><item>
+              <name>city</name>
+              <value>{{ form_var_commune }}</value>
+            </item><item>
+              <name>complement</name>
+              <value>{{ form_var_complement_adresse }}</value>
+            </item><item>
+              <name>facilities</name>
+              <value>{{ form_var_categories_specifiques_raw }}</value>
+            </item><item>
+              <name>geolocation/latitude</name>
+              <value>{{ form_var_carte_lat }}</value>
+            </item><item>
+              <name>geolocation/longitude</name>
+              <value>{{ form_var_carte_lon }}</value>
+            </item><item>
+              <name>number</name>
+              <value>{{ form_var_numero }}</value>
+            </item><item>
+              <name>phones/0/label</name>
+              <value>{% if form_var_telephone_professionnel %}Num&#233;ro principal{% endif %}</value>
+            </item><item>
+              <name>phones/0/number</name>
+              <value>{{ form_var_telephone_professionnel|default:'' }}</value>
+            </item><item>
+              <name>phones/0/type</name>
+              <value>{% if form_var_telephone_professionnel %}work{% endif %}</value>
+            </item><item>
+              <name>phones/1/label</name>
+              <value>{% if form_var_telephone_mobile %}Num&#233;ro principal{% endif %}</value>
+            </item><item>
+              <name>phones/1/number</name>
+              <value>{{ form_var_telephone_mobile|default:'' }}</value>
+            </item><item>
+              <name>phones/1/type</name>
+              <value>{% if form_var_telephone_mobile %}cell{% endif %}</value>
+            </item><item>
+              <name>schedule/friday/afternoonend</name>
+              <value>{{ form_var_horaires_4_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/friday/afternoonstart</name>
+              <value>{{ form_var_horaires_4_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/friday/morningend</name>
+              <value>{{ form_var_horaires_4_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/friday/morningstart</name>
+              <value>{{ form_var_horaires_4_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/monday/afternoonend</name>
+              <value>{{ form_var_horaires_0_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/monday/afternoonstart</name>
+              <value>{{ form_var_horaires_0_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/monday/morningend</name>
+              <value>{{ form_var_horaires_0_1 |default:''}}</value>
+            </item><item>
+              <name>schedule/monday/morningstart</name>
+              <value>{{ form_var_horaires_0_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/afternoonend</name>
+              <value>{{ form_var_horaires_5_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/afternoonstart</name>
+              <value>{{ form_var_horaires_5_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/morningend</name>
+              <value>{{ form_var_horaires_5_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/saturday/morningstart</name>
+              <value>{{ form_var_horaires_5_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/afternoonend</name>
+              <value>{{ form_var_horaires_6_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/afternoonstart</name>
+              <value>{{ form_var_horaires_6_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/morningend</name>
+              <value>{{ form_var_horaires_6_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/sunday/morningstart</name>
+              <value>{{ form_var_horaires_6_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/afternoonend</name>
+              <value>{{ form_var_horaires_3_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/afternoonstart</name>
+              <value>{{ form_var_horaires_3_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/morningend</name>
+              <value>{{ form_var_horaires_3_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/thursday/morningstart</name>
+              <value>{{ form_var_horaires_3_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/afternoonend</name>
+              <value>{{ form_var_horaires_1_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/afternoonstart</name>
+              <value>{{ form_var_horaires_1_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/morningend</name>
+              <value>{{ form_var_horaires_1_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/tuesday/morningstart</name>
+              <value>{{ form_var_horaires_1_0|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/afternoonend</name>
+              <value>{{ form_var_horaires_2_3|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/afternoonstart</name>
+              <value>{{ form_var_horaires_2_2|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/morningend</name>
+              <value>{{ form_var_horaires_2_1|default:'' }}</value>
+            </item><item>
+              <name>schedule/wednesday/morningstart</name>
+              <value>{{ form_var_horaires_2_0|default:'' }}</value>
+            </item><item>
+              <name>selected_entities</name>
+              <value>f571b73a16f34832a5fdd3683533b3cc</value>
+            </item><item>
+              <name>street</name>
+              <value>{{ form_var_rue }}</value>
+            </item><item>
+              <name>subtitle</name>
+              <value>{{ form_var_sous_titre }}</value>
+            </item><item>
+              <name>taxonomy_contact_category</name>
+              <value>{{ form_var_categories_raw }}</value>
+            </item><item>
+              <name>topics</name>
+              <value>{{ form_var_thematiques_raw }}</value>
+            </item><item>
+              <name>urls/0/type</name>
+              <value>{% if form_var_url_site_web %}website{% endif %}</value>
+            </item><item>
+              <name>urls/0/url</name>
+              <value>{{ form_var_url_site_web|default:'' }}</value>
+            </item><item>
+              <name>vat_number</name>
+              <value>{{ form_var_num_entreprise }}</value>
+            </item><item>
+              <name>zipcode</name>
+              <value>{{ form_var_code_postal }}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>modification</varname>
+          <action_on_app_error>5</action_on_app_error>
+          <action_on_4xx>5</action_on_4xx>
+          <action_on_5xx>5</action_on_5xx>
+          <action_on_bad_data>5</action_on_bad_data>
+          <action_on_network_errors>5</action_on_network_errors>
+          <notify_on_errors>False</notify_on_errors>
+          <record_on_errors>True</record_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="2" type="jump">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>5</id>
+      <name>Erreur lors de la modification</name>
+      <colour>FF0000</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+        <role>_visualisation</role>
+      </visibility><items>
+        <item id="1" type="choice">
+          <label>Rejeu</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>12</status>
+          <require_confirmation>False</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+  </possible_status><global_actions>
+    <action>
+      <id>1</id>
+      <name>Suppression</name>
+      <items>
+        <item id="1" type="remove" />
+      </items><triggers>
+        <trigger id="84532db6-59d8-4fc2-8148-90cbb0fcad1f" type="manual">
+          <roles>
+            <item role_id="_editor">_editor</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action>
+  </global_actions><variables>
+    <formdef>
+      <name>-</name>
+      <fields>
+        <field>
+          <label type="str">Type de contribution</label>
+          <type type="str">item</type>
+          <required type="bool">True</required>
+          <varname type="str">type</varname>
+          <display_locations />
+          <items>
+            <item>Actualit&#233;</item>
+            <item>Annuaire</item>
+            <item>&#201;v&#233;nement</item>
+          </items><display_mode type="str">list</display_mode>
+          <in_filters type="bool">False</in_filters>
+          <anonymise type="bool">False</anonymise>
+          <display_disabled_items type="bool">False</display_disabled_items>
+          <id type="str">1</id>
+        </field><field>
+          <label type="str">Sous dossier des contenus Plone</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">plone_folder</varname>
+          <display_locations />
+          <anonymise type="bool">False</anonymise>
+          <id type="str">3</id>
+        </field>
+      </fields>
+    </formdef>
+  </variables>
+</workflow>

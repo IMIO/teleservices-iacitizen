@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<mail-template id="55" url="">
+  <name>Information n&#233;cessaire</name>
+  <slug>information-necessaire</slug>
+  <subject>Information n&#233;cesssaire pour la demande {{ form_number }}</subject>
+  <body>Bonjour,
+
+Afin de traiter votre contribution, nous vous demandons l'information suivante :
+{{ comment_agent }}
+
+Vous pouvez r&#233;pondre en compl&#233;tant votre demande :
+{{form_url}}
+
+Cordialement,
+Votre administration communale</body>
+</mail-template>

@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<formdef id="167" url="">
+  <name>Actualit&#233;</name>
+  <url_name>actualite</url_name>
+  <internal_identifier>actualite</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>true</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category category_id="131" slug="contributions">Contributions</category>
+  <workflow slug="contributions" workflow_id="90">Contributions</workflow>
+  <max_field_id>23</max_field_id>
+  <fields>
+    <field>
+      <label type="str">Ajouter une actualit&#233;</label>
+      <type type="str">page</type>
+      <id type="str">18</id>
+    </field><field>
+      <label type="str">Titre</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">titre</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">1</id>
+    </field><field>
+      <label type="str">Description courte</label>
+      <type type="str">text</type>
+      <required type="bool">False</required>
+      <hint type="str">R&#233;sum&#233; de l'actualit&#233; en quelques phrases maximum.</hint>
+      <varname type="str">description</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><pre type="bool">False</pre>
+      <maxlength type="str">700</maxlength>
+      <id type="str">2</id>
+    </field><field>
+      <label type="str">Texte de pr&#233;sentation</label>
+      <type type="str">text</type>
+      <required type="bool">False</required>
+      <varname type="str">texte</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><pre type="bool">False</pre>
+      <id type="str">23</id>
+    </field><field>
+      <label type="str">Vid&#233;o</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">Lien vers une vid&#233;o Youtube ou Vimeo</hint>
+      <varname type="str">video</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">3</id>
+    </field><field>
+      <label type="str">Site internet</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">site_internet</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>string</type>
+        <value>https://</value>
+      </prefill><validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?:\/\/(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))*</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">4</id>
+    </field><field>
+      <label type="str">Facebook</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">Lien Facebook pour cette actualit&#233;</hint>
+      <varname type="str">facebook</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">5</id>
+    </field><field>
+      <label type="str">Twitter</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">Lien Twitter pour cette actualit&#233;</hint>
+      <varname type="str">twitter</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">6</id>
+    </field><field>
+      <label type="str">Instagram</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">instagram</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">7</id>
+    </field><field>
+      <label type="str">Image principale ( sans texte )</label>
+      <type type="str">file</type>
+      <required type="bool">True</required>
+      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233; ; merci de t&#233;l&#233;verser une image sans texte.</hint>
+      <varname type="str">image</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">8</id>
+    </field><field>
+      <label type="str">Th&#233;matiques</label>
+      <type type="str">items</type>
+      <required type="bool">True</required>
+      <varname type="str">thematiques</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.smartweb.vocabulary.Topics</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">True</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">17</id>
+    </field><field>
+      <label type="str">Cat&#233;gorie</label>
+      <type type="str">item</type>
+      <required type="bool">False</required>
+      <varname type="str">categorie</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <display_mode type="str">list</display_mode>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.news.vocabulary.NewsCategories</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <initial_zoom type="str">13</initial_zoom>
+      <id type="str">9</id>
+    </field><field>
+      <label type="str">Je suis ( mon public )</label>
+      <type type="str">items</type>
+      <required type="bool">False</required>
+      <hint type="str">Merci d'indiquer &#224; quel public s'adresse directement votre publication</hint>
+      <varname type="str">je_suis</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.smartweb.vocabulary.IAm</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">True</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">12</id>
+    </field><field>
+      <label type="str">Exclure de la navigation</label>
+      <type type="str">bool</type>
+      <condition>
+        <type>django</type>
+        <value>is_in_backoffice</value>
+      </condition><required type="bool">False</required>
+      <varname type="str">exclure</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">15</id>
+    </field><field>
+      <label type="str">Vos coordonn&#233;es</label>
+      <type type="str">page</type>
+      <id type="str">19</id>
+    </field><field>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_last_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">20</id>
+    </field><field>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_first_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">21</id>
+    </field><field>
+      <label type="str">Adresse e-mail</label>
+      <type type="str">email</type>
+      <required type="bool">True</required>
+      <varname type="str">mail</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_email</value>
+      </prefill><id type="str">22</id>
+    </field>
+  </fields><roles>
+    <role role_id="73011530b77c40f1b1f69d83376f87d5" role_key="_editor" slug="validation-actualites">Validation actualit&#233;s</role>
+  </roles><options>
+    <option varname="plone_folder"></option>
+    <option varname="type">Actualit&#233;</option>
+    <option varname="type_display">Actualit&#233;</option>
+    <option varname="type_structured" />
+  </options><custom_views />
+  <geolocations />
+  <digest_templates>
+    <template key="default">{{ form_var_titre }}</template>
+  </digest_templates>
+</formdef>

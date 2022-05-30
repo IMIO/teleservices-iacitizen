@@ -1,0 +1,970 @@
+<?xml version="1.0"?>
+<formdef id="169" url="">
+  <name>Annuaire</name>
+  <url_name>annuaire</url_name>
+  <internal_identifier>annuaire</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>true</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category category_id="131" slug="contributions">Contributions</category>
+  <workflow slug="contributions" workflow_id="90">Contributions</workflow>
+  <max_field_id>95</max_field_id>
+  <fields>
+    <field>
+      <label type="str">Ajouter une fiche annuaire</label>
+      <type type="str">page</type>
+      <post_conditions>
+        <post_condition>
+          <condition>
+            <type>django</type>
+            <value>form_var_telephone_professionnel  or form_var_telephone_mobile</value>
+          </condition><error_message>Un num&#233;ro de t&#233;l&#233;phone est requis</error_message>
+        </post_condition>
+      </post_conditions><id type="str">56</id>
+    </field><field>
+      <label type="str">Titre</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">titre</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">1</id>
+    </field><field>
+      <label type="str">Sous-titre</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">sous_titre</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">46</id>
+    </field><field>
+      <label type="str">Description courte</label>
+      <type type="str">text</type>
+      <required type="bool">False</required>
+      <hint type="str">R&#233;sum&#233; du contact en quelques phrases: vous ne pouvez d&#233;passer 700 caract&#232;res.</hint>
+      <varname type="str">description</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><pre type="bool">False</pre>
+      <maxlength type="str">700</maxlength>
+      <id type="str">2</id>
+    </field><field>
+      <label type="str">Logo</label>
+      <type type="str">file</type>
+      <required type="bool">False</required>
+      <varname type="str">logo</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">47</id>
+    </field><field>
+      <label type="str">Image principale</label>
+      <type type="str">file</type>
+      <required type="bool">False</required>
+      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233; ; merci de t&#233;l&#233;verser une image sans texte.</hint>
+      <varname type="str">image</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">8</id>
+    </field><field>
+      <label type="str">L&#233;gende de l'image principale</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">legende_image_principale</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">48</id>
+    </field><field>
+      <label type="str">G&#233;olocalisation</label>
+      <type type="str">map</type>
+      <required type="bool">False</required>
+      <varname type="str">carte</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><initial_zoom type="str">13</initial_zoom>
+      <init_with_geoloc type="bool">False</init_with_geoloc>
+      <id type="str">31</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">rue</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">33</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">numero</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">32</id>
+    </field><field>
+      <label type="str">Compl&#233;ment d'adresse</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">complement_adresse</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">49</id>
+    </field><field>
+      <label type="str">Code  postal</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">code_postal</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">34</id>
+    </field><field>
+      <label type="str">Commune</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">commune</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">35</id>
+    </field><field>
+      <label type="str">Pays</label>
+      <type type="str">item</type>
+      <required type="bool">False</required>
+      <varname type="str">pays</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>string</type>
+        <value>Belgique</value>
+      </prefill><display_mode type="str">list</display_mode>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.smartweb.vocabulary.Countries</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <initial_zoom type="str">13</initial_zoom>
+      <id type="str">45</id>
+    </field><field>
+      <label type="str">Num&#233;ro d'entreprise / TVA</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">num_entreprise</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">50</id>
+    </field><field>
+      <label type="str">T&#233;l&#233;phone professionnel</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">format: +32475010203</hint>
+      <varname type="str">telephone_professionnel</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>format: +32475010203</error_message>
+        <type>regex</type>
+        <value>^\+[0-9]{7,}$</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">29</id>
+    </field><field>
+      <label type="str">T&#233;l&#233;phone mobile</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">format: +32475010203</hint>
+      <varname type="str">telephone_mobile</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>format: +32475010203</error_message>
+        <type>regex</type>
+        <value>^\+[0-9]{7,}$</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">51</id>
+    </field><field>
+      <label type="str">Courriel</label>
+      <type type="str">email</type>
+      <required type="bool">False</required>
+      <varname type="str">courriel</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><id type="str">28</id>
+    </field><field>
+      <label type="str">URL site web</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">url_site_web</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>string</type>
+        <value>https://</value>
+      </prefill><validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">30</id>
+    </field><field>
+      <label type="str">Type de contact</label>
+      <type type="str">item</type>
+      <required type="bool">False</required>
+      <varname type="str">type_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><items>
+        <item>Organisation (service administratif, commerce, profession lib&#233;rale, club sportif, association, etc.)</item>
+        <item>Mission (passeports, r&#233;ception, parking, etc.)</item>
+      </items><display_mode type="str">list</display_mode>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.directory.vocabulary.ContactTypes</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <initial_zoom type="str">13</initial_zoom>
+      <id type="str">44</id>
+    </field><field>
+      <label type="str">Th&#233;matiques</label>
+      <type type="str">items</type>
+      <required type="bool">False</required>
+      <varname type="str">thematiques</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.smartweb.vocabulary.Topics</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">True</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">39</id>
+    </field><field>
+      <label type="str">Je suis</label>
+      <type type="str">items</type>
+      <required type="bool">False</required>
+      <hint type="str">Merci d'indiquer &#224; quel public s'adresse directement votre publication.</hint>
+      <varname type="str">je_suis</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.smartweb.vocabulary.IAm</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">True</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">40</id>
+    </field><field>
+      <label type="str">Facilit&#233;s</label>
+      <type type="str">items</type>
+      <required type="bool">False</required>
+      <varname type="str">categories_specifiques</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><items />
+      <min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.directory.vocabulary.Facilities</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">True</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">53</id>
+    </field><field>
+      <label type="str">Cat&#233;gories</label>
+      <type type="str">page</type>
+      <id type="str">57</id>
+    </field><field>
+      <label type="str">Cat&#233;gories</label>
+      <type type="str">items</type>
+      <required type="bool">True</required>
+      <varname type="str">categories</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><items />
+      <min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=collective.taxonomy.contact_category</value>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">True</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">54</id>
+    </field><field>
+      <label type="str">Horaires</label>
+      <type type="str">page</type>
+      <id type="str">58</id>
+    </field><field>
+      <label type="str">&lt;p&gt;Indiquez l&amp;#39;heure avec le format &amp;quot;09:00&amp;quot;.&lt;/p&gt;
+</label>
+      <type type="str">comment</type>
+      <display_locations />
+      <id type="str">91</id>
+    </field><field>
+      <label type="str">Ouverture lundi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_0_0</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">60</id>
+    </field><field>
+      <label type="str">Fermeture lundi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_0_1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">61</id>
+    </field><field>
+      <label type="str">Ouverture lundi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_0_2</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">62</id>
+    </field><field>
+      <label type="str">Fermeture lundi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_0_3</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">63</id>
+    </field><field>
+      <label type="str">Ouverture mardi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_1_0</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">64</id>
+    </field><field>
+      <label type="str">Fermeture mardi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_1_1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">65</id>
+    </field><field>
+      <label type="str">Ouverture mardi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_1_2</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">66</id>
+    </field><field>
+      <label type="str">Fermeture mardi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_1_3</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">67</id>
+    </field><field>
+      <label type="str">Ouverture mercredi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_2_0</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">68</id>
+    </field><field>
+      <label type="str">Fermeture mercredi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_2_1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">69</id>
+    </field><field>
+      <label type="str">Ouverture mercredi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_2_2</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">70</id>
+    </field><field>
+      <label type="str">Fermeture mercredi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_2_3</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">71</id>
+    </field><field>
+      <label type="str">Ouverture jeudi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_3_0</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">72</id>
+    </field><field>
+      <label type="str">Fermeture jeudi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_3_1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">73</id>
+    </field><field>
+      <label type="str">Ouverture jeudi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_3_2</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">74</id>
+    </field><field>
+      <label type="str">Fermeture jeudi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_3_3</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">75</id>
+    </field><field>
+      <label type="str">Ouverture vendredi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_4_0</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">76</id>
+    </field><field>
+      <label type="str">Fermeture vendredi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_4_1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">77</id>
+    </field><field>
+      <label type="str">Ouverture vendredi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_4_2</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">78</id>
+    </field><field>
+      <label type="str">Fermeture vendredi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_4_3</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">79</id>
+    </field><field>
+      <label type="str">Ouverture samedi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_5_0</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">80</id>
+    </field><field>
+      <label type="str">Fermeture samedi matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_5_1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">81</id>
+    </field><field>
+      <label type="str">Ouverture samedi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_5_2</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">82</id>
+    </field><field>
+      <label type="str">Fermeture samedi apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_5_3</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">83</id>
+    </field><field>
+      <label type="str">Ouverture dimanche matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_6_0</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">84</id>
+    </field><field>
+      <label type="str">Fermeture dimanche matin</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_6_1</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">85</id>
+    </field><field>
+      <label type="str">Ouverture dimanche apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_6_2</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">86</id>
+    </field><field>
+      <label type="str">Fermeture dimanche apr&#232;s-midi</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">horaires_6_3</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><validation>
+        <error_message>Saisissez les heures au format 09:00</error_message>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation><anonymise type="bool">False</anonymise>
+      <id type="str">87</id>
+    </field><field>
+      <label type="str">Vos coordonn&#233;es</label>
+      <type type="str">page</type>
+      <id type="str">92</id>
+    </field><field>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_last_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">93</id>
+    </field><field>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_first_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">94</id>
+    </field><field>
+      <label type="str">Adresse e-mail</label>
+      <type type="str">email</type>
+      <required type="bool">True</required>
+      <varname type="str">mail</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_email</value>
+      </prefill><id type="str">95</id>
+    </field>
+  </fields><roles>
+    <role role_id="ac6be6afb2de41dcb360f29e7abf5d26" role_key="_editor" slug="validation-annuaire">Validation annuaire</role>
+  </roles><options>
+    <option varname="plone_folder"></option>
+    <option varname="type">Annuaire</option>
+    <option varname="type_display">Annuaire</option>
+    <option varname="type_structured" />
+  </options><custom_views />
+  <geolocations />
+  <digest_templates>
+    <template key="default">{{ form_var_titre }}</template>
+  </digest_templates>
+</formdef>
