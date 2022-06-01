@@ -85,3 +85,5 @@ try:
     os.system(f"sed -i '{cmd_uri}' {path_base}/passerelle/*")
 except Exception as e:
     print(e)
+
+os.system(f'{path_base}/install_teleservices_iacitizen.sh')
