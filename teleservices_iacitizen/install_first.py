@@ -9,7 +9,7 @@ if len(sys.argv) != 3:
     print("Wrong number of arguments")
     exit()
 
-path_base = "/usr/lib/teleservices-iacitizen/teleservices_iacitizen"
+path_base = "/usr/lib/teleservices_iacitizen"
 
 url = "https://api.imio.be/imio/authentic/v1/services/agents"
 
