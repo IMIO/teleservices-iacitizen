@@ -71,7 +71,7 @@ for i in users_passwords.keys():
 
 print("Sed gen user for all passerelle")
 cmd_user = f's/"username": "",/"username": "{users_passwords["gen"]["user"]}",/g'
-files = os.listdir("passerelle")
+files = os.listdir(f"{path_base}/passerelle")
 for file in files:
     if "deliberations" not in file:
         try:
