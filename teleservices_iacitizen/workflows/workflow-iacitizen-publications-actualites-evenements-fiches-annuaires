@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<workflow id="90" url="">
-  <name>Contributions</name>
+<workflow id="131" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/131/">
+  <name>iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</name>
   <slug>contributions</slug>
-  <category category_id="1" slug="contributions">Contributions</category>
   <roles>
     <role id="_editor">Destinataire</role>
     <role id="_testeur">Testeur</role>
@@ -13,7 +12,7 @@
       <colour>FFFFFF</colour>
       <visibility />
       <items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="_submitter">_submitter</item>
           </to><subject>Nouvel &#233;v&#233;nement re&#231;u</subject>
@@ -25,12 +24,14 @@ Votre contribution :
 
 {{form_details}}
 
-Cordialement,</body>
+Cordialement,
+L'administration
+</body>
           <condition>
             <type>django</type>
             <value>form_var_previous_status != "Information n&#233;cessaire"</value>
           </condition>
-        </item><item id="2" type="sendmail">
+        </item><item type="sendmail" id="2">
           <to>
             <item role_id="_editor">_editor</item>
           </to><subject>Nouvel &#233;v&#233;nement n&#176; {{ form_number }}</subject>
@@ -45,12 +46,12 @@ Un nouvel &#233;v&#233;nement a &#233;t&#233; soumis :
 {{ form_url_backoffice }}
 
 {% endif %}</body>
-        </item><item id="3" type="editable">
+        </item><item type="editable" id="3">
           <by>
             <item role_id="_editor">_editor</item>
           </by><status>recorded</status>
           <label>Modifier</label>
-        </item><item id="4" type="commentable">
+        </item><item type="commentable" id="4">
           <label>Commentaire</label>
           <button_label>Ajouter le commentaire</button_label>
           <by>
@@ -58,7 +59,7 @@ Un nouvel &#233;v&#233;nement a &#233;t&#233; soumis :
           </by><varname>agent</varname>
           <backoffice_info_text>&lt;p&gt;Quand vous cliquez sur &amp;quot;Ajouter le commentaire&amp;quot;, le commentaire devient visible par l'usager.&lt;/p&gt;</backoffice_info_text>
           <required>False</required>
-        </item><item id="5" type="choice">
+        </item><item type="choice" id="5">
           <label>&#10067; Envoyer une demande d'information</label>
           <by>
             <item role_id="_editor">_editor</item>
@@ -66,7 +67,7 @@ Un nouvel &#233;v&#233;nement a &#233;t&#233; soumis :
           <require_confirmation>False</require_confirmation>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="6" type="choice">
+        </item><item type="choice" id="6">
           <label>Refuser</label>
           <by>
             <item role_id="_editor">_editor</item>
@@ -75,7 +76,7 @@ Un nouvel &#233;v&#233;nement a &#233;t&#233; soumis :
           <backoffice_info_text>&lt;p&gt;Avant de refuser, vous devez imp&amp;eacute;rativement ajouter un commentaire motivant le refus.&lt;/p&gt;</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="7" type="choice">
+        </item><item type="choice" id="7">
           <label>Valider la publication</label>
           <by>
             <item role_id="_editor">_editor</item>
@@ -91,7 +92,7 @@ Un nouvel &#233;v&#233;nement a &#233;t&#233; soumis :
       <colour>FFFFFF</colour>
       <visibility />
       <items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="_submitter">_submitter</item>
           </to><subject>Publication refus&#233;e</subject>
@@ -101,8 +102,8 @@ Nous vous informons que votre publication a &#233;t&#233; refus&#233;e pour la r
 
 {{ comment_agent }}
 
-Cordialement, 
-Votre administration communale</body>
+Cordialement,
+L'administration
         </item>
       </items>
     </status><status>
@@ -112,19 +113,19 @@ Votre administration communale</body>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="_submitter">_submitter</item>
           </to><subject>Publication accept&#233;e</subject>
           <body>Bonjour,
 
-Votre contribution a &#233;t&#233; publi&#233;e sur le site internet de l'administration communale.
+Votre contribution a &#233;t&#233; publi&#233;e sur le site internet de l'administration communale de Braine-l'Alleud.
 
 {{comment_agent}}
 
-Cordialement, 
-Votre adminitration communale</body>
-        </item><item id="2" type="editable">
+Cordialement,
+L'administration</body>
+        </item><item type="editable" id="2">
           <by>
             <item role_id="_editor">_editor</item>
           </by><status>12</status>
@@ -137,18 +138,18 @@ Votre adminitration communale</body>
       <colour>FFFFFF</colour>
       <visibility />
       <items>
-        <item id="1" type="sendmail">
+        <item type="sendmail" id="1">
           <to>
             <item role_id="_submitter">_submitter</item>
           </to><mail_template>information-necessaire</mail_template>
-        </item><item id="2" type="commentable">
+        </item><item type="commentable" id="2">
           <label>Commentaire</label>
           <button_label>Envoyer le commentaire</button_label>
           <by>
             <item role_id="_submitter">_submitter</item>
           </by><varname>usager</varname>
           <required>False</required>
-        </item><item id="3" type="jumponsubmit">
+        </item><item type="jumponsubmit" id="3">
           <status>recorded</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -159,19 +160,19 @@ Votre adminitration communale</body>
       <colour>FF9999</colour>
       <visibility />
       <items>
-        <item id="1" type="jump">
+        <item type="jump" id="1">
           <status>6</status>
           <condition>
             <type>django</type>
             <value>form_option_type  == "Actualit&#233;"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>0</status>
           <condition>
             <type>django</type>
             <value>form_option_type  == "&#201;v&#233;nement"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="jump">
+        </item><item type="jump" id="3">
           <status>7</status>
           <condition>
             <type>django</type>
@@ -185,7 +186,7 @@ Votre adminitration communale</body>
       <colour>FF99FF</colour>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Envoi event vers le site Web</label>
           <url>{{ passerelle_url }}plone-restapi/evenements/create</url>
           <qs_data>
@@ -315,7 +316,7 @@ Votre adminitration communale</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -326,7 +327,7 @@ Votre adminitration communale</body>
       <colour>FF99FF</colour>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Envoi news vers le site Web</label>
           <url>{{ passerelle_url }}plone-restapi/actualites/create</url>
           <qs_data>
@@ -396,7 +397,7 @@ Votre adminitration communale</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -407,7 +408,7 @@ Votre adminitration communale</body>
       <colour>FF99FF</colour>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Envoi contact vers le site Web</label>
           <url>{{ passerelle_url }}plone-restapi/annuaire/create</url>
           <qs_data>
@@ -582,7 +583,7 @@ Votre adminitration communale</body>
               <value>{{ form_var_horaires_2_0|default:'' }}</value>
             </item><item>
               <name>selected_entities</name>
-              <value>f571b73a16f34832a5fdd3683533b3cc</value>
+              <value>dca07c8b4805433c996e3b7fda90e37e</value>
             </item><item>
               <name>street</name>
               <value>{{ form_var_rue }}</value>
@@ -618,7 +619,7 @@ Votre adminitration communale</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -629,7 +630,7 @@ Votre adminitration communale</body>
       <colour>FF0000</colour>
       <visibility />
       <items>
-        <item id="3" type="displaymsg">
+        <item type="displaymsg" id="1">
           <message>&lt;p&gt;Information technique pour l&#8217;analyse de l&#8217;erreur&#160;:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -642,10 +643,10 @@ Votre adminitration communale</body>
           <position>top</position>
           <to>
             <item role_id="_editor">_editor</item>
-            <item role_id="e22806cf30a64a308d9c00d1c3efacae" slug="agent-ayant-acces-aux-fabriques">Agent ayant acces aux fabriques</item>
-            <item role_id="93f6c58e6cdf4036b1bc8a9a9efa9baf" slug="debug">Debug</item>
+            <item slug="agent-ayant-acces-aux-fabriques" role_id="9be8b3ce1b3244be8f6e05a9aa003cf0">Agent ayant acces aux fabriques</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
           </to>
-        </item><item id="1" type="choice">
+        </item><item type="choice" id="2">
           <label>Rejeu</label>
           <by>
             <item role_id="_editor">_editor</item>
@@ -653,7 +654,7 @@ Votre adminitration communale</body>
           <require_confirmation>False</require_confirmation>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="2" type="choice">
+        </item><item type="choice" id="3">
           <label>debug</label>
           <by>
             <item role_id="_editor">_editor</item>
@@ -661,7 +662,7 @@ Votre adminitration communale</body>
           <require_confirmation>False</require_confirmation>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item id="4" type="choice">
+        </item><item type="choice" id="4">
           <label>Retour en arri&#232;re</label>
           <by>
             <item role_id="_editor">_editor</item>
@@ -677,19 +678,19 @@ Votre adminitration communale</body>
       <colour>FF9999</colour>
       <visibility />
       <items>
-        <item id="1" type="jump">
+        <item type="jump" id="1">
           <status>8</status>
           <condition>
             <type>django</type>
             <value>form_option_type  == "&#201;v&#233;nement"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>9</status>
           <condition>
             <type>django</type>
             <value>form_option_type  == "Actualit&#233;"</value>
           </condition><set_marker_on_status>False</set_marker_on_status>
-        </item><item id="3" type="jump">
+        </item><item type="jump" id="3">
           <status>10</status>
           <condition>
             <type>django</type>
@@ -703,7 +704,7 @@ Votre adminitration communale</body>
       <colour>FF99FF</colour>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Renvoi event vers le site Web</label>
           <url>{{ passerelle_url }}plone-restapi/evenements/update</url>
           <qs_data>
@@ -833,7 +834,7 @@ Votre adminitration communale</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -844,7 +845,7 @@ Votre adminitration communale</body>
       <colour>FF99FF</colour>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Renvoi news vers le site Web</label>
           <url>{{ passerelle_url }}plone-restapi/actualites/update</url>
           <qs_data>
@@ -914,7 +915,7 @@ Votre adminitration communale</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -925,7 +926,7 @@ Votre adminitration communale</body>
       <colour>FF99FF</colour>
       <visibility />
       <items>
-        <item id="1" type="webservice_call">
+        <item type="webservice_call" id="1">
           <label>Renvoi contact vers le site Web</label>
           <url>{{ passerelle_url }}plone-restapi/annuaire/update</url>
           <qs_data>
@@ -1100,7 +1101,7 @@ Votre adminitration communale</body>
               <value>{{ form_var_horaires_2_0|default:'' }}</value>
             </item><item>
               <name>selected_entities</name>
-              <value>f571b73a16f34832a5fdd3683533b3cc</value>
+              <value>dca07c8b4805433c996e3b7fda90e37e</value>
             </item><item>
               <name>street</name>
               <value>{{ form_var_rue }}</value>
@@ -1136,7 +1137,7 @@ Votre adminitration communale</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
-        </item><item id="2" type="jump">
+        </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -1150,7 +1151,7 @@ Votre adminitration communale</body>
         <role>_testeur</role>
         <role>_visualisation</role>
       </visibility><items>
-        <item id="1" type="choice">
+        <item type="choice" id="1">
           <label>Rejeu</label>
           <by>
             <item role_id="_editor">_editor</item>
@@ -1166,9 +1167,9 @@ Votre adminitration communale</body>
       <id>1</id>
       <name>Suppression</name>
       <items>
-        <item id="1" type="remove" />
+        <item type="remove" id="1" />
       </items><triggers>
-        <trigger id="84532db6-59d8-4fc2-8148-90cbb0fcad1f" type="manual">
+        <trigger type="manual" id="a81a4811-d6a3-41c7-adf1-0cf7fc92ec7e">
           <roles>
             <item role_id="_editor">_editor</item>
           </roles>
@@ -1185,12 +1186,12 @@ Votre adminitration communale</body>
           <required type="bool">True</required>
           <varname type="str">type</varname>
           <display_locations />
+          <display_mode type="str">list</display_mode>
           <items>
             <item>Actualit&#233;</item>
             <item>Annuaire</item>
             <item>&#201;v&#233;nement</item>
-          </items><display_mode type="str">list</display_mode>
-          <in_filters type="bool">False</in_filters>
+          </items><in_filters type="bool">False</in_filters>
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
           <id type="str">1</id>
