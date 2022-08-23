@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<formdef id="168" url="">
+<formdef id="209" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/209/">
   <name>&#201;v&#233;nement</name>
   <url_name>evenement</url_name>
   <internal_identifier>evenement</internal_identifier>
@@ -13,8 +13,8 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category category_id="131" slug="contributions">Contributions</category>
-  <workflow slug="contributions" workflow_id="90">Contributions</workflow>
+  <category slug="contributions" category_id="130">Publications</category>
+  <workflow slug="contributions" workflow_id="131">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
   <max_field_id>51</max_field_id>
   <fields>
     <field>
@@ -31,8 +31,8 @@
         <display_location>summary</display_location>
       </display_locations><prefill>
         <type>none</type>
-      </prefill><items />
-      <display_mode type="str">list</display_mode>
+      </prefill><display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventTypes</value>
@@ -478,8 +478,8 @@
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><items />
-      <display_mode type="str">list</display_mode>
+      </prefill><display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventsCategories</value>
@@ -499,8 +499,8 @@
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><items />
-      <display_mode type="str">list</display_mode>
+      </prefill><display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventsLocalCategories</value>
@@ -520,6 +520,7 @@
       </display_locations><prefill>
         <type>none</type>
       </prefill><items />
+      <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
@@ -540,6 +541,7 @@
       </display_locations><prefill>
         <type>none</type>
       </prefill><items />
+      <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
@@ -580,8 +582,8 @@
         <display_location>summary</display_location>
       </display_locations><prefill>
         <type>none</type>
-      </prefill><items />
-      <display_mode type="str">list</display_mode>
+      </prefill><display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=plone.app.vocabularies.SupportedContentLanguages</value>
@@ -651,10 +653,11 @@
   </fields><roles>
     <role role_id="73011530b77c40f1b1f69d83376f87d5" role_key="_editor" slug="validation-actualites">Validation actualit&#233;s</role>
   </roles><options>
-    <option varname="plone_folder"></option>
+    <option varname="plone_folder">CITIZEN_PLONE_FOLDER</option>
     <option varname="type">&#201;v&#233;nement</option>
     <option varname="type_display">&#201;v&#233;nement</option>
     <option varname="type_structured" />
+    <option varname="uri_plone">CITIZEN_URI_PLONE</option>
   </options><custom_views />
   <geolocations />
   <digest_templates>

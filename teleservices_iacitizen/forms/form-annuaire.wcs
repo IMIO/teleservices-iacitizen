@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<formdef id="169" url="">
+<formdef id="208" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/208/">
   <name>Annuaire</name>
   <url_name>annuaire</url_name>
   <internal_identifier>annuaire</internal_identifier>
@@ -13,8 +13,8 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category category_id="131" slug="contributions">Contributions</category>
-  <workflow slug="contributions" workflow_id="90">Contributions</workflow>
+  <category slug="contributions" category_id="130">Publi</category>
+  <workflow slug="contributions" workflow_id="131">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
   <max_field_id>95</max_field_id>
   <fields>
     <field>
@@ -224,6 +224,7 @@
         <type>string</type>
         <value>Belgique</value>
       </prefill><display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.smartweb.vocabulary.Countries</value>
@@ -328,8 +329,7 @@
       </prefill><items>
         <item>Organisation (service administratif, commerce, profession lib&#233;rale, club sportif, association, etc.)</item>
         <item>Mission (passeports, r&#233;ception, parking, etc.)</item>
-      </items><display_mode type="str">list</display_mode>
-      <data_source>
+      </items><data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.directory.vocabulary.ContactTypes</value>
       </data_source><in_filters type="bool">False</in_filters>
@@ -349,6 +349,7 @@
       <prefill>
         <type>none</type>
       </prefill><items />
+      <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
@@ -392,6 +393,7 @@
       <prefill>
         <type>none</type>
       </prefill><items />
+      <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
@@ -416,6 +418,7 @@
       </display_locations><prefill>
         <type>none</type>
       </prefill><items />
+      <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
@@ -958,10 +961,11 @@
   </fields><roles>
     <role role_id="ac6be6afb2de41dcb360f29e7abf5d26" role_key="_editor" slug="validation-annuaire">Validation annuaire</role>
   </roles><options>
-    <option varname="plone_folder"></option>
+    <option varname="plone_folder">CITIZEN_PLONE_FOLDER</option>
     <option varname="type">Annuaire</option>
     <option varname="type_display">Annuaire</option>
     <option varname="type_structured" />
+    <option varname="uri_plone">CITIZEN_URI_FOLDER</option>
   </options><custom_views />
   <geolocations />
   <digest_templates>
