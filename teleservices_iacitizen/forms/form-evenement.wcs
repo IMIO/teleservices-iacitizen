@@ -653,11 +653,11 @@
   </fields><roles>
     <role role_id="73011530b77c40f1b1f69d83376f87d5" role_key="_editor" slug="validation-actualites">Validation actualit&#233;s</role>
   </roles><options>
-    <option varname="plone_folder">CITIZEN_PLONE_FOLDER</option>
+    <option varname="plone_folder">FORM_PLONE_FOLDER</option>
     <option varname="type">&#201;v&#233;nement</option>
     <option varname="type_display">&#201;v&#233;nement</option>
     <option varname="type_structured" />
-    <option varname="uri_plone">CITIZEN_URI_PLONE</option>
+    <option varname="uri_plone">FORM_URI_PLONE</option>
   </options><custom_views />
   <geolocations />
   <digest_templates>

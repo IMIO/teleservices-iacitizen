@@ -961,7 +961,7 @@
   </fields><roles>
     <role role_id="ac6be6afb2de41dcb360f29e7abf5d26" role_key="_editor" slug="validation-annuaire">Validation annuaire</role>
   </roles><options>
-    <option varname="plone_folder">CITIZEN_PLONE_FOLDER</option>
+    <option varname="plone_folder">FORM_PLONE_FOLDER</option>
     <option varname="type">Annuaire</option>
     <option varname="type_display">Annuaire</option>
     <option varname="type_structured" />
