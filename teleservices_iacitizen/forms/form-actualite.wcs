@@ -299,11 +299,11 @@
     <role role_id="logged-users">logged-users</role>
   </user-roles><roles />
   <options>
-    <option varname="plone_folder">CITIZEN_PLONE_FOLDER</option>
+    <option varname="plone_folder">FORM_PLONE_FOLDER</option>
     <option varname="type">Actualit&#233;</option>
     <option varname="type_display">Actualit&#233;</option>
     <option varname="type_structured" />
-    <option varname="uri_plone">CITIZEN_URI_PLONE/citoyens</option>
+    <option varname="uri_plone">FORM_URI_PLONE/citoyens</option>
   </options><custom_views />
   <geolocations />
   <digest_templates>
