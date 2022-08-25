@@ -1,64 +1,102 @@
-#!/bin/sh
+#!/bin/bash
+
+declare -A passerelle_actualites
+declare -A passerelle_site_web
+declare -A passerelle_annuaire
+declare -A passerelle_deliberations
+declare -A passerelle_evenements
+
+passerelle_actualites[BASIC_AUTH_USERNAME]=""
+passerelle_actualites[BASIC_AUTH_PW]=""
+passerelle_actualites[SERVICE_URL]="https://actualites.enwallonie.be"
+passerelle_actualites[TOKEN_WS_URL]="https://agents.wallonie-connect.be/idp/oidc/token/"
+passerelle_actualites[CLIENT_ID]=""
+passerelle_actualites[CLIENT_SECRET]=""
+passerelle_actualites[USRNAME]=""
+passerelle_actualites[PASSWORD]=""
+passerelle_actualites[QUERIES_URI]=""
+
+passerelle_annuaire[BASIC_AUTH_USERNAME]=""
+passerelle_annuaire[BASIC_AUTH_PW]=""
+passerelle_annuaire[SERVICE_URL]="https://annuaire.enwallonie.be"
+passerelle_annuaire[TOKEN_URL]="https://agents.wallonie-connect.be/idp/oidc/token/"
+passerelle_annuaire[CLIENT_ID]=""
+passerelle_annuaire[CLIENT_SECRET]=""
+passerelle_annuaire[USRNAME]=""
+passerelle_annuaire[PASSWORD]=""
+passerelle_annuaire[QUERIES_URI]=""
+
+passerelle_deliberations[BASIC_AUTH_USERNAME]=""
+passerelle_deliberations[BASIC_AUTH_PW]=""
+passerelle_deliberations[SERVICE_URL]="https://www.deliberations.be"
+passerelle_deliberations[TOKEN_URL]=""
+passerelle_deliberations[CLIENT_ID]=""
+passerelle_deliberations[CLIENT_SECRET]=""
+passerelle_deliberations[USRNAME]=""
+passerelle_deliberations[PASSWORD]=""
+passerelle_deliberations[QUERY_NAME]=""
+passerelle_deliberations[QUERY_SLUG]=""
+passerelle_deliberations[QUERIES_URI]=""
+
+passerelle_evenements[BASIC_AUTH_USERNAME]=""
+passerelle_evenements[BASIC_AUTH_PW]=""
+passerelle_evenements[SERVICE_URL]="https://agenda.enwallonie.be"
+passerelle_evenements[TOKEN_URL]="https://agents.wallonie-connect.be/idp/oidc/token/"
+passerelle_evenements[CLIENT_ID]=""
+passerelle_evenements[CLIENT_SECRET]=""
+passerelle_evenements[USRNAME]=""
+passerelle_evenements[PASSWORD]=""
+passerelle_evenements[QUERIES_URI]=""
+
+passerelle_site_web[BASIC_AUTH_USERNAME]=""
+passerelle_site_web[BASIC_AUTH_PW]=""
+passerelle_site_web[SERVICE_URL]=""
+passerelle_site_web[TOKEN_URL]=""
+passerelle_site_web[CLIENT_ID]=""
+passerelle_site_web[CLIENT_SECRET]=""
+passerelle_site_web[USRNAME]=""
+passerelle_site_web[PASSWORD]=""
+passerelle_site_web[QUERIES_URI]=""
 
 #Data that will populate ./forms/*.wcs ( not actually all *.wcs but only where is it needed)
-FORM_PLONE_FOLDDER=""
+FORM_PLONE_FOLDER=""
 FORM_URI_PLONE=""
 
-# Data that will populate ./passerelle/export_plone-restapi_actualites.json
-PASSERELLE_ACTUALITES_BASIC_AUTH_USERNAME=""
-PASSERELLE_ACTUALITES_BASIC_AUTH_PW=""
-PASSERELLE_ACTUALITES_SERVICE_URL="https://actualites.enwallonie.be"
-PASSERELLE_ACTUALITES_TOKEN_WS_URL"https://agents.wallonie-connect.be/idp/oidc/token/"
-PASSERELLE_ACTUALITES_CLIENT_ID=""
-PASSERELLE_ACTUALITES_CLIENT_SECRET=""
-PASSERELLE_ACTUALITES_USERNAME=""
-PASSERELLE_ACTUALITES_PW=""
-PASSERELLE_ACTUALITES_QUERIES_URI=""
+sed -i "s|FORM_PLONE_FOLDER|$FORM_PLONE_FOLDER|g" ./forms/form-actualite.wcs
+sed -i "s|FORM_URI_PLONE|$FORM_URI_PLONE|g" ./forms/form-actualite.wcs
 
-# Data that will populate ./passerelle/export_plone-restapi_annuaire.json
-PASSERELLE_ANNUAIRE_BASIC_AUTH_USERNAME=""
-PASSERELLE_ANNUAIRE_BASIC_AUTH_PW=""
-PASSERELLE_ANNUAIRE_SERVICE_URL="https://annuaire.enwallonie.be"
-PASSERELLE_ANNUAIRE_TOKEN_URL="https://agents.wallonie-connect.be/idp/oidc/token/"
-PASSERELLE_ANNUAIRE_CLIENT_ID=""
-PASSERELLE_ANNUAIRE_CLIENT_SECRET=""
-PASSERELLE_ANNUAIRE_USERNAME=""
-PASSERELLE_ANNUAIRE_PW=""
-PASSERELLE_ANNUAIRE_QUERIES_URI=""
+sed -i "s|FORM_PLONE_FOLDER|$FORM_PLONE_FOLDER|g" ./forms/form-annuaire.wcs
+sed -i "s|FORM_URI_PLONE|$FORM_URI_PLONE|g" ./forms/form-annuaire.wcs
 
-# Data that will populate ./passerelle/export_plone-restapi_deliberations.json
-PASSERELLE_DELIBERATIONS_BASIC_AUTH_USERNAME=""
-PASSERELLE_DELIBERATIONS_BASIC_AUTH_PW=""
-PASSERELLE_DELIBERATIONS_SERVICE_URL="https://www.deliberations.be"
-PASSERELLE_DELIBERATIONS_TOKEN_URL=""
-PASSERELLE_DELIBERATIONS_CLIENT_ID=""
-PASSERELLE_DELIBERATIONS_CLIENT_SECRET=""
-PASSERELLE_DELIBERATIONS_USERNAME=""
-PASSERELLE_DELIBERATIONS_PW=""
-PASSERELLE_DELIBERATIONS_QUERIES_URI=""
+sed -i "s|FORM_PLONE_FOLDER|$FORM_PLONE_FOLDER|g" ./forms/form-evenement.wcs
+sed -i "s|FORM_URI_PLONE|$FORM_URI_PLONE|g" ./forms/form-evenement.wcs
 
 
-# Data that will populate ./passerelle/export_plone-restapi_evenements.json
-PASSERELLE_EVENEMENTS_BASIC_AUTH_USERNAME=""
-PASSERELLE_EVENEMENTS_BASIC_AUTH_PASSWORD=""
-PASSERELLE_EVENEMENTS_SERVICE_URL="https://agenda.enwallonie.be"
-PASSERELLE_EVENEMENTS_TOKEN_URL="https://agents.wallonie-connect.be/idp/oidc/token/"
-PASSERELLE_EVENEMENTS_CLIENT_ID=""
-PASSERELLE_EVENEMENTS_CLIENT_SECRET=""
-PASSERELLE_EVENEMENTS_USERNAME=""
-PASSERELLE_EVENEMENTS_PW=""
-PASSERELLE_EVENEMENTS_QUERIES_URI=""
+for key in "${!passerelle_actualites[@]}"
+do
+    sed -i "s|$key|${passerelle_actualites[$key]}|g" ./passerelle/export_plone-restapi_actualites.json
+done
 
-# Data that will populate ./passerelle/export_plone-restapi_site-web.json
-PASSERELLE_SITE_WEB_BASIC_AUTH_USERNAME=""
-PASSERELLE_SITE_WEB_BASIC_AUTH_PW=""
-PASSERELLE_SITE_WEB_SERVICE_URL=""
-PASSERELLE_SITE_WEB_TOKEN_URL=""
-PASSERELLE_SITE_WEB_CLIENT_ID=""
-PASSERELLE_SITE_WEB_CLIENT_SECRET=""
-PASSERELLE_SITE_WEB_USERNAME=""
-PASSERELLE_SITE_WEB_PW=""
-PASSERELLE_SITE_WEB_QUERIES_URI=""
+for key in "${!passerelle_annuaire[@]}"
+do
+    sed -i "s|$key|${passerelle_annuaire[$key]}|g" ./passerelle/export_plone-restapi_annuaire.json
+done
+
+for key in "${!passerelle_deliberations[@]}"
+do
+    sed -i "s|$key|${passerelle_deliberations[$key]}|g" ./passerelle/export_plone-restapi_delibertions.json
+done
+
+for key in "${!passerelle_evenements[@]}"
+do
+    sed -i "s|$key|${passerelle_evenements[$key]}|g" test-actu.json
+done
+
+for key in "${!passerelle_site_web[@]}"
+do
+    sed -i "s|$key|${passerelle_site_web[$key]}|g" test-actu.json
+done
+
 
 set -e # Exit immediately if a command exits with a non-zero status.
 
