@@ -965,7 +965,7 @@
     <option varname="type">Annuaire</option>
     <option varname="type_display">Annuaire</option>
     <option varname="type_structured" />
-    <option varname="uri_plone">CITIZEN_URI_FOLDER</option>
+    <option varname="uri_plone">FORM_URI_PLONE</option>
   </options><custom_views />
   <geolocations />
   <digest_templates>
