@@ -84,17 +84,17 @@ done
 
 for key in "${!passerelle_deliberations[@]}"
 do
-    sed -i "s|$key|${passerelle_deliberations[$key]}|g" ./passerelle/export_plone-restapi_delibertions.json
+    sed -i "s|$key|${passerelle_deliberations[$key]}|g" ./passerelle/export_plone-restapi_deliberations.json
 done
 
 for key in "${!passerelle_evenements[@]}"
 do
-    sed -i "s|$key|${passerelle_evenements[$key]}|g" test-actu.json
+    sed -i "s|$key|${passerelle_evenements[$key]}|g" ./passerelle/export_plone-restapi_evenements.json
 done
 
 for key in "${!passerelle_site_web[@]}"
 do
-    sed -i "s|$key|${passerelle_site_web[$key]}|g" test-actu.json
+    sed -i "s|$key|${passerelle_site_web[$key]}|g" ./passerelle/export_plone-restapi_site-web.json
 done
 
 
