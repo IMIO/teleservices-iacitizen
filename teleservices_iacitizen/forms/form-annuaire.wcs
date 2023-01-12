@@ -13,7 +13,7 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="contributions" category_id="130">Publi</category>
+  <category slug="publications" category_id="130">Publications</category>
   <workflow slug="contributions" workflow_id="131">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
   <max_field_id>95</max_field_id>
   <fields>
