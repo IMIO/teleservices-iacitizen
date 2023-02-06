@@ -65,9 +65,8 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><pre type="bool">False</pre>
+      </prefill><display_mode type="str">plain</display_mode>
       <maxlength type="str">700</maxlength>
       <id type="str">2</id>
     </field><field>
@@ -80,9 +79,8 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><pre type="bool">False</pre>
+      </prefill><display_mode type="str">plain</display_mode>
       <id type="str">51</id>
     </field><field>
       <label type="str">Lien pour la participation en ligne</label>
@@ -95,7 +93,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -114,7 +111,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -133,7 +129,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -152,7 +147,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -171,7 +165,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -190,7 +183,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -208,7 +200,6 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -228,7 +219,6 @@
         <display_location>listings</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><document_type>
         <id>_image</id>
@@ -360,7 +350,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_last_name</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -375,7 +364,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_email</value>
       </prefill><id type="str">28</id>
@@ -389,7 +377,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>user</type>
         <value>_phone</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -417,7 +404,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-3-4</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>road</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -432,7 +418,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>house</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -447,7 +432,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-6</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>postcode</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -462,7 +446,6 @@
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-5-6</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>geolocation</type>
         <value>city</value>
       </prefill><anonymise type="bool">True</anonymise>
@@ -561,9 +544,10 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><prefill>
-        <locked>False</locked>
         <type>none</type>
-      </prefill><min_choices type="int">0</min_choices>
+      </prefill><items />
+      <display_mode type="str">checkboxes</display_mode>
+      <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
         <type>json</type>
@@ -650,9 +634,10 @@
         <value>_email</value>
       </prefill><id type="str">50</id>
     </field>
-  </fields><roles>
-    <role role_id="73011530b77c40f1b1f69d83376f87d5" role_key="_editor" slug="validation-actualites">Validation actualit&#233;s</role>
-  </roles><options>
+  </fields><user-roles>
+    <role slug="citoyen-test" role_id="45d1eb0a941f44f68289eb1586be448e">Citoyen (test)</role>
+  </user-roles><roles />
+  <options>
     <option varname="plone_folder">FORM_PLONE_FOLDER</option>
     <option varname="type">&#201;v&#233;nement</option>
     <option varname="type_display">&#201;v&#233;nement</option>

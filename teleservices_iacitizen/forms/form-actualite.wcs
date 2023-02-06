@@ -46,7 +46,7 @@
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <prefill>
         <type>none</type>
-      </prefill><pre type="bool">False</pre>
+      </prefill><display_mode type="str">plain</display_mode>
       <maxlength type="str">700</maxlength>
       <id type="str">2</id>
     </field><field>
@@ -59,7 +59,7 @@
         <display_location>summary</display_location>
       </display_locations><prefill>
         <type>none</type>
-      </prefill><pre type="bool">False</pre>
+      </prefill><display_mode type="str">plain</display_mode>
       <id type="str">23</id>
     </field><field>
       <label type="str">Vid&#233;o</label>
@@ -296,9 +296,8 @@
       </prefill><id type="str">22</id>
     </field>
   </fields><user-roles>
-    <role role_id="logged-users">logged-users</role>
-  </user-roles><roles />
-  <options>
+    <role slug="citoyen-test" role_id="45d1eb0a941f44f68289eb1586be448e">Citoyen (test)</role>
+  </user-roles><options>
     <option varname="plone_folder">FORM_PLONE_FOLDER</option>
     <option varname="type">Actualit&#233;</option>
     <option varname="type_display">Actualit&#233;</option>
