@@ -18,7 +18,7 @@ class inst(install):
         os.system("sh " + path + "install_teleservices_iacitizen.sh")
 
 
-version = "0.0.0"
+version = "0.0.1"
 
 setup(
     name="teleservices-iacitizen",

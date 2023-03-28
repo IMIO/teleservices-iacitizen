@@ -8,9 +8,10 @@
 Afin de traiter votre contribution, nous vous demandons l'information suivante :
 {{ comment_agent }}
 
-Vous pouvez r&#233;pondre en compl&#233;tant votre demande :
-{{form_url}}
+Vous pouvez répondre en complétant votre demande.
 
-Cordialement,
-Votre administration communale</body>
+`Compléter ma demande &lt;{{form_url}}&gt;`_
+
+Bien à vous,
+Votre administration</body>
 </mail-template>
