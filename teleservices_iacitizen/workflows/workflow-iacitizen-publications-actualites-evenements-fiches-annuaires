@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="131" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/131/">
+<workflow id="157" url="https://demo-formulaires.guichet-citoyen.be/backoffice/workflows/157/">
   <name>iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</name>
   <slug>contributions</slug>
   <roles>
@@ -15,17 +15,17 @@
         <item type="sendmail" id="1">
           <to>
             <item role_id="_submitter">_submitter</item>
-          </to><subject>Nouvel &#233;v&#233;nement re&#231;u</subject>
+          </to><subject>Votre contribution ({{form_name}})</subject>
           <body>Bonjour,
 
-Nous avons bien re&#231;u votre contribution, elle sera relue avant d'&#234;tre publi&#233;e. Vous serez tenu inform&#233; lors de sa publication.
+Nous avons bien re&#231;u votre contribution, elle sera relue avant d'&#234;tre publi&#233;e.
+Vous serez tenu&#183;e inform&#233;&#183;e quand la publication sera effective.
 
-Votre contribution :
+R&#233;sum&#233; des informations envoy&#233;es :
 
 {{form_details}}
 
-Cordialement,
-L'administration
+Bien &#224; vous,
 </body>
           <condition>
             <type>django</type>
@@ -34,54 +34,63 @@ L'administration
         </item><item type="sendmail" id="2">
           <to>
             <item role_id="_editor">_editor</item>
-          </to><subject>Nouvel &#233;v&#233;nement n&#176; {{ form_number }}</subject>
+          </to><subject>Nouvelle contribution ({{form_name}} - {{ form_number }})</subject>
           <body>Bonjour,
 
 {% if form_previous_status == "Information n&#233;cessaire" %}
-Un nouvelle information a &#233;t&#233; apport&#233;e pour la demande {{ form_number }} :
+Une nouvelle information a &#233;t&#233; apport&#233;e pour la demande {{ form_number }} :
 {{ form_url_backoffice }}
 
 {% else %}
-Un nouvel &#233;v&#233;nement a &#233;t&#233; soumis :
+Une nouvelle contribution a &#233;t&#233; compl&#233;t&#233;e :
 {{ form_url_backoffice }}
+{% endif %}
 
-{% endif %}</body>
+Bien &#224; vous,</body>
         </item><item type="editable" id="3">
           <by>
             <item role_id="_editor">_editor</item>
           </by><status>recorded</status>
           <label>Modifier</label>
+          <operation_mode>full</operation_mode>
         </item><item type="commentable" id="4">
           <label>Commentaire</label>
-          <button_label>Ajouter le commentaire</button_label>
+          <button_label>Publier le commentaire</button_label>
+          <hint>Le commentaire deviendra visible par l'usager, dans le fil ou historique de sa demande.</hint>
           <by>
             <item role_id="_editor">_editor</item>
           </by><varname>agent</varname>
-          <backoffice_info_text>&lt;p&gt;Quand vous cliquez sur &amp;quot;Ajouter le commentaire&amp;quot;, le commentaire devient visible par l'usager.&lt;/p&gt;</backoffice_info_text>
+          <backoffice_info_text>&lt;p&gt;Quand vous cliquez sur &amp;quot;Ajouter le commentaire&amp;quot;, le commentaire devient visible par l&amp;#39;usager, dans le fil ou historique de sa demande.&lt;/p&gt;
+</backoffice_info_text>
           <required>False</required>
         </item><item type="choice" id="5">
-          <label>&#10067; Envoyer une demande d'information</label>
+          <label>Envoyer une demande d'information</label>
           <by>
             <item role_id="_editor">_editor</item>
           </by><status>3</status>
-          <require_confirmation>False</require_confirmation>
+          <require_confirmation>True</require_confirmation>
+          <backoffice_info_text>&lt;p&gt;Place cette demande sur le statut &amp;quot;Information n&amp;eacute;cessaire&amp;quot; qui d&amp;eacute;clenche l&amp;#39;envoi d&amp;#39;un courriel (voir mod&amp;egrave;le de courrier &amp;quot;Information n&amp;eacute;cessaire&amp;quot;). La personne est invit&amp;eacute;e &amp;agrave; commenter au bas de l&amp;#39;historique de la demande, un lien figure dans le mail et lui permet d&amp;#39;acc&amp;eacute;der &amp;agrave; ce formulaire afin d&amp;#39;alimenter le commentaire. Une fois le commentaire introduit, la demande revient sur le statut initial &amp;quot;En cours de validation&amp;quot; et le r&amp;ocirc;le Destinaire re&amp;ccedil;oit une notification.&lt;/p&gt;
+</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item type="choice" id="6">
-          <label>Refuser</label>
+          <label>Refuser et avertir du motif</label>
           <by>
             <item role_id="_editor">_editor</item>
           </by><status>deleted</status>
           <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;Avant de refuser, vous devez imp&amp;eacute;rativement ajouter un commentaire motivant le refus.&lt;/p&gt;</backoffice_info_text>
+          <backoffice_info_text>&lt;p&gt;&lt;strong&gt;Attention&lt;/strong&gt; : avant de refuser, vous devez imp&amp;eacute;rativement ajouter un commentaire motivant le refus afin que le courriel de refus soit agr&amp;eacute;ment&amp;eacute; de votre commentaire motivant le refus.&lt;/p&gt;
+</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item type="choice" id="7">
-          <label>Valider la publication</label>
+          <label>Valider et publier cette contribution</label>
           <by>
             <item role_id="_editor">_editor</item>
           </by><status>11</status>
-          <require_confirmation>False</require_confirmation>
+          <require_confirmation>True</require_confirmation>
+          <backoffice_info_text>&lt;p&gt;La demande &amp;eacute;voluera vers un statut technique &amp;quot;Envoi vers le site web&amp;quot;, puis automatiquement le statut &amp;quot;Accept&amp;eacute; et publi&amp;eacute;&amp;quot;, une notification mail de confirmation sera transmise &amp;agrave; la personne.&lt;/p&gt;
+</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item>
@@ -108,7 +117,7 @@ L'administration</body>
       </items>
     </status><status>
       <id>2</id>
-      <name>Contribution publi&#233;e</name>
+      <name>Accept&#233; et publi&#233;</name>
       <colour>00FF00</colour>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
@@ -119,7 +128,7 @@ L'administration</body>
           </to><subject>Publication accept&#233;e</subject>
           <body>Bonjour,
 
-Votre contribution a &#233;t&#233; publi&#233;e sur le site internet.
+Votre contribution a &#233;t&#233; publi&#233;e sur le site internet de l'administration communale de Braine-l'Alleud.
 
 {{comment_agent}}
 
@@ -130,6 +139,7 @@ L'administration</body>
             <item role_id="_editor">_editor</item>
           </by><status>12</status>
           <label>Modifier la contribution</label>
+          <operation_mode>full</operation_mode>
         </item>
       </items>
     </status><status>
@@ -144,7 +154,8 @@ L'administration</body>
           </to><mail_template>information-necessaire</mail_template>
         </item><item type="commentable" id="2">
           <label>Commentaire</label>
-          <button_label>Envoyer le commentaire</button_label>
+          <button_label>Publier mon commentaire</button_label>
+          <hint>Le commentaire s'ajoutera &#224; ce fil et la personne traitant votre demande sera notifi&#233;e de cet ajout.</hint>
           <by>
             <item role_id="_submitter">_submitter</item>
           </by><varname>usager</varname>
@@ -188,6 +199,7 @@ L'administration</body>
       <items>
         <item type="webservice_call" id="1">
           <label>Envoi event vers le site Web</label>
+          <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/evenements/create</url>
           <qs_data>
             <item>
@@ -197,8 +209,7 @@ L'administration</body>
               <name>publish</name>
               <value>true</value>
             </item>
-          </qs_data><method>POST</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <post_data>
             <item>
               <name>@type</name>
@@ -329,6 +340,7 @@ L'administration</body>
       <items>
         <item type="webservice_call" id="1">
           <label>Envoi news vers le site Web</label>
+          <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/actualites/create</url>
           <qs_data>
             <item>
@@ -338,8 +350,7 @@ L'administration</body>
               <name>publish</name>
               <value>true</value>
             </item>
-          </qs_data><method>POST</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <post_data>
             <item>
               <name>@type</name>
@@ -410,6 +421,7 @@ L'administration</body>
       <items>
         <item type="webservice_call" id="1">
           <label>Envoi contact vers le site Web</label>
+          <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/annuaire/create</url>
           <qs_data>
             <item>
@@ -419,8 +431,7 @@ L'administration</body>
               <name>publish</name>
               <value>true</value>
             </item>
-          </qs_data><method>POST</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <post_data>
             <item>
               <name>@type</name>
@@ -643,15 +654,18 @@ L'administration</body>
           <position>top</position>
           <to>
             <item role_id="_editor">_editor</item>
-            <item slug="agent-ayant-acces-aux-fabriques" role_id="9be8b3ce1b3244be8f6e05a9aa003cf0">Agent ayant acces aux fabriques</item>
-            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="agent-ayant-acces-aux-fabriques" role_id="032bfed279a448d39a09dedadbc09a31">Agent ayant acces aux fabriques</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </to>
         </item><item type="choice" id="2">
-          <label>Rejeu</label>
+          <label>&#128257; Rejouer l'envoi vers le site web</label>
           <by>
             <item role_id="_editor">_editor</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </by><status>11</status>
-          <require_confirmation>False</require_confirmation>
+          <require_confirmation>True</require_confirmation>
+          <backoffice_info_text>&lt;p&gt;En cas d&amp;#39;erreur technique, il est parfois opportun de rejouer l&amp;#39;envoi vers le site web. En cas de persistance d&amp;#39;un probl&amp;egrave;me, contactez le support iMio pour obtenir de l&amp;#39;assistance.&lt;/p&gt;
+</backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
         </item><item type="choice" id="3">
@@ -706,6 +720,7 @@ L'administration</body>
       <items>
         <item type="webservice_call" id="1">
           <label>Renvoi event vers le site Web</label>
+          <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/evenements/update</url>
           <qs_data>
             <item>
@@ -715,8 +730,7 @@ L'administration</body>
               <name>uid</name>
               <value>{{ envoi_response_data_uid }}</value>
             </item>
-          </qs_data><method>POST</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <post_data>
             <item>
               <name>@type</name>
@@ -847,6 +861,7 @@ L'administration</body>
       <items>
         <item type="webservice_call" id="1">
           <label>Renvoi news vers le site Web</label>
+          <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/actualites/update</url>
           <qs_data>
             <item>
@@ -856,8 +871,7 @@ L'administration</body>
               <name>uid</name>
               <value>{{ envoi_response_data_uid }}</value>
             </item>
-          </qs_data><method>POST</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <post_data>
             <item>
               <name>@type</name>
@@ -928,6 +942,7 @@ L'administration</body>
       <items>
         <item type="webservice_call" id="1">
           <label>Renvoi contact vers le site Web</label>
+          <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/annuaire/update</url>
           <qs_data>
             <item>
@@ -937,8 +952,7 @@ L'administration</body>
               <name>uid</name>
               <value>{{ envoi_response_data_uid }}</value>
             </item>
-          </qs_data><method>POST</method>
-          <post>False</post>
+          </qs_data><post>False</post>
           <post_data>
             <item>
               <name>@type</name>
@@ -1169,7 +1183,7 @@ L'administration</body>
       <items>
         <item type="remove" id="1" />
       </items><triggers>
-        <trigger type="manual" id="a81a4811-d6a3-41c7-adf1-0cf7fc92ec7e">
+        <trigger type="manual" id="341b3a4e-3ada-496a-924b-7793907f749f">
           <roles>
             <item role_id="_editor">_editor</item>
           </roles>
