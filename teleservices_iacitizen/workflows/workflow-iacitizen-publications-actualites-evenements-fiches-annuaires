@@ -112,8 +112,7 @@ Nous vous informons que votre publication a &#233;t&#233; refus&#233;e pour la r
 
 {{ comment_agent }}
 
-Cordialement,
-L'administration</body>
+Bien à vous,</body>
         </item>
       </items>
     </status><status>
@@ -133,8 +132,7 @@ Votre contribution a &#233;t&#233; publi&#233;e.
 
 `Consulter ma demande &lt;{{form_url}}&gt;`_
 
-Cordialement,
-L'administration</body>
+Bien à vous,</body>
         </item><item type="editable" id="2">
           <by>
             <item role_id="_editor">_editor</item>
