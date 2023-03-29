@@ -9,7 +9,7 @@
     <status>
       <id>recorded</id>
       <name>En cours de validation</name>
-      <colour>FFFFFF</colour>
+      <colour>FFFF99</colour>
       <visibility />
       <items>
         <item type="sendmail" id="1">
@@ -98,7 +98,7 @@ Bien &#224; vous,</body>
     </status><status>
       <id>deleted</id>
       <name>Publication refus&#233;e</name>
-      <colour>FFFFFF</colour>
+      <colour>996699</colour>
       <visibility />
       <items>
         <item type="sendmail" id="1">
@@ -118,7 +118,7 @@ L'administration</body>
     </status><status>
       <id>2</id>
       <name>Accept&#233; et publi&#233;</name>
-      <colour>00FF00</colour>
+      <colour>99FF99</colour>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
@@ -145,7 +145,7 @@ L'administration</body>
     </status><status>
       <id>3</id>
       <name>Information n&#233;cessaire</name>
-      <colour>FFFFFF</colour>
+      <colour>FF9966</colour>
       <visibility />
       <items>
         <item type="sendmail" id="1">
@@ -193,12 +193,14 @@ L'administration</body>
       </items>
     </status><status>
       <id>0</id>
-      <name>Envoi event vers le site web</name>
-      <colour>FF99FF</colour>
-      <visibility />
-      <items>
+      <name>Envoi de l'&#233;venement vers le Plone "Agenda"</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="webservice_call" id="1">
-          <label>Envoi event vers le site Web</label>
+          <label>Envoi vers l'agenda Plone</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/evenements/create</url>
           <qs_data>
@@ -334,12 +336,14 @@ L'administration</body>
       </items>
     </status><status>
       <id>6</id>
-      <name>Envoi news vers le site web</name>
-      <colour>FF99FF</colour>
-      <visibility />
-      <items>
+      <name>Envoi de l'actualit&#233; vers le Plone "Actualit&#233;s"</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="webservice_call" id="1">
-          <label>Envoi news vers le site Web</label>
+          <label>Envoi dans le Plone "Actualit&#233;s"</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/actualites/create</url>
           <qs_data>
@@ -415,12 +419,14 @@ L'administration</body>
       </items>
     </status><status>
       <id>7</id>
-      <name>Envoi contact vers le site web</name>
-      <colour>FF99FF</colour>
-      <visibility />
-      <items>
+      <name>Envoi du contact vers le Plone "Annuaire"</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="webservice_call" id="1">
-          <label>Envoi contact vers le site Web</label>
+          <label>Envoi vers le Plone "Annuaire"</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/annuaire/create</url>
           <qs_data>
@@ -637,10 +643,12 @@ L'administration</body>
       </items>
     </status><status>
       <id>1</id>
-      <name>Erreur technique</name>
-      <colour>FF0000</colour>
-      <visibility />
-      <items>
+      <name>Erreur technique lors de l'envoi vers le Plone</name>
+      <colour>FF6666</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="displaymsg" id="1">
           <message>&lt;p&gt;Information technique pour l&#8217;analyse de l&#8217;erreur&#160;:&lt;/p&gt;
 
@@ -673,9 +681,11 @@ L'administration</body>
     </status><status>
       <id>12</id>
       <name>Modification de la contribution</name>
-      <colour>FF9999</colour>
-      <visibility />
-      <items>
+      <colour>999999</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="jump" id="1">
           <status>8</status>
           <condition>
@@ -698,12 +708,14 @@ L'administration</body>
       </items>
     </status><status>
       <id>8</id>
-      <name>Modification event vers le site web</name>
-      <colour>FF99FF</colour>
-      <visibility />
-      <items>
+      <name>Modification de l'&#233;venement dans le Plone "Agenda"</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="webservice_call" id="1">
-          <label>Renvoi event vers le site Web</label>
+          <label>Modification de l'&#233;venement dans le Plone "Agenda"</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/evenements/update</url>
           <qs_data>
@@ -839,12 +851,14 @@ L'administration</body>
       </items>
     </status><status>
       <id>9</id>
-      <name>Modification news vers le site web</name>
-      <colour>FF99FF</colour>
-      <visibility />
-      <items>
+      <name>Modification de l'actualit&#233; dans le Plone "Actualit&#233;s"</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="webservice_call" id="1">
-          <label>Renvoi news vers le site Web</label>
+          <label>Modification de l'actualit&#233; dans le Plone "Actualit&#233;s"</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/actualites/update</url>
           <qs_data>
@@ -920,12 +934,14 @@ L'administration</body>
       </items>
     </status><status>
       <id>10</id>
-      <name>Modification contact vers le site web</name>
-      <colour>FF99FF</colour>
-      <visibility />
-      <items>
+      <name>Modification du contact dans le Plone "Annuaire"</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+      </visibility><items>
         <item type="webservice_call" id="1">
-          <label>Renvoi contact vers le site Web</label>
+          <label>Modification de la fiche dans le Plone "Annuaire"</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/annuaire/update</url>
           <qs_data>
@@ -1143,22 +1159,46 @@ L'administration</body>
     </status><status>
       <id>5</id>
       <name>Erreur lors de la modification</name>
-      <colour>FF0000</colour>
+      <colour>FF6666</colour>
+      <visibility />
+      <items>
+        <item type="choice" id="1">
+          <label>&#128257; Rejouer l'envoi de la modification</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+          </by><status>12</status>
+          <require_confirmation>True</require_confirmation>
+          <backoffice_info_text>&lt;p&gt;En cas d&amp;#39;erreur technique, il est parfois opportun de rejouer l&amp;#39;envoi vers le site web. En cas de persistance d&amp;#39;un probl&amp;egrave;me, contactez le support iMio pour obtenir de l&amp;#39;assistance.&lt;/p&gt;
+</backoffice_info_text>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item type="displaymsg" id="2">
+          <message>&lt;p&gt;Information technique pour l&#8217;analyse de l&#8217;erreur :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;date&#183;heure : {{form_workflow_data_modification_time}}&lt;/li&gt;
+&lt;li&gt;statut modification : {{form_workflow_data_modification_status}}&lt;/li&gt;
+&lt;li&gt;classe d&#8217;erreur : {{form_workflow_data_modification_error_response_err_class}}&lt;/li&gt;
+&lt;li&gt;description de l&#8217;erreur : {{form_workflow_data_modification_error_response_err_desc}}&lt;/li&gt;
+&lt;/ul&gt;</message>
+          <level>info</level>
+          <position>top</position>
+          <to>
+            <item role_id="_editor">_editor</item>
+            <item slug="agent-ayant-acces-aux-fabriques" role_id="032bfed279a448d39a09dedadbc09a31">Agent ayant acces aux fabriques</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+          </to>
+        </item>
+      </items>
+    </status><status>
+      <id>13</id>
+      <name>Modification publi&#233;e</name>
+      <colour>99FF99</colour>
       <visibility>
         <role>_editor</role>
         <role>_testeur</role>
-        <role>_visualisation</role>
-      </visibility><items>
-        <item type="choice" id="1">
-          <label>Rejeu</label>
-          <by>
-            <item role_id="_editor">_editor</item>
-          </by><status>12</status>
-          <require_confirmation>False</require_confirmation>
-          <ignore_form_errors>False</ignore_form_errors>
-          <set_marker_on_status>False</set_marker_on_status>
-        </item>
-      </items>
+      </visibility><items />
     </status>
   </possible_status><global_actions>
     <action>
