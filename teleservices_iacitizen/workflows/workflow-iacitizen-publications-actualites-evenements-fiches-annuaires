@@ -87,6 +87,7 @@ Bien &#224; vous,</body>
           <label>Valider et publier cette contribution</label>
           <by>
             <item role_id="_editor">_editor</item>
+            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </by><status>11</status>
           <require_confirmation>True</require_confirmation>
           <backoffice_info_text>&lt;p&gt;La demande &amp;eacute;voluera vers un statut technique &amp;quot;Envoi vers le site web&amp;quot;, puis automatiquement le statut &amp;quot;Accept&amp;eacute; et publi&amp;eacute;&amp;quot;, une notification mail de confirmation sera transmise &amp;agrave; la personne.&lt;/p&gt;
