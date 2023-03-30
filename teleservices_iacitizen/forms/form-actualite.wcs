@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<formdef id="207" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/207/">
+<formdef id="323" url="https://demo-formulaires.guichet-citoyen.be/backoffice/forms/323/">
   <name>Actualit&#233;</name>
   <url_name>actualite</url_name>
   <internal_identifier>actualite</internal_identifier>
@@ -13,67 +13,75 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="publications" category_id="130">Publications</category>
-  <workflow slug="contributions" workflow_id="131">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
-  <max_field_id>23</max_field_id>
+  <category slug="publications" category_id="149">Publications</category>
+  <workflow slug="contributions" workflow_id="168">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
+  <max_field_id>25</max_field_id>
   <fields>
     <field>
-      <label type="str">Ajouter une actualit&#233;</label>
+      <label type="str">Soumettre une actualit&#233;</label>
       <type type="str">page</type>
       <id type="str">18</id>
+    </field><field>
+      <label type="str">Soumettre une actualit&#233;</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">24</id>
+    </field><field>
+      <label type="str">Votre actualit&#233;</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">25</id>
     </field><field>
       <label type="str">Titre</label>
       <type type="str">string</type>
       <required type="bool">True</required>
+      <hint type="str">Titre principal de votre actualit&#233;.</hint>
       <varname type="str">titre</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      <anonymise type="bool">True</anonymise>
       <id type="str">1</id>
     </field><field>
-      <label type="str">Description courte</label>
+      <label type="str">Courte description</label>
       <type type="str">text</type>
-      <required type="bool">False</required>
-      <hint type="str">R&#233;sum&#233; de l'actualit&#233; en quelques phrases maximum.</hint>
+      <required type="bool">True</required>
+      <hint type="str">R&#233;sum&#233; de l'actualit&#233; en quelques phrases et en 700 caract&#232;res, maximum.</hint>
       <varname type="str">description</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><display_mode type="str">plain</display_mode>
+      <display_mode type="str">plain</display_mode>
       <maxlength type="str">700</maxlength>
       <id type="str">2</id>
     </field><field>
       <label type="str">Texte de pr&#233;sentation</label>
       <type type="str">text</type>
-      <required type="bool">False</required>
+      <required type="bool">True</required>
+      <hint type="str">Contenu descriptif et plus dense que la courte description.</hint>
       <varname type="str">texte</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><display_mode type="str">plain</display_mode>
+      </display_locations><display_mode type="str">plain</display_mode>
       <id type="str">23</id>
     </field><field>
       <label type="str">Vid&#233;o</label>
       <type type="str">string</type>
       <required type="bool">False</required>
-      <hint type="str">Lien vers une vid&#233;o Youtube ou Vimeo</hint>
+      <hint type="str">Lien vers une vid&#233;o YouTube ou Vimeo (optionnel).</hint>
       <varname type="str">video</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
@@ -83,12 +91,14 @@
       <label type="str">Site internet</label>
       <type type="str">string</type>
       <required type="bool">False</required>
+      <hint type="str">Liens d'un site pour l'actualit&#233; (optionnel).</hint>
       <varname type="str">site_internet</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
+        <locked>False</locked>
         <type>string</type>
         <value>https://</value>
       </prefill><validation>
@@ -101,15 +111,13 @@
       <label type="str">Facebook</label>
       <type type="str">string</type>
       <required type="bool">False</required>
-      <hint type="str">Lien Facebook pour cette actualit&#233;</hint>
+      <hint type="str">Lien Facebook pour cette actualit&#233; (optionnel).</hint>
       <varname type="str">facebook</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
@@ -119,15 +127,13 @@
       <label type="str">Twitter</label>
       <type type="str">string</type>
       <required type="bool">False</required>
-      <hint type="str">Lien Twitter pour cette actualit&#233;</hint>
+      <hint type="str">Lien Twitter pour cette actualit&#233; (optionnel).</hint>
       <varname type="str">twitter</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
@@ -137,33 +143,30 @@
       <label type="str">Instagram</label>
       <type type="str">string</type>
       <required type="bool">False</required>
+      <hint type="str">Lien Instagram pour cette actualit&#233; (optionnel).</hint>
       <varname type="str">instagram</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
       </validation><anonymise type="bool">True</anonymise>
       <id type="str">7</id>
     </field><field>
-      <label type="str">Image principale ( sans texte )</label>
+      <label type="str">Image principale et sans texte</label>
       <type type="str">file</type>
       <required type="bool">True</required>
-      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233; ; merci de t&#233;l&#233;verser une image sans texte.</hint>
+      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;.</hint>
       <varname type="str">image</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
+      <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
         <mimetypes>image/*</mimetypes>
@@ -174,15 +177,13 @@
     </field><field>
       <label type="str">Th&#233;matiques</label>
       <type type="str">items</type>
-      <required type="bool">True</required>
+      <required type="bool">False</required>
+      <hint type="str">Cochez une ou plusieurs th&#233;matiques pour cette actualit&#233; (optionnel).</hint>
       <varname type="str">thematiques</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -194,18 +195,16 @@
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">17</id>
     </field><field>
-      <label type="str">Cat&#233;gorie</label>
+      <label type="str">Autres th&#233;matiques</label>
       <type type="str">item</type>
       <required type="bool">False</required>
+      <hint type="str">S&#233;lectionnez (optionnel)</hint>
       <varname type="str">categorie</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><display_mode type="str">list</display_mode>
-      <items />
+      <display_mode type="str">list</display_mode>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.news.vocabulary.NewsCategories</value>
@@ -215,18 +214,15 @@
       <initial_zoom type="str">13</initial_zoom>
       <id type="str">9</id>
     </field><field>
-      <label type="str">Je suis ( mon public )</label>
+      <label type="str">Public cible</label>
       <type type="str">items</type>
       <required type="bool">False</required>
-      <hint type="str">Merci d'indiquer &#224; quel public s'adresse directement votre publication</hint>
+      <hint type="str">Cochez une ou plusieurs cibles pour cette actualit&#233; (optionnel).</hint>
       <varname type="str">je_suis</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
