@@ -291,16 +291,48 @@
         <value>_email</value>
       </prefill><id type="str">22</id>
     </field>
-  </fields><user-roles>
-    <role slug="citoyen-test" role_id="45d1eb0a941f44f68289eb1586be448e">Citoyen (test)</role>
-  </user-roles><options>
-    <option varname="plone_folder">FORM_PLONE_FOLDER</option>
+  </fields><backoffice-submission-roles>
+    <role slug="agent" role_id="b9b15c5c29134ccfb9d3d2dd90f18225">Agent</role>
+  </backoffice-submission-roles><roles>
+    <role slug="agents-de-test-iacitizen" role_id="aaf3f8f504ae4361b71c82a288d4d9f8" role_key="_editor">Agents de test iA.Citizen</role>
+  </roles><options>
+    <option varname="plone_folder">belleville/citoyens</option>
     <option varname="type">Actualit&#233;</option>
     <option varname="type_display">Actualit&#233;</option>
     <option varname="type_structured" />
-    <option varname="uri_plone">FORM_URI_PLONE</option>
-  </options><custom_views />
-  <geolocations />
+    <option varname="uri_plone" />
+  </options><custom_views>
+    <custom_view>
+      <title>Vue par d&#233;faut des demandes de publication citoyennes (Actualit&#233;s)</title>
+      <slug>vue-par-defaut-des-demandes-de-publication-citoyennes-actualites</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-1>on</filter-1>
+        <filter-1-operator>eq</filter-1-operator>
+        <filter-12>on</filter-12>
+        <filter-12-operator>eq</filter-12-operator>
+        <filter-17>on</filter-17>
+        <filter-17-operator>eq</filter-17-operator>
+        <filter-9>on</filter-9>
+        <filter-9-operator>eq</filter-9-operator>
+        <filter-operator>eq</filter-operator>
+        <filter-status>on</filter-status>
+      </filters><columns>
+        <id>id</id>
+        <id>time</id>
+        <id>last_update_time</id>
+        <id>user-label</id>
+        <id>8</id>
+        <id>status</id>
+        <id>1</id>
+        <id>2</id>
+        <id>17</id>
+        <id>9</id>
+        <id>12</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view>
+  </custom_views><geolocations />
   <digest_templates>
     <template key="default">{{ form_var_titre }}</template>
   </digest_templates>
