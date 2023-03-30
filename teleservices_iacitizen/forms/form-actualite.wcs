@@ -156,7 +156,7 @@
       </validation><anonymise type="bool">True</anonymise>
       <id type="str">7</id>
     </field><field>
-      <label type="str">Image principale et sans texte</label>
+      <label type="str">Image principale sans texte</label>
       <type type="str">file</type>
       <required type="bool">True</required>
       <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;.</hint>

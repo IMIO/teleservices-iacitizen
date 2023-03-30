@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<formdef id="208" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/208/">
+<formdef id="325" url="https://demo-formulaires.guichet-citoyen.be/backoffice/forms/325/">
   <name>Annuaire</name>
   <url_name>annuaire</url_name>
   <internal_identifier>annuaire</internal_identifier>
@@ -13,12 +13,12 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="publications" category_id="130">Publications</category>
-  <workflow slug="contributions" workflow_id="131">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
-  <max_field_id>95</max_field_id>
+  <category slug="publications" category_id="149">Publications</category>
+  <workflow slug="contributions" workflow_id="168">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
+  <max_field_id>106</max_field_id>
   <fields>
     <field>
-      <label type="str">Ajouter une fiche annuaire</label>
+      <label type="str">Soumettre une fiche d'annuaire</label>
       <type type="str">page</type>
       <post_conditions>
         <post_condition>
@@ -29,6 +29,20 @@
         </post_condition>
       </post_conditions><id type="str">56</id>
     </field><field>
+      <label type="str">Soumettre une fiche d'annuaire</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">96</id>
+    </field><field>
+      <label type="str">Votre fiche</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">97</id>
+    </field><field>
       <label type="str">Titre</label>
       <type type="str">string</type>
       <required type="bool">True</required>
@@ -37,9 +51,7 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      <anonymise type="bool">True</anonymise>
       <id type="str">1</id>
     </field><field>
       <label type="str">Sous-titre</label>
@@ -55,18 +67,16 @@
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">46</id>
     </field><field>
-      <label type="str">Description courte</label>
+      <label type="str">Courte description</label>
       <type type="str">text</type>
       <required type="bool">False</required>
-      <hint type="str">R&#233;sum&#233; du contact en quelques phrases: vous ne pouvez d&#233;passer 700 caract&#232;res.</hint>
+      <hint type="str">R&#233;sum&#233; du contact en quelques phrases (700 caract&#232;res maximum).</hint>
       <varname type="str">description</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><display_mode type="str">plain</display_mode>
+      <display_mode type="str">plain</display_mode>
       <maxlength type="str">700</maxlength>
       <id type="str">2</id>
     </field><field>
@@ -89,19 +99,17 @@
       <storage type="str">default</storage>
       <id type="str">47</id>
     </field><field>
-      <label type="str">Image principale</label>
+      <label type="str">Image principale sans texte</label>
       <type type="str">file</type>
       <required type="bool">False</required>
-      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233; ; merci de t&#233;l&#233;verser une image sans texte.</hint>
+      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;.</hint>
       <varname type="str">image</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
         <display_location>listings</display_location>
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
+      <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
         <mimetypes>image/*</mimetypes>
@@ -117,10 +125,8 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+      <anonymise type="bool">True</anonymise>
       <id type="str">48</id>
     </field><field>
       <label type="str">G&#233;olocalisation</label>
@@ -143,10 +149,8 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </display_locations><extra_css_class type="str">grid-2-4</extra_css_class>
+      <anonymise type="bool">True</anonymise>
       <id type="str">33</id>
     </field><field>
       <label type="str">Num&#233;ro</label>
@@ -156,10 +160,8 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <anonymise type="bool">True</anonymise>
       <id type="str">32</id>
     </field><field>
       <label type="str">Compl&#233;ment d'adresse</label>
@@ -169,10 +171,8 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <anonymise type="bool">True</anonymise>
       <id type="str">49</id>
     </field><field>
       <label type="str">Code  postal</label>
@@ -182,38 +182,31 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+      <anonymise type="bool">True</anonymise>
       <id type="str">34</id>
     </field><field>
-      <label type="str">Commune</label>
+      <label type="str">Localit&#233;</label>
       <type type="str">string</type>
       <required type="bool">True</required>
       <varname type="str">commune</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </display_locations><extra_css_class type="str">grid-3-4</extra_css_class>
+      <anonymise type="bool">True</anonymise>
       <id type="str">35</id>
     </field><field>
       <label type="str">Pays</label>
       <type type="str">item</type>
       <required type="bool">False</required>
+      <hint type="str">S&#233;lectionnez</hint>
       <varname type="str">pays</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>string</type>
-        <value>Belgique</value>
-      </prefill><display_mode type="str">list</display_mode>
-      <items />
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <display_mode type="str">autocomplete</display_mode>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/annuaire/get_field_choices?id=imio.smartweb.vocabulary.Countries</value>
@@ -230,10 +223,8 @@
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <anonymise type="bool">True</anonymise>
       <id type="str">50</id>
     </field><field>
       <label type="str">T&#233;l&#233;phone professionnel</label>
@@ -305,13 +296,12 @@
       <label type="str">Type de contact</label>
       <type type="str">item</type>
       <required type="bool">False</required>
+      <hint type="str">S&#233;lectionnez</hint>
       <varname type="str">type_contact</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><display_mode type="str">list</display_mode>
+      </display_locations><display_mode type="str">list</display_mode>
       <items>
         <item>Organisation (service administratif, commerce, profession lib&#233;rale, club sportif, association, etc.)</item>
         <item>Mission (passeports, r&#233;ception, parking, etc.)</item>
@@ -327,14 +317,12 @@
       <label type="str">Th&#233;matiques</label>
       <type type="str">items</type>
       <required type="bool">False</required>
+      <hint type="str">Cochez une ou plusieurs th&#233;matiques pour cette fiche (optionnel).</hint>
       <varname type="str">thematiques</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -346,18 +334,15 @@
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">39</id>
     </field><field>
-      <label type="str">Je suis</label>
+      <label type="str">Public cible</label>
       <type type="str">items</type>
       <required type="bool">False</required>
-      <hint type="str">Merci d'indiquer &#224; quel public s'adresse directement votre publication.</hint>
+      <hint type="str">Cochez une ou plusieurs cibles pour cette fiche (optionnel).</hint>
       <varname type="str">je_suis</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -420,11 +405,26 @@
       <type type="str">page</type>
       <id type="str">58</id>
     </field><field>
+      <label type="str">Horaires</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">99</id>
+    </field><field>
       <label type="str">&lt;p&gt;Indiquez l&amp;#39;heure avec le format &amp;quot;09:00&amp;quot;.&lt;/p&gt;
 </label>
       <type type="str">comment</type>
+      <extra_css_class type="str">pk-information</extra_css_class>
       <display_locations />
       <id type="str">91</id>
+    </field><field>
+      <label type="str">Lundi</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">100</id>
     </field><field>
       <label type="str">Ouverture lundi matin</label>
       <type type="str">string</type>
@@ -485,14 +485,19 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+      <validation>
         <error_message>Saisissez les heures au format 09:00</error_message>
         <type>regex</type>
         <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
       </validation><anonymise type="bool">False</anonymise>
       <id type="str">63</id>
+    </field><field>
+      <label type="str">Mardi</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">101</id>
     </field><field>
       <label type="str">Ouverture mardi matin</label>
       <type type="str">string</type>
@@ -562,6 +567,13 @@
       </validation><anonymise type="bool">False</anonymise>
       <id type="str">67</id>
     </field><field>
+      <label type="str">Mercredi</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">102</id>
+    </field><field>
       <label type="str">Ouverture mercredi matin</label>
       <type type="str">string</type>
       <required type="bool">False</required>
@@ -629,6 +641,13 @@
         <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
       </validation><anonymise type="bool">False</anonymise>
       <id type="str">71</id>
+    </field><field>
+      <label type="str">Jeudi</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">103</id>
     </field><field>
       <label type="str">Ouverture jeudi matin</label>
       <type type="str">string</type>
@@ -698,6 +717,13 @@
       </validation><anonymise type="bool">False</anonymise>
       <id type="str">75</id>
     </field><field>
+      <label type="str">Vendredi</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">104</id>
+    </field><field>
       <label type="str">Ouverture vendredi matin</label>
       <type type="str">string</type>
       <required type="bool">False</required>
@@ -766,6 +792,13 @@
       </validation><anonymise type="bool">False</anonymise>
       <id type="str">79</id>
     </field><field>
+      <label type="str">Samedi</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">105</id>
+    </field><field>
       <label type="str">Ouverture samedi matin</label>
       <type type="str">string</type>
       <required type="bool">False</required>
@@ -833,6 +866,13 @@
         <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
       </validation><anonymise type="bool">False</anonymise>
       <id type="str">83</id>
+    </field><field>
+      <label type="str">Dimanche</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">106</id>
     </field><field>
       <label type="str">Ouverture dimanche matin</label>
       <type type="str">string</type>
@@ -945,17 +985,43 @@
         <value>_email</value>
       </prefill><id type="str">95</id>
     </field>
-  </fields><user-roles>
-    <role slug="citoyen-test" role_id="45d1eb0a941f44f68289eb1586be448e">Citoyen (test)</role>
-  </user-roles><roles />
-  <options>
-    <option varname="plone_folder">FORM_PLONE_FOLDER</option>
+  </fields><roles>
+    <role slug="agents-de-test-iacitizen" role_id="aaf3f8f504ae4361b71c82a288d4d9f8" role_key="_editor">Agents de test iA.Citizen</role>
+  </roles><options>
+    <option varname="plone_folder">belleville</option>
     <option varname="type">Annuaire</option>
     <option varname="type_display">Annuaire</option>
     <option varname="type_structured" />
-    <option varname="uri_plone">FORM_URI_PLONE</option>
-  </options><custom_views />
-  <geolocations />
+    <option varname="uri_plone" />
+  </options><custom_views>
+    <custom_view>
+      <title>Vue par d&#233;faut des demandes de publications de fiches d'annuaire</title>
+      <slug>vue-par-defaut-des-demandes-de-publications-de-fiches-annuaire</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-1>on</filter-1>
+        <filter-1-operator>eq</filter-1-operator>
+        <filter-50>on</filter-50>
+        <filter-50-operator>eq</filter-50-operator>
+        <filter-54>on</filter-54>
+        <filter-54-operator>eq</filter-54-operator>
+        <filter-operator>eq</filter-operator>
+        <filter-status>on</filter-status>
+      </filters><columns>
+        <id>id</id>
+        <id>time</id>
+        <id>last_update_time</id>
+        <id>user-label</id>
+        <id>8</id>
+        <id>status</id>
+        <id>1</id>
+        <id>46</id>
+        <id>39</id>
+        <id>54</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view>
+  </custom_views><geolocations />
   <digest_templates>
     <template key="default">{{ form_var_titre }}</template>
   </digest_templates>
