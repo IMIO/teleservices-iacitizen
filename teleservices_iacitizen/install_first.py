@@ -1,89 +1,179 @@
+import json
 import os
-import sys
+from os.path import join
 
-import requests
 
-# TODO add raise
+def update_json(dict_passerelle, dict_queries, path):
+    with open(path, "r") as file:
+        json_actualites = json.loads(file.read())
+        file.close()
 
-if len(sys.argv) != 3:
-    print("Wrong number of arguments")
-    exit()
+    json_actualites["resources"][0].update(dict_passerelle)
 
+    for query in json_actualites["resources"][0]["queries"]:
+        query.update(dict_queries)
+
+    with open(path, "w") as file:
+        file.write(json.dumps(json_actualites))
+        file.close()
+
+
+# PATH
 path_base = "/usr/lib/teleservices_iacitizen"
+path_passerelle = join(path_base, "passerelle")
 
-url = "https://api.imio.be/imio/authentic/v1/services/agents"
+path_actualites = join(path_base, "restapi_actualites.json")
+path_annuaire = join(path_base, "restapi_annuaire.json")
+path_evenements = join(path_base, "restapi_evenements.json")
+path_smartweb = join(path_base, "restapi_smartweb.json")
+path_deliberations = join(path_base, "restapi_deliberations.json")
 
-print("Getting services/agents")
-response = requests.get(url, auth=(os.environ['WEBSERVICE_AGENT_USER'], os.environ['WEBSERVICE_AGENT_PASSWORD']))
+# URL
+url_token = "https://agents.wallonie-connect.be/idp/oidc/token/"
+url_actualites = "https://actualites.enwallonie.be"
+url_annuaire = "https://annuaire.enwallonie.be"
+url_evenements = "https://agenda.enwallonie.be"
+url_deliberations = "https://www.deliberations.be"
 
-data = response.json()['data']
+# ACTUALITES
+passerelle_actualites = {}
+passerelle_actualites_queries = {}
+print("Passerelle actualités")
+print("=====================\n")
+print("Configuration for Passerelle actualités")
+passerelle_actualites["basic_auth_username"] = input(
+    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
+passerelle_actualites["basic_auth_password"] = input(
+    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
+passerelle_actualites["service_url"] = input(
+    f"Enter the URL du site press Enter to {url_actualites} : ") or url_actualites
+passerelle_actualites["token_ws_url"] = input(
+    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
+passerelle_actualites["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+passerelle_actualites["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+passerelle_actualites["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+passerelle_actualites["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
+passerelle_actualites_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
 
-print("Parsing data")
-for i in data:
-    if sys.argv[1] in i['locality']['name'].lower():
-        services_member = i['services']
-    if "imio" in i['locality']['name'].lower():
-        services_imio = i['services']
-
-users_passwords = {
-    "smartweb": {},
-    "actualites": {},
-    "annuaire": {},
-    "evenements": {},
-    "gen": {},
-    "basic": {}
-}
-
-print("Setting user, password for oidc and other")
-for service in services_member:
-    if service['app'] == "iasmartweb-restapi":
-        users_passwords['smartweb']['oidc_user'] = service['client_id']
-        users_passwords['smartweb']['oidc_password'] = service['client_secret']
-    if service['app'] == 'iateleservice':
-        users_passwords['gen']['user'] = service['slug']
-
-for service in services_imio:
-    if service['app'] == "news-restapi":
-        users_passwords['actualites']['oidc_user'] = service['client_id']
-        users_passwords['actualites']['oidc_password'] = service['client_secret']
-    if service['app'] == "directory-restapi":
-        users_passwords['annuaire']['oidc_user'] = service['client_id']
-        users_passwords['annuaire']['oidc_password'] = service['client_secret']
-    if service['app'] == "events-restapi":
-        users_passwords['evenements']['oidc_user'] = service['client_id']
-        users_passwords['evenements']['oidc_password'] = service['client_secret']
-
-for i in users_passwords.keys():
-    if 'oidc_user' in users_passwords[i] and 'oidc_password' in users_passwords[i]:
-        print(f"Sed {i}")
-        print(" - Sed for oidc user")
-        cmd = f's/"client_id": "",/"client_id": "{users_passwords[i]["oidc_user"]}",/g'
-        try:
-            os.system(f"sed -i '{cmd}' {path_base}/passerelle/restapi_{i}.json")
-        except Exception as e:
-            print(e)
-        print(" - Sed for oidc password")
-        cmd = f's/"client_secret": "",/"client_secret": "{users_passwords[i]["oidc_password"]}",/g'
-        try:
-            os.system(f"sed -i '{cmd}' {path_base}/passerelle/restapi_{i}.json")
-        except Exception as e:
-            print(e)
-
-print("Sed gen user for all passerelle")
-cmd_user = f's/"username": "",/"username": "{users_passwords["gen"]["user"]}",/g'
-files = os.listdir(f"{path_base}/passerelle")
-for file in files:
-    if "deliberations" not in file:
-        try:
-            os.system(f"sed -i '{cmd_user}' {path_base}/passerelle/{file}")
-        except Exception as e:
-            print(e)
-
-print("Sed uri for all passerelle")
-cmd_uri = f's/"uri": "",/"uri": "{sys.argv[2]}",/g'
+print("Update JSON actualites")
 try:
-    os.system(f"sed -i '{cmd_uri}' {path_base}/passerelle/*")
+    update_json(passerelle_actualites, passerelle_actualites_queries, path_actualites)
+    print("JSON actualites updated")
 except Exception as e:
+    print("JSON actualites fatal error")
+    print(e)
+
+
+# ANNUAIRE
+passerelle_annuaire = {}
+passerelle_annuaire_queries = {}
+print("Passerelle annuaire")
+print("===================\n")
+print("Configuration for Passerelle annuaire")
+passerelle_annuaire["basic_auth_username"] = input(
+    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
+passerelle_annuaire["basic_auth_password"] = input(
+    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
+passerelle_annuaire["service_url"] = input(f"Enter the URL du site press Enter to {url_annuaire} : ") or url_annuaire
+passerelle_annuaire["token_ws_url"] = input(
+    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
+passerelle_annuaire["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+passerelle_annuaire["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+passerelle_annuaire["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+passerelle_annuaire["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
+passerelle_annuaire_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+
+print("Update JSON annuaire")
+try:
+    update_json(passerelle_annuaire, passerelle_annuaire_queries, path_annuaire)
+    print("JSON annuaire updated")
+except Exception as e:
+    print("JSON annuaire fatal error")
+    print(e)
+
+# EVENEMENTS
+passerelle_evenements = {}
+passerelle_evenements_queries = {}
+print("Passerelle evenements")
+print("=====================\n")
+print("Configuration for Passerelle evenements")
+passerelle_evenements["basic_auth_username"] = input(
+    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
+passerelle_evenements["basic_auth_password"] = input(
+    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
+passerelle_evenements["service_url"] = input(
+    f"Enter the URL du site press Enter to {url_evenements} : ") or url_evenements
+passerelle_evenements["token_ws_url"] = input(
+    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
+passerelle_evenements["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+passerelle_evenements["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+passerelle_evenements["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+passerelle_evenements["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
+passerelle_evenements_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+
+print("Update JSON evenements")
+try:
+    update_json(passerelle_evenements, passerelle_evenements_queries, path_evenements)
+    print("JSON evenements updated")
+except Exception as e:
+    print("JSON evenements fatal error")
+    print(e)
+
+# SMARTWEB
+passerelle_smartweb = {}
+passerelle_smartweb_queries = {}
+print("Passerelle smartweb")
+print("===================\n")
+print("Configuration for Passerelle smartweb")
+passerelle_smartweb["basic_auth_username"] = input(
+    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
+passerelle_smartweb["basic_auth_password"] = input(
+    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
+passerelle_smartweb["service_url"] = input(f"Enter the URL du site press Enter to leave blank : ") or ""
+passerelle_smartweb["token_ws_url"] = input(
+    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
+passerelle_smartweb["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+passerelle_smartweb["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+passerelle_smartweb["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+passerelle_smartweb["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
+passerelle_smartweb_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+
+print("Update JSON smartweb")
+try:
+    update_json(passerelle_smartweb, passerelle_smartweb_queries, path_smartweb)
+    print("JSON smartweb updated")
+except Exception as e:
+    print("JSON smartweb fatal error")
+    print(e)
+
+# DELIBERATIONS
+passerelle_deliberations = {}
+passerelle_deliberations_queries = {}
+print("Passerelle deliberations")
+print("========================\n")
+print("Configuration for Passerelle deliberations")
+passerelle_deliberations["basic_auth_username"] = input(
+    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
+passerelle_deliberations["basic_auth_password"] = input(
+    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
+passerelle_deliberations["service_url"] = input(
+    f"Enter the URL du site press Enter to {url_deliberations} : ") or url_deliberations
+passerelle_deliberations["token_ws_url"] = input(
+    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
+passerelle_deliberations["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+passerelle_deliberations["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+passerelle_deliberations["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+passerelle_deliberations["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
+passerelle_deliberations_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+passerelle_deliberations_queries["name"] = input("Enter the name for queries press Enter to leave blank : ") or ""
+passerelle_deliberations_queries["slug"] = input("Enter the slug for queries press Enter to leave blank : ") or ""
+
+print("Update JSON deliberations")
+try:
+    update_json(passerelle_deliberations, passerelle_deliberations_queries, path_deliberations)
+    print("JSON deliberations updated")
+except Exception as e:
+    print("JSON deliberations fatal error")
     print(e)
 
 os.system(f'{path_base}/install_teleservices_iacitizen.sh')
