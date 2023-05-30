@@ -22,11 +22,11 @@ def update_json(dict_passerelle, dict_queries, path):
 path_base = "/usr/lib/teleservices_iacitizen"
 path_passerelle = join(path_base, "passerelle")
 
-path_actualites = join(path_base, "restapi_actualites.json")
-path_annuaire = join(path_base, "restapi_annuaire.json")
-path_evenements = join(path_base, "restapi_evenements.json")
-path_smartweb = join(path_base, "restapi_smartweb.json")
-path_deliberations = join(path_base, "restapi_deliberations.json")
+path_actualites = join(path_passerelle, "restapi_actualites.json")
+path_annuaire = join(path_passerelle, "restapi_annuaire.json")
+path_evenements = join(path_passerelle, "restapi_evenements.json")
+path_smartweb = join(path_passerelle, "restapi_smartweb.json")
+path_deliberations = join(path_passerelle, "restapi_deliberations.json")
 
 # URL
 url_token = "https://agents.wallonie-connect.be/idp/oidc/token/"
