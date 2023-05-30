@@ -638,7 +638,7 @@
     <role slug="citoyen-test" role_id="45d1eb0a941f44f68289eb1586be448e">Citoyen (test)</role>
   </user-roles><roles />
   <options>
-    <option varname="plone_folder">FORM_PLONE_FOLDER</option>
+    <option varname="plone_folder">belleville/citoyens</option>
     <option varname="type">&#201;v&#233;nement</option>
     <option varname="type_display">&#201;v&#233;nement</option>
     <option varname="type_structured" />
