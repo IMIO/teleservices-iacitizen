@@ -176,4 +176,23 @@ except Exception as e:
     print("JSON deliberations fatal error")
     print(e)
 
+# COMBO
+print("Settings.json for combo")
+print("=======================\n")
+slug = input("Enter the slug of the instance : ")
+path_combo_json = join("/var/lib/combo/tenants", f"{slug}.guichet-citoyen.be/settings.json")
+combo_json = {"COMBO_DASHBOARD_ENABLED": True}
+
+try:
+    with open(path_combo_json, "w") as file:
+        file.write(json.dumps(combo_json))
+        file.close()
+    print("Combo settings updated")
+except Exception as e:
+    print("Combo settings fatal error")
+    print(e)
+
+# SCRIPT BASH
+print("Run script bash")
+print("===============\n")
 os.system(f'{path_base}/install_teleservices_iacitizen.sh')
