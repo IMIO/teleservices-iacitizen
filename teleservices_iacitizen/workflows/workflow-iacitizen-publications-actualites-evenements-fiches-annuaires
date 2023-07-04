@@ -262,7 +262,7 @@ Bien à vous,</body>
               <value>{{ form_var_tel_contact }}</value>
             </item><item>
               <name>end</name>
-              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin }}</value>
+              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin|default_if_none:"" }}</value>
             </item><item>
               <name>event_type</name>
               <value>{{ form_var_type_event_raw }}</value>
@@ -295,7 +295,7 @@ Bien à vous,</body>
               <value>{{ form_var_accessible }}</value>
             </item><item>
               <name>start</name>
-              <value>{{ form_var_date_debut|date:"Y-m-d" }} {{ form_var_horaire_debut }}</value>
+              <value>{{ form_var_date_debut|date:"Y-m-d" }} {{ form_var_horaire_debut|default_if_none:"" }}</value>
             </item><item>
               <name>street</name>
               <value>{{ form_var_rue }}</value>
