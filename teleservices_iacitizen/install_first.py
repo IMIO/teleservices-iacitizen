@@ -4,6 +4,12 @@ from os.path import join
 
 
 def update_json(dict_passerelle, dict_queries, path):
+    for key, value in dict_passerelle.items():
+        dict_passerelle[key] = value.strip()
+
+    for key, value in dict_queries.items():
+        dict_queries[key] = value.strip()
+
     with open(path, "r") as file:
         json_actualites = json.loads(file.read())
         file.close()
