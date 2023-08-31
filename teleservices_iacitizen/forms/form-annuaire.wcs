@@ -294,8 +294,7 @@
       <id type="str">30</id>
     </field><field>
       <label type="str">Type de contact</label>
-      <type type="str">item</type>
-      <required type="bool">False</required>
+      <required type="bool">True</required>
       <hint type="str">S&#233;lectionnez</hint>
       <varname type="str">type_contact</varname>
       <display_locations>
