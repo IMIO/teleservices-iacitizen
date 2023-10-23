@@ -2,7 +2,8 @@
 
 ## Points d'attention lors d'une instanciation
 
-1. Éditer `install_teleservices_iacitizen.sh` et alimenter éventuellement les variables pour peupler les json des connecteurs passerelle (optionnel).
+1. Lancer la commande `python3 /usr/lib/teleservices-iacitizen/install_first.py`
+2. Répondre aux différentes questions pour paramétrer les connecteurs passerelles
 
 - Connecteurs passerelle, vérifier les panneaux "Requête".
 - Variables combo à créer :

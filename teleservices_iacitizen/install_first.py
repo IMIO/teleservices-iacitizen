@@ -4,6 +4,12 @@ from os.path import join
 
 
 def update_json(dict_passerelle, dict_queries, path):
+    for key, value in dict_passerelle.items():
+        dict_passerelle[key] = value.strip()
+
+    for key, value in dict_queries.items():
+        dict_queries[key] = value.strip()
+
     with open(path, "r") as file:
         json_actualites = json.loads(file.read())
         file.close()
@@ -22,11 +28,11 @@ def update_json(dict_passerelle, dict_queries, path):
 path_base = "/usr/lib/teleservices_iacitizen"
 path_passerelle = join(path_base, "passerelle")
 
-path_actualites = join(path_base, "restapi_actualites.json")
-path_annuaire = join(path_base, "restapi_annuaire.json")
-path_evenements = join(path_base, "restapi_evenements.json")
-path_smartweb = join(path_base, "restapi_smartweb.json")
-path_deliberations = join(path_base, "restapi_deliberations.json")
+path_actualites = join(path_passerelle, "restapi_actualites.json")
+path_annuaire = join(path_passerelle, "restapi_annuaire.json")
+path_evenements = join(path_passerelle, "restapi_evenements.json")
+path_smartweb = join(path_passerelle, "restapi_smartweb.json")
+path_deliberations = join(path_passerelle, "restapi_deliberations.json")
 
 # URL
 url_token = "https://agents.wallonie-connect.be/idp/oidc/token/"
@@ -176,4 +182,23 @@ except Exception as e:
     print("JSON deliberations fatal error")
     print(e)
 
+# COMBO
+print("Settings.json for combo")
+print("=======================\n")
+slug = input("Enter the slug of the instance : ")
+path_combo_json = join("/var/lib/combo/tenants", f"{slug}.guichet-citoyen.be/settings.json")
+combo_json = {"COMBO_DASHBOARD_ENABLED": True}
+
+try:
+    with open(path_combo_json, "w") as file:
+        file.write(json.dumps(combo_json))
+        file.close()
+    print("Combo settings updated")
+except Exception as e:
+    print("Combo settings fatal error")
+    print(e)
+
+# SCRIPT BASH
+print("Run script bash")
+print("===============\n")
 os.system(f'{path_base}/install_teleservices_iacitizen.sh')

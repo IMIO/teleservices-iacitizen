@@ -2,7 +2,6 @@
 <formdef id="323" url="https://demo-formulaires.guichet-citoyen.be/backoffice/forms/323/">
   <name>Actualit&#233;</name>
   <url_name>actualite</url_name>
-  <internal_identifier>actualite</internal_identifier>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
@@ -59,6 +58,7 @@
       </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
       <display_mode type="str">plain</display_mode>
       <maxlength type="str">700</maxlength>
+      <anonymise type="bool">True</anonymise>
       <id type="str">2</id>
     </field><field>
       <label type="str">Texte de pr&#233;sentation</label>
@@ -70,6 +70,7 @@
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><display_mode type="str">plain</display_mode>
+      <anonymise type="bool">True</anonymise>
       <id type="str">23</id>
     </field><field>
       <label type="str">Vid&#233;o</label>
@@ -100,7 +101,6 @@
       <prefill>
         <locked>False</locked>
         <type>string</type>
-        <value>https://</value>
       </prefill><validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
@@ -156,7 +156,7 @@
       </validation><anonymise type="bool">True</anonymise>
       <id type="str">7</id>
     </field><field>
-      <label type="str">Image principale et sans texte</label>
+      <label type="str">Image principale sans texte</label>
       <type type="str">file</type>
       <required type="bool">True</required>
       <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;.</hint>
@@ -195,7 +195,7 @@
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">17</id>
     </field><field>
-      <label type="str">Autres th&#233;matiques</label>
+      <label type="str">Cat&#233;gorie</label>
       <type type="str">item</type>
       <required type="bool">False</required>
       <hint type="str">S&#233;lectionnez (optionnel)</hint>
@@ -212,6 +212,7 @@
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
       <id type="str">9</id>
     </field><field>
       <label type="str">Public cible</label>
