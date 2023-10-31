@@ -47,19 +47,42 @@ passerelle_actualites_queries = {}
 print("Passerelle actualités")
 print("=====================\n")
 print("Configuration for Passerelle actualités")
-passerelle_actualites["basic_auth_username"] = input(
-    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
-passerelle_actualites["basic_auth_password"] = input(
-    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
-passerelle_actualites["service_url"] = input(
-    f"Enter the URL du site press Enter to {url_actualites} : ") or url_actualites
-passerelle_actualites["token_ws_url"] = input(
-    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
-passerelle_actualites["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
-passerelle_actualites["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
-passerelle_actualites["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
-passerelle_actualites["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
-passerelle_actualites_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+passerelle_actualites["basic_auth_username"] = (
+    input(
+        "Enter the Identifiant d’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_actualites["basic_auth_password"] = (
+    input(
+        "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_actualites["service_url"] = (
+    input(f"Enter the URL du site press Enter to {url_actualites} : ") or url_actualites
+)
+passerelle_actualites["token_ws_url"] = (
+    input(
+        f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : "
+    )
+    or url_token
+)
+passerelle_actualites["client_id"] = (
+    input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+)
+passerelle_actualites["client_secret"] = (
+    input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+)
+passerelle_actualites["username"] = (
+    input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+)
+passerelle_actualites["password"] = (
+    input("Enter the Mot de passe press Enter to leave blank : ") or ""
+)
+passerelle_actualites_queries["uri"] = (
+    input("Enter the URI for queries press Enter to leave blank : ") or ""
+)
 
 print("Update JSON actualites")
 try:
@@ -76,18 +99,42 @@ passerelle_annuaire_queries = {}
 print("Passerelle annuaire")
 print("===================\n")
 print("Configuration for Passerelle annuaire")
-passerelle_annuaire["basic_auth_username"] = input(
-    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
-passerelle_annuaire["basic_auth_password"] = input(
-    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
-passerelle_annuaire["service_url"] = input(f"Enter the URL du site press Enter to {url_annuaire} : ") or url_annuaire
-passerelle_annuaire["token_ws_url"] = input(
-    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
-passerelle_annuaire["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
-passerelle_annuaire["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
-passerelle_annuaire["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
-passerelle_annuaire["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
-passerelle_annuaire_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+passerelle_annuaire["basic_auth_username"] = (
+    input(
+        "Enter the Identifiant d’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_annuaire["basic_auth_password"] = (
+    input(
+        "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_annuaire["service_url"] = (
+    input(f"Enter the URL du site press Enter to {url_annuaire} : ") or url_annuaire
+)
+passerelle_annuaire["token_ws_url"] = (
+    input(
+        f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : "
+    )
+    or url_token
+)
+passerelle_annuaire["client_id"] = (
+    input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+)
+passerelle_annuaire["client_secret"] = (
+    input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+)
+passerelle_annuaire["username"] = (
+    input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+)
+passerelle_annuaire["password"] = (
+    input("Enter the Mot de passe press Enter to leave blank : ") or ""
+)
+passerelle_annuaire_queries["uri"] = (
+    input("Enter the URI for queries press Enter to leave blank : ") or ""
+)
 
 print("Update JSON annuaire")
 try:
@@ -103,19 +150,42 @@ passerelle_evenements_queries = {}
 print("Passerelle evenements")
 print("=====================\n")
 print("Configuration for Passerelle evenements")
-passerelle_evenements["basic_auth_username"] = input(
-    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
-passerelle_evenements["basic_auth_password"] = input(
-    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
-passerelle_evenements["service_url"] = input(
-    f"Enter the URL du site press Enter to {url_evenements} : ") or url_evenements
-passerelle_evenements["token_ws_url"] = input(
-    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
-passerelle_evenements["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
-passerelle_evenements["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
-passerelle_evenements["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
-passerelle_evenements["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
-passerelle_evenements_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+passerelle_evenements["basic_auth_username"] = (
+    input(
+        "Enter the Identifiant d’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_evenements["basic_auth_password"] = (
+    input(
+        "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_evenements["service_url"] = (
+    input(f"Enter the URL du site press Enter to {url_evenements} : ") or url_evenements
+)
+passerelle_evenements["token_ws_url"] = (
+    input(
+        f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : "
+    )
+    or url_token
+)
+passerelle_evenements["client_id"] = (
+    input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+)
+passerelle_evenements["client_secret"] = (
+    input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+)
+passerelle_evenements["username"] = (
+    input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+)
+passerelle_evenements["password"] = (
+    input("Enter the Mot de passe press Enter to leave blank : ") or ""
+)
+passerelle_evenements_queries["uri"] = (
+    input("Enter the URI for queries press Enter to leave blank : ") or ""
+)
 
 print("Update JSON evenements")
 try:
@@ -131,18 +201,39 @@ passerelle_smartweb_queries = {}
 print("Passerelle smartweb")
 print("===================\n")
 print("Configuration for Passerelle smartweb")
-passerelle_smartweb["basic_auth_username"] = input(
-    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
-passerelle_smartweb["basic_auth_password"] = input(
-    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
-passerelle_smartweb["service_url"] = input(f"Enter the URL du site press Enter to leave blank : ") or ""
-passerelle_smartweb["token_ws_url"] = input(
-    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
-passerelle_smartweb["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
-passerelle_smartweb["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
-passerelle_smartweb["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
-passerelle_smartweb["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
-passerelle_smartweb_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
+passerelle_smartweb["basic_auth_username"] = (
+    input(
+        "Enter the Identifiant d’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_smartweb["basic_auth_password"] = (
+    input(
+        "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_smartweb["service_url"] = (
+    input(f"Enter the URL du site press Enter to leave blank : ") or ""
+)
+passerelle_smartweb["token_ws_url"] = (
+    input(
+        f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : "
+    )
+    or url_token
+)
+passerelle_smartweb["client_id"] = (
+    input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+)
+passerelle_smartweb["client_secret"] = (
+    input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+)
+passerelle_smartweb["username"] = (
+    input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+)
+passerelle_smartweb["password"] = (
+    input("Enter the Mot de passe press Enter to leave blank : ") or ""
+)
 
 print("Update JSON smartweb")
 try:
@@ -158,25 +249,55 @@ passerelle_deliberations_queries = {}
 print("Passerelle deliberations")
 print("========================\n")
 print("Configuration for Passerelle deliberations")
-passerelle_deliberations["basic_auth_username"] = input(
-    "Enter the Identifiant d’authentification basique press Enter to leave blank : ") or ""
-passerelle_deliberations["basic_auth_password"] = input(
-    "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : ") or ""
-passerelle_deliberations["service_url"] = input(
-    f"Enter the URL du site press Enter to {url_deliberations} : ") or url_deliberations
-passerelle_deliberations["token_ws_url"] = input(
-    f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : ") or url_token
-passerelle_deliberations["client_id"] = input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
-passerelle_deliberations["client_secret"] = input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
-passerelle_deliberations["username"] = input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
-passerelle_deliberations["password"] = input("Enter the Mot de passe press Enter to leave blank : ") or ""
-passerelle_deliberations_queries["uri"] = input("Enter the URI for queries press Enter to leave blank : ") or ""
-passerelle_deliberations_queries["name"] = input("Enter the name for queries press Enter to leave blank : ") or ""
-passerelle_deliberations_queries["slug"] = input("Enter the slug for queries press Enter to leave blank : ") or ""
+passerelle_deliberations["basic_auth_username"] = (
+    input(
+        "Enter the Identifiant d’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_deliberations["basic_auth_password"] = (
+    input(
+        "Enter the Mot de passe pour l’authentification basique press Enter to leave blank : "
+    )
+    or ""
+)
+passerelle_deliberations["service_url"] = (
+    input(f"Enter the URL du site press Enter to {url_deliberations} : ")
+    or url_deliberations
+)
+passerelle_deliberations["token_ws_url"] = (
+    input(
+        f"Enter the URL pour récupérer le jeton (token) press Enter to {url_token} : "
+    )
+    or url_token
+)
+passerelle_deliberations["client_id"] = (
+    input("Enter the Identifiant OIDC press Enter to leave blank : ") or ""
+)
+passerelle_deliberations["client_secret"] = (
+    input("Enter the Mot de passe OIDC press Enter to leave blank : ") or ""
+)
+passerelle_deliberations["username"] = (
+    input("Enter the Identifiant utilisateur press Enter to leave blank : ") or ""
+)
+passerelle_deliberations["password"] = (
+    input("Enter the Mot de passe press Enter to leave blank : ") or ""
+)
+passerelle_deliberations_queries["uri"] = (
+    input("Enter the URI for queries press Enter to leave blank : ") or ""
+)
+passerelle_deliberations_queries["name"] = (
+    input("Enter the name for queries press Enter to leave blank : ") or ""
+)
+passerelle_deliberations_queries["slug"] = (
+    input("Enter the slug for queries press Enter to leave blank : ") or ""
+)
 
 print("Update JSON deliberations")
 try:
-    update_json(passerelle_deliberations, passerelle_deliberations_queries, path_deliberations)
+    update_json(
+        passerelle_deliberations, passerelle_deliberations_queries, path_deliberations
+    )
     print("JSON deliberations updated")
 except Exception as e:
     print("JSON deliberations fatal error")
@@ -186,7 +307,9 @@ except Exception as e:
 print("Settings.json for combo")
 print("=======================\n")
 slug = input("Enter the slug of the instance : ")
-path_combo_json = join("/var/lib/combo/tenants", f"{slug}.guichet-citoyen.be/settings.json")
+path_combo_json = join(
+    "/var/lib/combo/tenants", f"{slug}.guichet-citoyen.be/settings.json"
+)
 combo_json = {"COMBO_DASHBOARD_ENABLED": True}
 
 try:
@@ -201,4 +324,4 @@ except Exception as e:
 # SCRIPT BASH
 print("Run script bash")
 print("===============\n")
-os.system(f'{path_base}/install_teleservices_iacitizen.sh')
+os.system(f"{path_base}/install_teleservices_iacitizen.sh")
