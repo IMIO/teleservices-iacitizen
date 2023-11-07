@@ -293,7 +293,7 @@
     </field><field>
       <type>item</type>
       <label type="str">Type de contact</label>
-      <required type="bool">False</required>
+      <required type="bool">True</required>
       <hint type="str">S&#233;lectionnez</hint>
       <varname type="str">type_contact</varname>
       <display_locations>
