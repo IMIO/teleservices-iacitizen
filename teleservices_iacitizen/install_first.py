@@ -286,12 +286,15 @@ passerelle_deliberations["password"] = (
 passerelle_deliberations_queries["uri"] = (
     input("Enter the URI for queries press Enter to leave blank : ") or ""
 )
-passerelle_deliberations_queries["name"] = (
-    input("Enter the name for queries press Enter to leave blank : ") or ""
-)
-passerelle_deliberations_queries["slug"] = (
-    input("Enter the slug for queries press Enter to leave blank : ") or ""
-)
+## [dmshd] (20231114) Commented because it's now hardcoded in the json for
+## efficiency reasons since it's always the same at the moment (see TELE-1842)
+#
+# passerelle_deliberations_queries["name"] = (
+#     input("Enter the name for queries press Enter to leave blank : ") or ""
+# )
+# passerelle_deliberations_queries["slug"] = (
+#     input("Enter the slug for queries press Enter to leave blank : ") or ""
+# )
 
 print("Update JSON deliberations")
 try:
