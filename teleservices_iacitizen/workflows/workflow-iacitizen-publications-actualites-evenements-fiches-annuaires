@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<workflow id="157" url="https://demo-formulaires.guichet-citoyen.be/backoffice/workflows/157/">
+<workflow id="131" url="https://staging-formulaires.guichet-citoyen.be/backoffice/workflows/131/">
   <name>iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</name>
   <slug>contributions</slug>
   <roles>
@@ -9,7 +9,7 @@
     <status>
       <id>recorded</id>
       <name>En cours de validation</name>
-      <colour>FFFF99</colour>
+      <colour>#FFFFFF</colour>
       <visibility />
       <items>
         <item type="sendmail" id="1">
@@ -24,6 +24,7 @@ Vous serez tenu&#183;e inform&#233;&#183;e quand la publication sera effective.
 R&#233;sum&#233; des informations envoy&#233;es :
 
 {{form_details}}
+
 
 Bien &#224; vous,
 </body>
@@ -52,6 +53,8 @@ Bien &#224; vous,</body>
             <item role_id="_editor">_editor</item>
           </by><status>recorded</status>
           <label>Modifier</label>
+          <backoffice_info_text>&lt;p&gt;Modifier les donn&amp;eacute;es de cette demande.&lt;/p&gt;
+</backoffice_info_text>
           <operation_mode>full</operation_mode>
         </item><item type="commentable" id="4">
           <label>Commentaire</label>
@@ -60,7 +63,7 @@ Bien &#224; vous,</body>
           <by>
             <item role_id="_editor">_editor</item>
           </by><varname>agent</varname>
-          <backoffice_info_text>&lt;p&gt;Quand vous cliquez sur &amp;quot;Ajouter le commentaire&amp;quot;, le commentaire devient visible par l&amp;#39;usager, dans le fil ou historique de sa demande.&lt;/p&gt;
+          <backoffice_info_text>&lt;p&gt;Quand vous cliquez sur &amp;quot;Publier le commentaire&amp;quot;, le commentaire devient visible par l&amp;#39;usager, dans le fil ou historique de sa demande.&lt;/p&gt;
 </backoffice_info_text>
           <required>False</required>
         </item><item type="choice" id="5">
@@ -69,7 +72,8 @@ Bien &#224; vous,</body>
             <item role_id="_editor">_editor</item>
           </by><status>3</status>
           <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;Place cette demande sur le statut &amp;quot;Information n&amp;eacute;cessaire&amp;quot; qui d&amp;eacute;clenche l&amp;#39;envoi d&amp;#39;un courriel (voir mod&amp;egrave;le de courrier &amp;quot;Information n&amp;eacute;cessaire&amp;quot;). La personne est invit&amp;eacute;e &amp;agrave; commenter au bas de l&amp;#39;historique de la demande, un lien figure dans le mail et lui permet d&amp;#39;acc&amp;eacute;der &amp;agrave; ce formulaire afin d&amp;#39;alimenter le commentaire. Une fois le commentaire introduit, la demande revient sur le statut initial &amp;quot;En cours de validation&amp;quot; et le r&amp;ocirc;le Destinaire re&amp;ccedil;oit une notification.&lt;/p&gt;
+          <confirmation_text>La demande &#233;voluera vers le statut "Information n&#233;cessaire".</confirmation_text>
+          <backoffice_info_text>&lt;p&gt;Place cette demande sur le statut &amp;quot;Information n&amp;eacute;cessaire&amp;quot; qui d&amp;eacute;clenche l&amp;#39;envoi d&amp;#39;un courriel (voir mod&amp;egrave;le de courrier &amp;quot;Information n&amp;eacute;cessaire&amp;quot;). La personne est invit&amp;eacute;e &amp;agrave; commenter au bas de l&amp;#39;historique de la demande, un lien figure dans le mail et lui permet d&amp;#39;acc&amp;eacute;der &amp;agrave; ce formulaire afin d&amp;#39;alimenter le commentaire. Une fois le commentaire introduit, la demande revient sur le statut initial &amp;quot;En cours de validation&amp;quot; et le r&amp;ocirc;le &amp;quot;Destinaire&amp;quot; re&amp;ccedil;oit une notification.&lt;/p&gt;
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
@@ -79,7 +83,12 @@ Bien &#224; vous,</body>
             <item role_id="_editor">_editor</item>
           </by><status>deleted</status>
           <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;&lt;strong&gt;Attention&lt;/strong&gt; : avant de refuser, vous devez imp&amp;eacute;rativement ajouter un commentaire motivant le refus afin que le courriel de refus soit agr&amp;eacute;ment&amp;eacute; de votre commentaire motivant le refus.&lt;/p&gt;
+          <confirmation_text>Attention : avant de refuser, vous devez imp&#233;rativement ajouter un commentaire motivant le refus afin que le courriel de refus soit agr&#233;ment&#233; de votre commentaire motivant le refus.</confirmation_text>
+          <backoffice_info_text>&lt;p&gt;Attention : avant de refuser, vous devez imp&amp;eacute;rativement ajouter un commentaire motivant le refus afin que le courriel de refus soit agr&amp;eacute;ment&amp;eacute; de votre commentaire motivant le refus.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
@@ -87,9 +96,9 @@ Bien &#224; vous,</body>
           <label>Valider et publier cette contribution</label>
           <by>
             <item role_id="_editor">_editor</item>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
           </by><status>11</status>
           <require_confirmation>True</require_confirmation>
+          <confirmation_text>La demande &#233;voluera vers un statut technique "Envoi vers le site web".</confirmation_text>
           <backoffice_info_text>&lt;p&gt;La demande &amp;eacute;voluera vers un statut technique &amp;quot;Envoi vers le site web&amp;quot;, puis automatiquement le statut &amp;quot;Accept&amp;eacute; et publi&amp;eacute;&amp;quot;, une notification mail de confirmation sera transmise &amp;agrave; la personne.&lt;/p&gt;
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
@@ -99,7 +108,7 @@ Bien &#224; vous,</body>
     </status><status>
       <id>deleted</id>
       <name>Publication refus&#233;e</name>
-      <colour>996699</colour>
+      <colour>#FFFFFF</colour>
       <visibility />
       <items>
         <item type="sendmail" id="1">
@@ -112,13 +121,13 @@ Nous vous informons que votre publication a &#233;t&#233; refus&#233;e pour la r
 
 {{ comment_agent }}
 
-Bien à vous,</body>
+Bien &#224; vous,</body>
         </item>
       </items>
     </status><status>
       <id>2</id>
-      <name>Accept&#233; et publi&#233;</name>
-      <colour>99FF99</colour>
+      <name>Contribution publi&#233;e</name>
+      <colour>#00FF00</colour>
       <forced_endpoint>true</forced_endpoint>
       <visibility />
       <items>
@@ -132,19 +141,21 @@ Votre contribution a &#233;t&#233; publi&#233;e.
 
 `Consulter ma demande &lt;{{form_url}}&gt;`_
 
-Bien à vous,</body>
+Bien &#224; vous,</body>
         </item><item type="editable" id="2">
           <by>
             <item role_id="_editor">_editor</item>
           </by><status>12</status>
           <label>Modifier la contribution</label>
+          <backoffice_info_text>&lt;p&gt;Permet l&amp;#39;&amp;eacute;dition de cette demande. Les donn&amp;eacute;es sont ensuite transmises au site web&lt;/p&gt;
+</backoffice_info_text>
           <operation_mode>full</operation_mode>
         </item>
       </items>
     </status><status>
       <id>3</id>
       <name>Information n&#233;cessaire</name>
-      <colour>FF9966</colour>
+      <colour>#FFFFFF</colour>
       <visibility />
       <items>
         <item type="sendmail" id="1">
@@ -158,6 +169,8 @@ Bien à vous,</body>
           <by>
             <item role_id="_submitter">_submitter</item>
           </by><varname>usager</varname>
+          <backoffice_info_text>&lt;p&gt;Le commentaire s&amp;#39;ajoutera &amp;agrave; ce fil et la personne traitant votre demande sera notifi&amp;eacute;e de cet ajout.&lt;/p&gt;
+</backoffice_info_text>
           <required>False</required>
         </item><item type="jumponsubmit" id="3">
           <status>recorded</status>
@@ -167,7 +180,7 @@ Bien à vous,</body>
     </status><status>
       <id>11</id>
       <name>Envoi vers le site web</name>
-      <colour>FF9999</colour>
+      <colour>#FF9999</colour>
       <visibility />
       <items>
         <item type="jump" id="1">
@@ -192,14 +205,12 @@ Bien à vous,</body>
       </items>
     </status><status>
       <id>0</id>
-      <name>Envoi de l'&#233;venement vers le Plone "Agenda"</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <name>Envoi event vers le site web</name>
+      <colour>#FF99FF</colour>
+      <visibility />
+      <items>
         <item type="webservice_call" id="1">
-          <label>Envoi vers l'agenda Plone</label>
+          <label>Envoi event vers le site Web</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/evenements/create</url>
           <qs_data>
@@ -262,7 +273,7 @@ Bien à vous,</body>
               <value>{{ form_var_tel_contact }}</value>
             </item><item>
               <name>end</name>
-              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin|default_if_none:"" }}</value>
+              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin }}</value>
             </item><item>
               <name>event_type</name>
               <value>{{ form_var_type_event_raw }}</value>
@@ -295,7 +306,7 @@ Bien à vous,</body>
               <value>{{ form_var_accessible }}</value>
             </item><item>
               <name>start</name>
-              <value>{{ form_var_date_debut|date:"Y-m-d" }} {{ form_var_horaire_debut|default_if_none:"" }}</value>
+              <value>{{ form_var_date_debut|date:"Y-m-d" }} {{ form_var_horaire_debut }}</value>
             </item><item>
               <name>street</name>
               <value>{{ form_var_rue }}</value>
@@ -328,6 +339,7 @@ Bien à vous,</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -335,14 +347,12 @@ Bien à vous,</body>
       </items>
     </status><status>
       <id>6</id>
-      <name>Envoi de l'actualit&#233; vers le Plone "Actualit&#233;s"</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <name>Envoi news vers le site web</name>
+      <colour>#FF99FF</colour>
+      <visibility />
+      <items>
         <item type="webservice_call" id="1">
-          <label>Envoi dans le Plone "Actualit&#233;s"</label>
+          <label>Envoi news vers le site Web</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/actualites/create</url>
           <qs_data>
@@ -411,6 +421,7 @@ Bien à vous,</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -418,14 +429,12 @@ Bien à vous,</body>
       </items>
     </status><status>
       <id>7</id>
-      <name>Envoi du contact vers le Plone "Annuaire"</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <name>Envoi contact vers le site web</name>
+      <colour>#FF99FF</colour>
+      <visibility />
+      <items>
         <item type="webservice_call" id="1">
-          <label>Envoi vers le Plone "Annuaire"</label>
+          <label>Envoi contact vers le site Web</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/annuaire/create</url>
           <qs_data>
@@ -635,6 +644,7 @@ Bien à vous,</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -642,14 +652,18 @@ Bien à vous,</body>
       </items>
     </status><status>
       <id>1</id>
-      <name>Erreur technique lors de l'envoi vers le Plone</name>
-      <colour>FF6666</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <name>Erreur technique</name>
+      <colour>#FF0000</colour>
+      <visibility />
+      <items>
         <item type="displaymsg" id="1">
-          <message>&lt;p&gt;Information technique pour l&#8217;analyse de l&#8217;erreur&#160;:&lt;/p&gt;
+          <message>Une erreur est survenue.
+
+En cas d'erreur technique comme une erreur r&#233;seau par exemple, rejouer l'envoi vers le site web peut &#233;ventuellement d&#233;bloquer cette demande.
+
+En cas de probl&#232;me, veuillez prendre contact avec la&#183;le r&#233;f&#233;rent&#183;e de votre administration, et ouvrez un ticket de support iMio avec un lien vers le backoffice, concernant cette demande.
+
+&lt;p&gt;Information technique pour l&#8217;analyse de l&#8217;erreur&#160;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;date&#183;heure&#160;: {{form_workflow_data_envoi_time}}&lt;/li&gt;
@@ -661,17 +675,21 @@ Bien à vous,</body>
           <position>top</position>
           <to>
             <item role_id="_editor">_editor</item>
-            <item slug="agent-ayant-acces-aux-fabriques" role_id="032bfed279a448d39a09dedadbc09a31">Agent ayant acces aux fabriques</item>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="agent-ayant-acces-aux-fabriques" role_id="9be8b3ce1b3244be8f6e05a9aa003cf0">Agent ayant acces aux fabriques</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="administrateur-fonctionnel" role_id="c61b162f817544e99577fd44c52e6758">Administrateur fonctionnel</item>
           </to>
-        </item><item type="choice" id="2">
+        </item><item type="choice" id="4">
           <label>&#128257; Rejouer l'envoi vers le site web</label>
           <by>
             <item role_id="_editor">_editor</item>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="agent-ayant-acces-aux-fabriques" role_id="9be8b3ce1b3244be8f6e05a9aa003cf0">Agent ayant acces aux fabriques</item>
+            <item slug="administrateur-fonctionnel" role_id="c61b162f817544e99577fd44c52e6758">Administrateur fonctionnel</item>
           </by><status>11</status>
           <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;En cas d&amp;#39;erreur technique, il est parfois opportun de rejouer l&amp;#39;envoi vers le site web. En cas de persistance d&amp;#39;un probl&amp;egrave;me, contactez le support iMio pour obtenir de l&amp;#39;assistance.&lt;/p&gt;
+          <confirmation_text>En cas d'erreur technique comme une erreur r&#233;seau par exemple, rejouer l'envoi vers le site web peut &#233;ventuellement d&#233;bloquer cette demande.</confirmation_text>
+          <backoffice_info_text>&lt;p&gt;En cas d&amp;#39;erreur technique comme une erreur r&amp;eacute;seau par exemple, rejouer l&amp;#39;envoi vers le site web peut &amp;eacute;ventuellement d&amp;eacute;bloquer cette demande. En cas de probl&amp;egrave;me, veuillez prendre contact avec la&amp;middot;le r&amp;eacute;f&amp;eacute;rent&amp;middot;e de votre administration, et ouvrez un ticket de support iMio avec un lien vers le backoffice, concernant cette demande.&lt;/p&gt;
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
@@ -680,11 +698,9 @@ Bien à vous,</body>
     </status><status>
       <id>12</id>
       <name>Modification de la contribution</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <colour>#FF9999</colour>
+      <visibility />
+      <items>
         <item type="jump" id="1">
           <status>8</status>
           <condition>
@@ -707,14 +723,12 @@ Bien à vous,</body>
       </items>
     </status><status>
       <id>8</id>
-      <name>Modification de l'&#233;venement dans le Plone "Agenda"</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <name>Modification event vers le site web</name>
+      <colour>#FF99FF</colour>
+      <visibility />
+      <items>
         <item type="webservice_call" id="1">
-          <label>Modification de l'&#233;venement dans le Plone "Agenda"</label>
+          <label>Renvoi event vers le site Web</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/evenements/update</url>
           <qs_data>
@@ -843,6 +857,7 @@ Bien à vous,</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -850,14 +865,12 @@ Bien à vous,</body>
       </items>
     </status><status>
       <id>9</id>
-      <name>Modification de l'actualit&#233; dans le Plone "Actualit&#233;s"</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <name>Modification news vers le site web</name>
+      <colour>#FF99FF</colour>
+      <visibility />
+      <items>
         <item type="webservice_call" id="1">
-          <label>Modification de l'actualit&#233; dans le Plone "Actualit&#233;s"</label>
+          <label>Renvoi news vers le site Web</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/actualites/update</url>
           <qs_data>
@@ -926,6 +939,7 @@ Bien à vous,</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -933,14 +947,12 @@ Bien à vous,</body>
       </items>
     </status><status>
       <id>10</id>
-      <name>Modification du contact dans le Plone "Annuaire"</name>
-      <colour>999999</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items>
+      <name>Modification contact vers le site web</name>
+      <colour>#FF99FF</colour>
+      <visibility />
+      <items>
         <item type="webservice_call" id="1">
-          <label>Modification de la fiche dans le Plone "Annuaire"</label>
+          <label>Renvoi contact vers le site Web</label>
           <method>POST</method>
           <url>{{ passerelle_url }}plone-restapi/annuaire/update</url>
           <qs_data>
@@ -1150,6 +1162,7 @@ Bien à vous,</body>
           <notify_on_errors>False</notify_on_errors>
           <record_on_errors>True</record_on_errors>
           <record_errors>True</record_errors>
+          <set_marker_on_status>False</set_marker_on_status>
         </item><item type="jump" id="2">
           <status>2</status>
           <set_marker_on_status>False</set_marker_on_status>
@@ -1158,46 +1171,28 @@ Bien à vous,</body>
     </status><status>
       <id>5</id>
       <name>Erreur lors de la modification</name>
-      <colour>FF6666</colour>
-      <visibility />
-      <items>
+      <colour>#FF0000</colour>
+      <visibility>
+        <role>_editor</role>
+        <role>_testeur</role>
+        <role>_visualisation</role>
+      </visibility><items>
         <item type="choice" id="1">
           <label>&#128257; Rejouer l'envoi de la modification</label>
           <by>
             <item role_id="_editor">_editor</item>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
+            <item slug="debug" role_id="df908b92acec4a68b3a11bbf516263d9">Debug</item>
+            <item slug="agent-ayant-acces-aux-fabriques" role_id="9be8b3ce1b3244be8f6e05a9aa003cf0">Agent ayant acces aux fabriques</item>
+            <item slug="administrateur-fonctionnel" role_id="c61b162f817544e99577fd44c52e6758">Administrateur fonctionnel</item>
           </by><status>12</status>
           <require_confirmation>True</require_confirmation>
-          <backoffice_info_text>&lt;p&gt;En cas d&amp;#39;erreur technique, il est parfois opportun de rejouer l&amp;#39;envoi vers le site web. En cas de persistance d&amp;#39;un probl&amp;egrave;me, contactez le support iMio pour obtenir de l&amp;#39;assistance.&lt;/p&gt;
+          <confirmation_text>En cas d'erreur technique, il est parfois opportun de rejouer l'envoi vers le site web pour palier &#224; une erreur r&#233;seau, par exemple.</confirmation_text>
+          <backoffice_info_text>&lt;p&gt;En cas d&amp;#39;erreur technique, il est parfois opportun de rejouer l&amp;#39;envoi vers le site web pour palier &amp;agrave; une erreur r&amp;eacute;seau, par exemple. En cas de persistance d&amp;#39;un probl&amp;egrave;me, contactez la&amp;middot;le r&amp;eacute;f&amp;eacute;rent&amp;middot;e de votre administration et ouvrez un ticket de support iMio en communiquant le lien vers cette demande, pour obtenir de l&amp;#39;assistance.&lt;/p&gt;
 </backoffice_info_text>
           <ignore_form_errors>False</ignore_form_errors>
           <set_marker_on_status>False</set_marker_on_status>
-        </item><item type="displaymsg" id="2">
-          <message>&lt;p&gt;Information technique pour l&#8217;analyse de l&#8217;erreur :&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;date&#183;heure : {{form_workflow_data_modification_time}}&lt;/li&gt;
-&lt;li&gt;statut modification : {{form_workflow_data_modification_status}}&lt;/li&gt;
-&lt;li&gt;classe d&#8217;erreur : {{form_workflow_data_modification_error_response_err_class}}&lt;/li&gt;
-&lt;li&gt;description de l&#8217;erreur : {{form_workflow_data_modification_error_response_err_desc}}&lt;/li&gt;
-&lt;/ul&gt;</message>
-          <level>info</level>
-          <position>top</position>
-          <to>
-            <item role_id="_editor">_editor</item>
-            <item slug="agent-ayant-acces-aux-fabriques" role_id="032bfed279a448d39a09dedadbc09a31">Agent ayant acces aux fabriques</item>
-            <item slug="debug" role_id="08b4ba67eb2d421ea88d4bb0256a9666">Debug</item>
-          </to>
         </item>
       </items>
-    </status><status>
-      <id>13</id>
-      <name>Modification publi&#233;e</name>
-      <colour>99FF99</colour>
-      <visibility>
-        <role>_editor</role>
-        <role>_testeur</role>
-      </visibility><items />
     </status>
   </possible_status><global_actions>
     <action>
@@ -1206,10 +1201,11 @@ Bien à vous,</body>
       <items>
         <item type="remove" id="1" />
       </items><triggers>
-        <trigger type="manual" id="341b3a4e-3ada-496a-924b-7793907f749f">
+        <trigger type="manual" id="ec1a755a-d3a1-4d1f-af18-62499a9a345e">
           <roles>
             <item role_id="_editor">_editor</item>
-          </roles>
+          </roles><allow_as_mass_action>True</allow_as_mass_action>
+          <require_confirmation>False</require_confirmation>
         </trigger>
       </triggers>
     </action>
@@ -1218,8 +1214,8 @@ Bien à vous,</body>
       <name>-</name>
       <fields>
         <field>
+          <type>item</type>
           <label type="str">Type de contribution</label>
-          <type type="str">item</type>
           <required type="bool">True</required>
           <varname type="str">type</varname>
           <display_locations />
@@ -1231,10 +1227,13 @@ Bien à vous,</body>
           </items><in_filters type="bool">False</in_filters>
           <anonymise type="bool">False</anonymise>
           <display_disabled_items type="bool">False</display_disabled_items>
+          <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+          <image_desktop_size type="int">150</image_desktop_size>
+          <image_mobile_size type="int">75</image_mobile_size>
           <id type="str">1</id>
         </field><field>
+          <type>string</type>
           <label type="str">Sous dossier des contenus Plone</label>
-          <type type="str">string</type>
           <required type="bool">True</required>
           <varname type="str">plone_folder</varname>
           <display_locations />
