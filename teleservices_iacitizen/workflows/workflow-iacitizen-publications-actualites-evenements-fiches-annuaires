@@ -791,7 +791,7 @@ En cas de probl&#232;me, veuillez prendre contact avec la&#183;le r&#233;f&#233;
               <value>{{ form_var_tel_contact }}</value>
             </item><item>
               <name>end</name>
-              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin }}</value>
+              <value>{{ form_var_date_fin|date:"Y-m-d" }} {{ form_var_horaire_fin|default:"23:59" }}</value>
             </item><item>
               <name>event_type</name>
               <value>{{ form_var_type_event_raw }}</value>
