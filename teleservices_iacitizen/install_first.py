@@ -36,10 +36,15 @@ path_deliberations = join(path_passerelle, "restapi_deliberations.json")
 
 # URL
 url_token = "https://agents.wallonie-connect.be/idp/oidc/token/"
-url_actualites = "https://actualites.enwallonie.be"
-url_annuaire = "https://annuaire.enwallonie.be"
-url_evenements = "https://agenda.enwallonie.be"
+endpoint_actualites = "@news_request_forwarder"
+endpoint_annuaire = "@directory_request_forwarder"
+endpoint_evenements = "@events_request_forwarder"
 url_deliberations = "https://www.deliberations.be"
+
+# INFOS
+
+url_smartweb = input("Enter le URL of the Smartweb site : ")
+url_smartweb = url_smartweb + "/" if not url_smartweb.endswith("/") else url_smartweb
 
 # ACTUALITES
 passerelle_actualites = {}
@@ -60,7 +65,10 @@ passerelle_actualites["basic_auth_password"] = (
     or ""
 )
 passerelle_actualites["service_url"] = (
-    input(f"Enter the URL du site press Enter to {url_actualites} : ") or url_actualites
+    input(
+        f"Enter the URL du site press Enter to {url_smartweb}{endpoint_actualites} : "
+    )
+    or f"{url_smartweb}{endpoint_actualites}"
 )
 passerelle_actualites["token_ws_url"] = (
     input(
@@ -112,7 +120,8 @@ passerelle_annuaire["basic_auth_password"] = (
     or ""
 )
 passerelle_annuaire["service_url"] = (
-    input(f"Enter the URL du site press Enter to {url_annuaire} : ") or url_annuaire
+    input(f"Enter the URL du site press Enter to {url_smartweb}{endpoint_annuaire} : ")
+    or f"{url_smartweb}{endpoint_annuaire}"
 )
 passerelle_annuaire["token_ws_url"] = (
     input(
@@ -163,7 +172,10 @@ passerelle_evenements["basic_auth_password"] = (
     or ""
 )
 passerelle_evenements["service_url"] = (
-    input(f"Enter the URL du site press Enter to {url_evenements} : ") or url_evenements
+    input(
+        f"Enter the URL du site press Enter to {url_smartweb}{endpoint_evenements} : "
+    )
+    or f"{url_smartweb}{endpoint_evenements}"
 )
 passerelle_evenements["token_ws_url"] = (
     input(
