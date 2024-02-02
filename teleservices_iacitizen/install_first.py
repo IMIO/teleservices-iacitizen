@@ -20,6 +20,7 @@ import datetime
 import json
 import logging
 import os
+import subprocess
 import sys
 
 import requests
@@ -504,14 +505,60 @@ def main():
         logger.error("No combo tenant found.")
         return
 
-    # Check and update combo settings
-    check_and_update_combo_settings(chosen_tenant, logger)
-
     # TODO : Initiate hobo variables
     ## "Consulter toutes les actualités/événements/annuaire" buttons URLs
     hobo_all_actualites_url = smartweb_url + hobo_all_actualites_url_suffix
     hobo_all_evenements_url = smartweb_url + hobo_all_evenements_url_suffix
     hobo_all_annuaire_url = smartweb_url + hobo_all_annuaire_url_suffix
+
+    # {
+    # "ia_citizen": {
+    #     "label": "Est un iA.Citizen",
+    #     "value": "Oui"
+    # },
+    # "plone_actualites_url": {
+    #     "label": "Lien du bouton \"Consulter toutes les actualités\"",
+    #     "value": ""
+    # },
+    # "plone_evenements_url": {
+    #     "label": "Lien du bouton \"Consulter tous les événements\"",
+    #     "value": ""
+    # },
+    # "plone_deliberations_url": {
+    #     "label": "Lien du bouton \"Consulter toutes les délibérations\"",
+    #     "value": ""
+    # }
+    # }
+
+    # Update hobo_variables.json values
+    hobo_variables = {
+        "ia_citizen": {"label": "Est un iA.Citizen", "value": "Oui"},
+        "plone_actualites_url": {
+            "label": 'Lien du bouton "Consulter toutes les actualités"',
+            "value": hobo_all_actualites_url,
+        },
+        "plone_evenements_url": {
+            "label": 'Lien du bouton "Consulter tous les événements"',
+            "value": hobo_all_evenements_url,
+        },
+        "plone_annuaire_url": {"label": 'Lien du bouton "Consulter l\'annuaire"', "value": hobo_all_annuaire_url},
+    }
+
+    try:
+        with open("./hobo_variables.json", "w") as file:
+            json.dump(hobo_variables, file, indent=4)
+            logger.info("Updated hobo_variables.json.")
+    except Exception as e:
+        logger.error(f"Error while updating hobo_variables.json: {e}")
+        return
+
+    # Run hobo_variables_updater.py using subprocess
+    try:
+        subprocess.run(["python3", "hobo_variables_updater.py"], check=True)
+        logger.info("hobo_variables_updater.py has been run.")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Error while running hobo_variables_updater.py: {e}")
+        return
 
 
 if __name__ == "__main__":

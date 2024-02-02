@@ -1,0 +1,18 @@
+{
+    "ia_citizen": {
+        "label": "Est un iA.Citizen",
+        "value": "Oui"
+    },
+    "plone_actualites_url": {
+        "label": "Lien du bouton \"Consulter toutes les actualit\u00e9s\"",
+        "value": "https://saintvith.preprod.imio.be/@@news_view"
+    },
+    "plone_evenements_url": {
+        "label": "Lien du bouton \"Consulter tous les \u00e9v\u00e9nements\"",
+        "value": "https://saintvith.preprod.imio.be/@@events_view"
+    },
+    "plone_annuaire_url": {
+        "label": "Lien du bouton \"Consulter l'annuaire\"",
+        "value": "https://saintvith.preprod.imio.be/@@directory_view"
+    }
+}
