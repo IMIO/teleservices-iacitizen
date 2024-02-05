@@ -1,0 +1,49 @@
+{
+  "resources": [
+    {
+      "@type": "passerelle-resource",
+      "resource_type": "plone_restapi.plonerestapi",
+      "title": "Site web",
+      "slug": "site-web",
+      "description": "Permet l'interop\u00e9rabilit\u00e9 avec d'autres actualit\u00e9s sp\u00e9cifiques de la plateforme iA.Smartweb d'iMio.",
+      "log_level": "ERROR",
+      "access_rights": [],
+      "basic_auth_username": "",
+      "basic_auth_password": "",
+      "client_certificate": null,
+      "trusted_certificate_authorities": null,
+      "verify_cert": true,
+      "http_proxy": "",
+      "service_url": "",
+      "token_ws_url": "",
+      "client_id": "",
+      "client_secret": "",
+      "username": "",
+      "password": "",
+      "queries": [
+        {
+          "name": "Avis d\u2019urbanisme",
+          "slug": "avis_et_enquete",
+          "description": "",
+          "uri": "",
+          "text_template": "{{ title }}",
+          "filter_expression": "portal_type=imio.smartweb.Page\r\nreview_state=published\r\ntaxonomy_page_category=avis_et_enquete\r\ntopics=habitat_town_planning",
+          "sort": "effective",
+          "order": false,
+          "limit": 5
+        },
+        {
+          "name": "Infos travaux",
+          "slug": "info_travaux",
+          "description": "",
+          "uri": "",
+          "text_template": "{{ title }}",
+          "filter_expression": "portal_type=imio.smartweb.Page\r\nreview_state=published\r\ntaxonomy_page_category=info_travaux",
+          "sort": "effective",
+          "order": false,
+          "limit": 5
+        }
+      ]
+    }
+  ]
+}
