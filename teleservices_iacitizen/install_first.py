@@ -29,9 +29,6 @@ INFRA_API_URL = "https://infra-api.imio.be"
 SMARTWEB_ENDPOINT = INFRA_API_URL + "/application/smartweb"
 
 script_not_working_message = "iA.Citizen install script not working as expected. Exited."
-# ChatGPT4 suggestion :
-# - The script_not_working_message global variable is a good idea, but consider if this message might be better suited
-#   as a constant within the functions that use it, given it's used in a specific context.
 
 
 def init_logging():
@@ -250,8 +247,8 @@ def display_found_combo_tenant_and_return_chosen_one(logger):
         return combo_tenants[combo_tenant_index - 1]
 
 
-def check_and_update_combo_settings(chosen_tenant, logger):
-    settings_path = os.path.join("/var/lib/combo/tenants", chosen_tenant, "path", "settings.json")
+def check_and_update_combo_settings(chosen_combo_tenant, logger):
+    settings_path = os.path.join("/var/lib/combo/tenants", chosen_combo_tenant, "path", "settings.json")
 
     # Check if settings.json exists
     if os.path.isfile(settings_path):
@@ -309,6 +306,12 @@ def apply_updates_to_json_file(json_file, updates, logger):
         for resource in data.get("resources", []):
             if "service_url" in updates:
                 resource["service_url"] = updates["service_url"]
+            if "token_ws_url" in updates:
+                resource["token_ws_url"] = updates["token_ws_url"]
+            if "client_id" in updates:
+                resource["client_id"] = updates["client_id"]
+            if "client_secret" in updates:
+                resource["client_secret"] = updates["client_secret"]
             if "username" in updates:
                 resource["username"] = updates["username"]
             if "password" in updates:
@@ -333,6 +336,8 @@ def main():
 
     # Init logging
     logger = init_logging()
+
+    # verify_env_var_presence()
 
     # Init variables
     chosen_app = None
@@ -454,23 +459,35 @@ def main():
     ## Plone REST API URLs
     restapi_actualites_json_updates = dict()
     restapi_actualites_json_updates["service_url"] = smartweb_url + passerelle_actualites_url_suffix
+    restapi_actualites_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
+    restapi_actualites_json_updates["client_id"] = os.environ.get("PLONERESTAPI_ACTUALITES_CLIENT_ID")
+    restapi_actualites_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_ACTUALITES_CLIENT_SECRET")
     restapi_actualites_json_updates["username"] = wac_username
     restapi_actualites_json_updates["password"] = wac_password
     restapi_actualites_json_updates["queries_uri"] = smartweb_uri
 
     restapi_annuaire_json_updates = dict()
     restapi_annuaire_json_updates["service_url"] = smartweb_url + passerelle_annuaire_url_suffix
+    restapi_annuaire_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
+    restapi_annuaire_json_updates["client_id"] = os.environ.get("PLONERESTAPI_ANNUAIRE_CLIENT_ID")
+    restapi_annuaire_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_ANNUAIRE_CLIENT_SECRET")
     restapi_annuaire_json_updates["username"] = wac_username
     restapi_annuaire_json_updates["password"] = wac_password
     restapi_annuaire_json_updates["queries_uri"] = smartweb_uri
 
     restapi_smartweb_json_updates = dict()
     restapi_smartweb_json_updates["service_url"] = smartweb_url
+    restapi_smartweb_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
+    restapi_smartweb_json_updates["client_id"] = os.environ.get("PLONERESTAPI_SITE_WEB_CLIENT_ID")
+    restapi_smartweb_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_SITE_WEB_CLIENT_SECRET")
     restapi_smartweb_json_updates["username"] = wac_username
     restapi_smartweb_json_updates["password"] = wac_password
 
     restapi_evenements_json_updates = dict()
     restapi_evenements_json_updates["service_url"] = smartweb_url + passerelle_evenements_url_suffix
+    restapi_evenements_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
+    restapi_evenements_json_updates["client_id"] = os.environ.get("PLONERESTAPI_EVENEMENTS_CLIENT_ID")
+    restapi_evenements_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_EVENEMENTS_CLIENT_SECRET")
     restapi_evenements_json_updates["username"] = wac_username
     restapi_evenements_json_updates["password"] = wac_password
     restapi_evenements_json_updates["queries_uri"] = smartweb_uri
@@ -500,8 +517,8 @@ def main():
 
     #
 
-    chosen_tenant = display_found_combo_tenant_and_return_chosen_one(logger)
-    if not chosen_tenant:
+    chosen_combo_tenant = display_found_combo_tenant_and_return_chosen_one(logger)
+    if not chosen_combo_tenant:
         logger.error("No combo tenant found.")
         return
 
@@ -553,12 +570,36 @@ def main():
         return
 
     # Run hobo_variables_updater.py using subprocess
+    # cmd to run : sudo -u hobo hobo-manage tenant_command runscript -d REPLACE_WITH_TENANT
+
     try:
-        subprocess.run(["python3", "hobo_variables_updater.py"], check=True)
+        hobo_tenant = (
+            subprocess.run("ls /var/lib/hobo/tenants", shell=True, check=True, capture_output=True)
+            .stdout.decode("utf-8")
+            .strip()
+        )
+        full_path_for_hobo_runscript = os.path.join(os.getcwd(), "hobo_variables_updater.py")
+        # sudo -u hobo hobo-manage tenant_command runscript -d REPLACE_WITH_TENANT full_path_for_hobo_runscript
+        subprocess.run(
+            [
+                "sudo",
+                "-u",
+                "hobo",
+                "hobo-manage",
+                "tenant_command",
+                "runscript",
+                "-d",
+                hobo_tenant,
+                full_path_for_hobo_runscript,
+            ],
+            check=True,
+        )
         logger.info("hobo_variables_updater.py has been run.")
     except subprocess.CalledProcessError as e:
         logger.error(f"Error while running hobo_variables_updater.py: {e}")
         return
+
+    logger.info("iA.Citizen install_first.py script has run successfully. ✅")
 
 
 if __name__ == "__main__":
