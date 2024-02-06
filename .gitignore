@@ -1,1 +1,6 @@
 *.log
+teleservices_iacitizen/passerelle/restapi_actualites.json
+teleservices_iacitizen/passerelle/restapi_annuaire.json
+teleservices_iacitizen/passerelle/restapi_deliberations.json
+teleservices_iacitizen/passerelle/restapi_evenements.json
+teleservices_iacitizen/passerelle/restapi_smartweb.json
