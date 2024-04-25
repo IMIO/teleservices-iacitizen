@@ -17,9 +17,16 @@
   <max_field_id>53</max_field_id>
   <fields>
     <field>
+      <type>page</type>
       <label type="str">Soumettre un &#233;v&#233;nement</label>
-      <type type="str">page</type>
-      <id type="str">46</id>
+      <post_conditions>
+        <post_condition>
+          <condition>
+            <type>django</type>
+            <value>form_var_date_debut|add:" "|add:form_var_horaire_debut|datetime &lt;= form_var_date_fin|add:" "|add:form_var_horaire_fin|datetime or not form_var_horaire_debut and not form_var_horaire_fin</value>
+          </condition><error_message>La date de d&#233;but doit &#234;tre avant la date de fin</error_message>
+        </post_condition>
+      </post_conditions><id type="str">46</id>
     </field><field>
       <label type="str">Soumettre un &#233;v&#233;nement</label>
       <type type="str">title</type>
