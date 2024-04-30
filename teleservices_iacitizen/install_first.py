@@ -248,7 +248,7 @@ def display_found_combo_tenant_and_return_chosen_one(logger):
 
 
 def check_and_update_combo_settings(chosen_combo_tenant, logger):
-    settings_path = os.path.join("/var/lib/combo/tenants", chosen_combo_tenant, "path", "settings.json")
+    settings_path = os.path.join("/var/lib/combo/tenants", chosen_combo_tenant, "settings.json")
 
     # Check if settings.json exists
     if os.path.isfile(settings_path):
@@ -459,35 +459,35 @@ def main():
     ## Plone REST API URLs
     restapi_actualites_json_updates = dict()
     restapi_actualites_json_updates["service_url"] = smartweb_url + passerelle_actualites_url_suffix
-    restapi_actualites_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
-    restapi_actualites_json_updates["client_id"] = os.environ.get("PLONERESTAPI_ACTUALITES_CLIENT_ID")
-    restapi_actualites_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_ACTUALITES_CLIENT_SECRET")
+    restapi_actualites_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL", "")
+    restapi_actualites_json_updates["client_id"] = os.environ.get("PLONERESTAPI_ACTUALITES_CLIENT_ID", "")
+    restapi_actualites_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_ACTUALITES_CLIENT_SECRET", "")
     restapi_actualites_json_updates["username"] = wac_username
     restapi_actualites_json_updates["password"] = wac_password
     restapi_actualites_json_updates["queries_uri"] = smartweb_uri
 
     restapi_annuaire_json_updates = dict()
     restapi_annuaire_json_updates["service_url"] = smartweb_url + passerelle_annuaire_url_suffix
-    restapi_annuaire_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
-    restapi_annuaire_json_updates["client_id"] = os.environ.get("PLONERESTAPI_ANNUAIRE_CLIENT_ID")
-    restapi_annuaire_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_ANNUAIRE_CLIENT_SECRET")
+    restapi_annuaire_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL", "")
+    restapi_annuaire_json_updates["client_id"] = os.environ.get("PLONERESTAPI_ANNUAIRE_CLIENT_ID", "")
+    restapi_annuaire_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_ANNUAIRE_CLIENT_SECRET", "")
     restapi_annuaire_json_updates["username"] = wac_username
     restapi_annuaire_json_updates["password"] = wac_password
     restapi_annuaire_json_updates["queries_uri"] = smartweb_uri
 
     restapi_smartweb_json_updates = dict()
     restapi_smartweb_json_updates["service_url"] = smartweb_url
-    restapi_smartweb_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
-    restapi_smartweb_json_updates["client_id"] = os.environ.get("PLONERESTAPI_SITE_WEB_CLIENT_ID")
-    restapi_smartweb_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_SITE_WEB_CLIENT_SECRET")
+    restapi_smartweb_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL", "")
+    restapi_smartweb_json_updates["client_id"] = os.environ.get("PLONERESTAPI_SITE_WEB_CLIENT_ID", "")
+    restapi_smartweb_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_SITE_WEB_CLIENT_SECRET", "")
     restapi_smartweb_json_updates["username"] = wac_username
     restapi_smartweb_json_updates["password"] = wac_password
 
     restapi_evenements_json_updates = dict()
     restapi_evenements_json_updates["service_url"] = smartweb_url + passerelle_evenements_url_suffix
-    restapi_evenements_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL")
-    restapi_evenements_json_updates["client_id"] = os.environ.get("PLONERESTAPI_EVENEMENTS_CLIENT_ID")
-    restapi_evenements_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_EVENEMENTS_CLIENT_SECRET")
+    restapi_evenements_json_updates["token_ws_url"] = os.environ.get("WACO_TOKEN_WS_URL", "")
+    restapi_evenements_json_updates["client_id"] = os.environ.get("PLONERESTAPI_EVENEMENTS_CLIENT_ID", "")
+    restapi_evenements_json_updates["client_secret"] = os.environ.get("PLONERESTAPI_EVENEMENTS_CLIENT_SECRET", "")
     restapi_evenements_json_updates["username"] = wac_username
     restapi_evenements_json_updates["password"] = wac_password
     restapi_evenements_json_updates["queries_uri"] = smartweb_uri
