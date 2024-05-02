@@ -25,7 +25,7 @@
           "name": "Délibérations",
           "slug": "deliberations",
           "description": "Liste des délibérations",
-          "uri": "belle-ville",
+          "uri": "saintvith",
           "text_template": "{{ title }}",
           "filter_expression": "portal_type=Meeting",
           "sort": "date_time",
