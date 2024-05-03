@@ -253,7 +253,7 @@ def install_citizen_ressources():
     selected_files = [
         "passerelle/restapi_actualites.json",
         "passerelle/restapi_annuaire.json",
-        "passerelle/restapi_evenements.json.json",
+        "passerelle/restapi_evenements.json",
     ]
 
     # updated URI queries from "saintvith" to commune_slug values
