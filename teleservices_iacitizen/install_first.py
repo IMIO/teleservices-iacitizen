@@ -250,7 +250,11 @@ def install_citizen_ressources():
     commune_slug = input("Veuillez entrer le slug de la commune :")
 
     # files to update
-    selected_files = ["restapi_actualites.json", "restapi_annuaire.json", "restapi_evenements.json.json"]
+    selected_files = [
+        "passerelle/restapi_actualites.json",
+        "passerelle/restapi_annuaire.json",
+        "passerelle/restapi_evenements.json.json",
+    ]
 
     # updated URI queries from "saintvith" to commune_slug values
     for file in selected_files:
