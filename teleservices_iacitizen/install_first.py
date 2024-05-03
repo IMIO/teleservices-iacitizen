@@ -22,7 +22,6 @@ import logging
 import os
 import subprocess
 import sys
-
 import requests
 
 INFRA_API_URL = "https://infra-api.imio.be"
@@ -33,7 +32,7 @@ script_not_working_message = "iA.Citizen install script not working as expected.
 
 def init_logging():
     """
-    Init logging.
+    init logs configuration
     """
     install_script_run_timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     this_log_filename = f"iacitizen_install_first_{install_script_run_timestamp}.log"
@@ -127,7 +126,7 @@ def verify_y_n_input(user_input, logger):
 
 def verify_waconnect_username_and_password(wac_username, wac_password, logger):
     """
-    Verify if the WaConnect username and password are valid.
+    Verify if the WaConnect username and password are "valid".
     """
     if not wac_username:
         logger.error("WaConnect username is empty.")
@@ -159,9 +158,6 @@ def verify_waconnect_username_and_password(wac_username, wac_password, logger):
 def display_found_apps_and_return_chosen_one(found_apps, smartweb_slug, logger):
     """
     Display the found apps in data.
-
-    ChatGPT4 suggestion :
-    - This function is well-structured, but consider splitting it into two functions: one for displaying apps and another for getting the user's choice. This adheres to the single responsibility principle.
     """
     logger.info("Found %s apps for %s in preprod Smartweb data.", str(len(found_apps)), smartweb_slug)
     for index, app in enumerate(found_apps, start=1):
@@ -204,7 +200,9 @@ def display_found_apps_and_return_chosen_one(found_apps, smartweb_slug, logger):
 
 
 def display_found_combo_tenant_and_return_chosen_one(logger):
-    """Fetch and output combo tenants in /var/lib/combo/tenants (folders contained in that folder) and ask user for wich combo tenant to use"""
+    """Fetch and output combo tenants in /var/lib/combo/tenants
+    (folders contained in that folder) and ask user for wich combo tenant to use
+    """
     base_dir = "/var/lib/combo/tenants"
     elements_in_base_dir = os.listdir(base_dir)
     try:
@@ -245,6 +243,27 @@ def display_found_combo_tenant_and_return_chosen_one(logger):
             return
 
         return combo_tenants[combo_tenant_index - 1]
+
+
+def install_citizen_ressources():
+    # ask municipality slug
+    commune_slug = input("Veuillez entrer le slug de la commune :")
+
+    # files to update
+    selected_files = ["restapi_actualites.json", "restapi_annuaire.json", "restapi_evenements.json.json"]
+
+    # updated URI queries from "saintvith" to commune_slug values
+    for file in selected_files:
+        with open(file, "r") as f:
+            file_data = f.read()
+            file_data = file_data.replace('"uri": "saintvith"', '"uri": "{}"'.format(commune_slug))
+            with open(file, "w") as f:
+                f.write(file_data)
+
+    install_path = "/usr/lib/teleservices_iacitizen"
+
+    # install package ( passerelles, forms, WF ...)
+    subprocess.run(["sudo", "-u", "hobo", "hobo-manage", "imio_indus_deploy", "--directory", install_path])
 
 
 def check_and_update_combo_settings(chosen_combo_tenant, logger):
@@ -336,16 +355,16 @@ def main():
 
     # Init logging
     logger = init_logging()
-
+    install_citizen_ressources()
     # verify_env_var_presence()
 
     # Init variables
     chosen_app = None
     passerelle_actualites_url = None
-    passerelle_actualites_url_suffix = "/@@news_request_forwarder"
     passerelle_evenements_url = None
-    passerelle_evenements_url_suffix = "/@@events_request_forwarder"
     passerelle_annuaire_url = None
+    passerelle_actualites_url_suffix = "/@@news_request_forwarder"
+    passerelle_evenements_url_suffix = "/@@events_request_forwarder"
     passerelle_annuaire_url_suffix = "/@@directory_request_forwarder"
     hobo_all_actualites_url = None
     hobo_all_actualites_url_suffix = "/@@news_view"
@@ -527,25 +546,6 @@ def main():
     hobo_all_actualites_url = smartweb_url + hobo_all_actualites_url_suffix
     hobo_all_evenements_url = smartweb_url + hobo_all_evenements_url_suffix
     hobo_all_annuaire_url = smartweb_url + hobo_all_annuaire_url_suffix
-
-    # {
-    # "ia_citizen": {
-    #     "label": "Est un iA.Citizen",
-    #     "value": "Oui"
-    # },
-    # "plone_actualites_url": {
-    #     "label": "Lien du bouton \"Consulter toutes les actualités\"",
-    #     "value": ""
-    # },
-    # "plone_evenements_url": {
-    #     "label": "Lien du bouton \"Consulter tous les événements\"",
-    #     "value": ""
-    # },
-    # "plone_deliberations_url": {
-    #     "label": "Lien du bouton \"Consulter toutes les délibérations\"",
-    #     "value": ""
-    # }
-    # }
 
     # Update hobo_variables.json values
     hobo_variables = {
