@@ -246,12 +246,14 @@ def display_found_combo_tenant_and_return_chosen_one(logger):
 
 
 def install_citizen_ressources():
+    # Obtenez le chemin du répertoire courant
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    print(current_dir)
     # Définir le chemin du script
-    script_path = "/install_teleservices_iacitizen.sh"
-
+    script_path = os.path.join(current_dir, "install_teleservices_iacitizen.sh")
+    print(script_path)
     # Appeler le script
     subprocess.run(["bash", script_path], check=True)
-    pass
 
 
 def check_and_update_combo_settings(chosen_combo_tenant, logger):
