@@ -424,7 +424,6 @@ def main():
         return
 
     logger.info("Chosen app: %s", chosen_app)
-    check_and_update_combo_settings(chosen_combo_tenant, logger)
     # Unpack parsed data from chosen app
     smartweb_uri, smartweb_url = unpack_parsed_data_from_chosen_app(chosen_app, logger)
 
