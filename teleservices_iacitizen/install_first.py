@@ -293,9 +293,20 @@ def unpack_parsed_data_from_chosen_app(chosen_app, logger):
     try:
         smartweb_uri = chosen_app["application_name"].split("_")[0]
         smartweb_url = chosen_app["vhost_name"]
-    except Exception as e:
-        logger.error("Error while unpacking parsed data from chosen app: %s", e)
+    except KeyError as e:
+        logger.error("KeyError while unpacking parsed data from chosen app: %s", e)
         return None
+
+    while True:
+        response = input(f"Est-ce que l'URI {smartweb_uri} vous convient ? (y/n) ").lower()
+
+        if response == "y":
+            break
+        elif response == "n":
+            smartweb_uri = input("Veuillez entrer une nouvelle URI : ")
+            break
+        else:
+            print("Réponse non valide. Veuillez entrer 'y' ou 'n'.")
 
     return smartweb_uri, smartweb_url
 
