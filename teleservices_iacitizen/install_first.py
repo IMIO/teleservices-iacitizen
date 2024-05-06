@@ -303,7 +303,7 @@ def strip_values(d):
     return {k: v.strip() if isinstance(v, str) else v for k, v in d.items()}
 
 
-def apply_updates_to_json_file(json_file, updates, logger, smartweb_slug):
+def apply_updates_to_json_file(json_file, updates, logger):
     """Apply updates to a given JSON file based on the updates dictionary."""
     try:
         with open(json_file, "r") as file:
@@ -329,23 +329,6 @@ def apply_updates_to_json_file(json_file, updates, logger, smartweb_slug):
 
         with open(json_file, "w") as file:
             json.dump(data, file, indent=4)
-        command = [
-            "sudo",
-            "-u",
-            "passerelle",
-            "passerelle-manage",
-            "tenant_command",
-            "import_site",
-            "-d",
-            "[domain]",
-            "[path_du_json]",
-            "--import-users",
-        ]
-        command = command.replace("[domain]", smartweb_slug)
-        command = command.replace("[path_du_json]", json_file)
-        subprocess.run(command.split())
-        logger.info(f"Successfully updated {json_file}")
-
     except Exception as e:
         logger.error(f"Error updating {json_file}: {e}")
 
