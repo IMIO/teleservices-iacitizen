@@ -345,7 +345,21 @@ def apply_updates_to_json_file(json_file, updates, logger):
 
         with open(json_file, "w") as file:
             json.dump(data, file, indent=4)
-
+        command = [
+            "sudo",
+            "-u",
+            "passerelle",
+            "passerelle-manage",
+            "tenant_command",
+            "import_site",
+            "-d",
+            "[domain]",
+            "[path_du_json]",
+            "--import-users",
+        ]
+        command = command.replace("[domain]", smartweb_slug)
+        command = command.replace("[path_du_json]", json_file)
+        subprocess.run(command.split())
         logger.info(f"Successfully updated {json_file}")
 
     except Exception as e:
@@ -359,6 +373,9 @@ def main():
 
     # Init logging
     logger = init_logging()
+    chosen_combo_tenant = "votre_tenant"
+    check_and_update_combo_settings(chosen_combo_tenant, logger)
+
     install_citizen_ressources()
     # verify_env_var_presence()
 
@@ -426,7 +443,7 @@ def main():
         return
 
     logger.info("Chosen app: %s", chosen_app)
-
+    check_and_update_combo_settings(chosen_combo_tenant, logger)
     # Unpack parsed data from chosen app
     smartweb_uri, smartweb_url = unpack_parsed_data_from_chosen_app(chosen_app, logger)
 
@@ -448,30 +465,6 @@ def main():
         logger.error(script_not_working_message)
         return
 
-    # Values to update in json files for reference:
-    # In restapi_actualites.json
-    # "resources":[{"service_url": "SMARTWEB_URL_ACTUALITES",}]
-    # "resources":[{"username": "WACONNECT_USERNAME",}]
-    # "resources":[{"password": "WACONNECT_PASSWORD",}]
-    # "resources": [{"queries": [{"uri":  "ACTUALITES_QUERIES_URI"}]}] (for each query present)
-    #
-    # In restapi_annuaire.json
-    # "resources":[{"service_url": "SMARTWEB_URL_ANNUAIRE",}]
-    # "resources":[{"username": "WACONNECT_USERNAME",}]
-    # "resources":[{"password": "WACONNECT_PASSWORD",}]
-    # "resources": [{"queries": [{"uri":  "ANNUAIRE_QUERIES_URI"}]}] (for each query present)
-    #
-    # In restapi_smartweb.json
-    # "resources":[{"service_url": "SMARTWEB_URL",}]
-    # "resources":[{"username": "WACONNECT_USERNAME",}]
-    # "resources":[{"password": "WACONNECT_PASSWORD",}]
-    #
-    # In restapi_evenements.json
-    # "resources":[{"service_url": "SMARTWEB_URL_AGENDA",}]
-    # "resources":[{"username": "WACONNECT_USERNAME",}]
-    # "resources":[{"password": "WACONNECT_PASSWORD",}]
-    # "resources": [{"queries": [{"uri":  "AGENDA_QUERIES_URI"}]}] (for each query present)
-    #
     # In restapi_deliberations.json
     # "resources":[{"basic_auth_username": "username",}]
     # "resources":[{"basic_auth_password": "password",}]
@@ -541,9 +534,12 @@ def main():
     #
 
     chosen_combo_tenant = display_found_combo_tenant_and_return_chosen_one(logger)
+    check_and_update_combo_settings(chosen_combo_tenant, logger)
+
     if not chosen_combo_tenant:
         logger.error("No combo tenant found.")
         return
+    check_and_update_combo_settings(chosen_combo_tenant, logger)
 
     # TODO : Initiate hobo variables
     ## "Consulter toutes les actualités/événements/annuaire" buttons URLs
