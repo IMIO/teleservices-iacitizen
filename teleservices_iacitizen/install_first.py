@@ -350,9 +350,9 @@ def main():
     # verify_env_var_presence()
 
     # Init variables
-    passerelle_actualites_url_suffix = "/@@news_request_forwarder"
-    passerelle_evenements_url_suffix = "/@@events_request_forwarder"
-    passerelle_annuaire_url_suffix = "/@@directory_request_forwarder"
+    passerelle_actualites_url_suffix = "/@news_request_forwarder"
+    passerelle_evenements_url_suffix = "/@events_request_forwarder"
+    passerelle_annuaire_url_suffix = "/@directory_request_forwarder"
     hobo_all_actualites_url = None
     hobo_all_actualites_url_suffix = "/@@news_view"
     hobo_all_evenements_url = None
