@@ -247,7 +247,7 @@ def display_found_combo_tenant_and_return_chosen_one(logger):
 
 def install_citizen_ressources():
     # Définir le chemin du script
-    script_path = "teleservices_iacitizen/install_teleservices_iacitizen.sh"
+    script_path = "/install_teleservices_iacitizen.sh"
 
     # Appeler le script
     subprocess.run(["bash", script_path], check=True)
