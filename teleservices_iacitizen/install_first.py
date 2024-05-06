@@ -246,28 +246,12 @@ def display_found_combo_tenant_and_return_chosen_one(logger):
 
 
 def install_citizen_ressources():
-    # ask municipality slug
-    commune_slug = input("Veuillez entrer le slug de la commune :")
+    # Définir le chemin du script
+    script_path = "teleservices_iacitizen/install_teleservices_iacitizen.sh"
 
-    # files to update
-    selected_files = [
-        "passerelle/restapi_actualites.json",
-        "passerelle/restapi_annuaire.json",
-        "passerelle/restapi_evenements.json",
-    ]
-
-    # updated URI queries from "saintvith" to commune_slug values
-    for file in selected_files:
-        with open(file, "r") as f:
-            file_data = f.read()
-            file_data = file_data.replace('"uri": "saintvith"', '"uri": "{}"'.format(commune_slug))
-            with open(file, "w") as f:
-                f.write(file_data)
-
-    install_path = "/usr/lib/teleservices_iacitizen"
-
-    # install package ( passerelles, forms, WF ...)
-    subprocess.run(["sudo", "-u", "hobo", "hobo-manage", "imio_indus_deploy", "--directory", install_path])
+    # Appeler le script
+    subprocess.run(["bash", script_path], check=True)
+    pass
 
 
 def check_and_update_combo_settings(chosen_combo_tenant, logger):
@@ -319,7 +303,7 @@ def strip_values(d):
     return {k: v.strip() if isinstance(v, str) else v for k, v in d.items()}
 
 
-def apply_updates_to_json_file(json_file, updates, logger):
+def apply_updates_to_json_file(json_file, updates, logger, smartweb_slug):
     """Apply updates to a given JSON file based on the updates dictionary."""
     try:
         with open(json_file, "r") as file:
@@ -372,18 +356,15 @@ def main():
     """
 
     # Init logging
-    logger = init_logging()
-    chosen_combo_tenant = "votre_tenant"
-    check_and_update_combo_settings(chosen_combo_tenant, logger)
-
-    install_citizen_ressources()
-    # verify_env_var_presence()
-
-    # Init variables
-    chosen_app = None
     passerelle_actualites_url = None
     passerelle_evenements_url = None
     passerelle_annuaire_url = None
+
+    logger = init_logging()
+
+    # verify_env_var_presence()
+
+    # Init variables
     passerelle_actualites_url_suffix = "/@@news_request_forwarder"
     passerelle_evenements_url_suffix = "/@@events_request_forwarder"
     passerelle_annuaire_url_suffix = "/@@directory_request_forwarder"
@@ -539,7 +520,6 @@ def main():
     if not chosen_combo_tenant:
         logger.error("No combo tenant found.")
         return
-    check_and_update_combo_settings(chosen_combo_tenant, logger)
 
     # TODO : Initiate hobo variables
     ## "Consulter toutes les actualités/événements/annuaire" buttons URLs
@@ -600,6 +580,7 @@ def main():
         return
 
     logger.info("iA.Citizen install_first.py script has run successfully. ✅")
+    install_citizen_ressources()
 
 
 if __name__ == "__main__":
