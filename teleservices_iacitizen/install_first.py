@@ -1,3 +1,11 @@
+import os
+import datetime
+import json
+import logging
+import subprocess
+import sys
+import requests
+
 """Fetch iA.Smartweb JSON data from Infra API, parse data and use it to install iA.Citizen.
 
 
@@ -15,14 +23,6 @@ URLs for "Consulter toutes les actualités/événements/annuaire" :
 
 ?language=LA_LANGUE can be added to the URL to filter by language.
 """
-
-import datetime
-import json
-import logging
-import os
-import subprocess
-import sys
-import requests
 
 INFRA_API_URL = "https://infra-api.imio.be"
 SMARTWEB_ENDPOINT = INFRA_API_URL + "/application/smartweb"
@@ -350,12 +350,6 @@ def main():
     """
     Main function.
     """
-
-    # Init logging
-    passerelle_actualites_url = None
-    passerelle_evenements_url = None
-    passerelle_annuaire_url = None
-
     logger = init_logging()
 
     # verify_env_var_presence()
