@@ -353,7 +353,9 @@ def main():
     logger = init_logging()
 
     # verify_env_var_presence()
-
+    passerelle_actualites_url = None
+    passerelle_evenements_url = None
+    passerelle_annuaire_url = None
     # Init variables
     passerelle_actualites_url_suffix = "/@news_request_forwarder"
     passerelle_evenements_url_suffix = "/@events_request_forwarder"
