@@ -396,8 +396,8 @@ def main():
 
     if not stuff_found_in_preprod:
         logger.error("No app found for slug %s in preprod Smartweb data.", smartweb_slug)
-    else:
-        chosen_app = display_found_apps_and_return_chosen_one(stuff_found_in_preprod, smartweb_slug, logger)
+
+    chosen_app = display_found_apps_and_return_chosen_one(stuff_found_in_preprod, smartweb_slug, logger)
 
     if not chosen_app:
         logger.info("Checking in prod Smartweb data...")
