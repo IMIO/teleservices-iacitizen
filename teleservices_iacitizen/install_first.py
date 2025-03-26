@@ -24,7 +24,7 @@ URLs for "Consulter toutes les actualités/événements/annuaire" :
 ?language=LA_LANGUE can be added to the URL to filter by language.
 """
 
-INFRA_API_URL = "https://infra-api.imio.be"
+INFRA_API_URL = "https://infradoc.imio.be"
 SMARTWEB_ENDPOINT = INFRA_API_URL + "/application/smartweb"
 
 script_not_working_message = "iA.Citizen install script not working as expected. Exited."
