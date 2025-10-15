@@ -17,7 +17,7 @@
           <fields>
             <field>
               <field_id>bod493f819-4330-41eb-91c3-1b54dd49842b</field_id>
-              <value>{% if "belleville" not in form_option_plone_folder %}{{ form_option_plone_folder }}{% else %}{{ dossier_plone }}{% endif %}</value>
+              <value>{% if "belleville" not in form_option_plone_folder %}{{ form_option_plone_folder }}{% else %}{{ dossier_plone }}{% if form_slug in "actualite|evenement"|split:"|" %}/citoyens{% endif %}{% endif %}</value>
             </field>
           </fields>
         </item>
@@ -191,6 +191,15 @@ Bien &#224; vous,</body>
       <colour>#FF9999</colour>
       <visibility />
       <items>
+        <item type="set-backoffice-fields" id="4">
+          <label>Dossier Plone</label>
+          <fields>
+            <field>
+              <field_id>bod493f819-4330-41eb-91c3-1b54dd49842b</field_id>
+              <value>{% if "belleville" not in form_option_plone_folder %}{{ form_option_plone_folder }}{% else %}{{ dossier_plone }}{% if form_slug in "actualite|evenement"|split:"|" %}/citoyens{% endif %}{% endif %}</value>
+            </field>
+          </fields>
+        </item>
         <item type="jump" id="1">
           <status>6</status>
           <condition>
@@ -226,7 +235,7 @@ Bien &#224; vous,</body>
           <qs_data>
             <item>
               <name>uri</name>
-              <value>{{ form_var_dossier_plone }}/citoyens</value>
+              <value>{{ form_var_dossier_plone }}</value>
             </item>
             <item>
               <name>publish</name>
@@ -371,7 +380,7 @@ Bien &#224; vous,</body>
           <qs_data>
             <item>
               <name>uri</name>
-              <value>{{ form_var_dossier_plone }}/citoyens</value>
+              <value>{{ form_var_dossier_plone }}</value>
             </item>
             <item>
               <name>publish</name>
