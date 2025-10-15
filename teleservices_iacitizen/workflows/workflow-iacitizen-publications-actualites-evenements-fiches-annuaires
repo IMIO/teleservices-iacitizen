@@ -17,7 +17,7 @@
           <fields>
             <field>
               <field_id>bod493f819-4330-41eb-91c3-1b54dd49842b</field_id>
-              <value>{% if "belleville" not in form_var_dossier_plone %}{{ form_var_dossier_plone }}{% else %}{{ dossier_plone }}{% endif %}</value>
+              <value>{% if "belleville" not in form_option_plone_folder %}{{ form_option_plone_folder }}{% else %}{{ dossier_plone }}{% endif %}</value>
             </field>
           </fields>
         </item>
