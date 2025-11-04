@@ -206,11 +206,11 @@
       </validation><anonymise type="bool">True</anonymise>
       <id type="str">5</id>
     </field><field>
-      <label type="str">Twitter</label>
+      <label type="str">X</label>
       <type type="str">string</type>
       <required type="bool">False</required>
-      <hint type="str">Lien Twitter pour cet &#233;v&#233;nement</hint>
-      <varname type="str">twitter</varname>
+      <hint type="str">Lien X pour cet &#233;v&#233;nement</hint>
+      <varname type="str">X</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>

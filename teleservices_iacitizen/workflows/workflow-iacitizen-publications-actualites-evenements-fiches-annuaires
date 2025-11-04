@@ -277,8 +277,8 @@ Bien &#224; vous,</body>
               <name>site_url</name>
               <value>{{ form_var_site_internet }}</value>
             </item><item>
-              <name>twitter</name>
-              <value>{{ form_var_twitter }}</value>
+              <name>X</name>
+              <value>{{ form_var_X }}</value>
             </item><item>
               <name>video_url</name>
               <value>{{ form_var_video }}</value>
@@ -422,8 +422,8 @@ Bien &#224; vous,</body>
               <name>site_url</name>
               <value>{{ form_var_site_internet }}</value>
             </item><item>
-              <name>twitter</name>
-              <value>{{ form_var_twitter }}</value>
+              <name>X</name>
+              <value>{{ form_var_X }}</value>
             </item><item>
               <name>video_url</name>
               <value>{{ form_var_video }}</value>
@@ -798,8 +798,8 @@ Bien &#224; vous,</body>
               <name>site_url</name>
               <value>{{ form_var_site_internet }}</value>
             </item><item>
-              <name>twitter</name>
-              <value>{{ form_var_twitter }}</value>
+              <name>X</name>
+              <value>{{ form_var_X }}</value>
             </item><item>
               <name>video_url</name>
               <value>{{ form_var_video }}</value>
@@ -943,8 +943,8 @@ Bien &#224; vous,</body>
               <name>site_url</name>
               <value>{{ form_var_site_internet }}</value>
             </item><item>
-              <name>twitter</name>
-              <value>{{ form_var_twitter }}</value>
+              <name>X</name>
+              <value>{{ form_var_X }}</value>
             </item><item>
               <name>video_url</name>
               <value>{{ form_var_video }}</value>
