@@ -1,20 +1,21 @@
 <?xml version="1.0"?>
-<formdef id="209" url="https://staging-formulaires.guichet-citoyen.be/backoffice/forms/209/">
+<formdef id="106" url="https://rochefort-formulaires.guichet-citoyen.be/backoffice/forms/106/">
   <name>&#201;v&#233;nement</name>
   <url_name>evenement</url_name>
+  <description>&lt;p&gt;&lt;strong&gt;Vous &#234;tes une association, une asbl et vous organisez un &#233;v&#232;nement&amp;nbsp;&#224; Rochefort... Vous souhaitez le diffuser dans le bulletin communal et&amp;nbsp;sur le site internet de la Ville... &amp;nbsp;Dans ce cas, n'h&#233;sitez pas... Compl&#233;tez le formulaire accessible ici afin de nous soumettre cette information, voire d'en modifier une d&#233;j&#224; r&#233;f&#233;renc&#233;e.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Vos donn&#233;es restent sous votre enti&#232;re responsabilit&#233;. Nous d&#233;clinons toute responsabilit&#233; pour les informations erron&#233;es que vous pourriez envoyer par ce formulaire en ligne. La Ville se r&#233;serve le droit de ne pas publier ou de ne publier qu'une partie des informations transmises. L'agenda est r&#233;serv&#233; aux annonces non commerciales pour des manifestations se d&#233;roulant sur la commune de Rochefort.&lt;/p&gt;</description>
+  <submission_user_association>any</submission_user_association>
+  <history_pane_default_mode>expanded</history_pane_default_mode>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
   <only_allow_one>false</only_allow_one>
   <enable_tracking_codes>false</enable_tracking_codes>
   <confirmation>true</confirmation>
-  <always_advertise>false</always_advertise>
-  <include_download_all_button>false</include_download_all_button>
+  <always_advertise>true</always_advertise>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="publications" category_id="149">Publications</category>
-  <workflow slug="contributions" workflow_id="168">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
-  <max_field_id>53</max_field_id>
+  <category slug="publications" category_id="31">Publications</category>
+  <workflow slug="contributions" workflow_id="50">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
   <fields>
     <field>
       <type>page</type>
@@ -40,27 +41,18 @@
       <id type="str">52</id>
     </field>
     <field>
-      <type>subtitle</type>
-      <label type="str">Votre &#233;v&#233;nement</label>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <id type="str">53</id>
-    </field>
-    <field>
       <type>item</type>
       <label type="str">Type d'&#233;v&#233;nement</label>
-      <required type="bool">True</required>
-      <hint type="str">S&#233;lectionnez</hint>
+      <required type="str">required</required>
+      <hint type="str">&lt;p&gt;S&#233;lectionnez&lt;/p&gt;</hint>
       <varname type="str">type_event</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
       <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
-      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventTypes</value>
@@ -69,40 +61,35 @@
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
-      <image_desktop_size type="int">150</image_desktop_size>
-      <image_mobile_size type="int">75</image_mobile_size>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
       <id type="str">44</id>
     </field>
     <field>
       <type>string</type>
       <label type="str">Titre</label>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">titre</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill>
+      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
       <id type="str">1</id>
     </field>
     <field>
       <type>text</type>
       <label type="str">Description courte</label>
-      <required type="bool">False</required>
-      <hint type="str">R&#233;sum&#233; de l'&#233;v&#233;nement en quelques phrases maximum.</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;R&#233;sum&#233; de l'&#233;v&#233;nement en quelques phrases maximum.&lt;/p&gt;</hint>
       <varname type="str">description</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill>
+      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
       <display_mode type="str">plain</display_mode>
       <maxlength type="str">700</maxlength>
@@ -111,16 +98,13 @@
     <field>
       <type>text</type>
       <label type="str">Texte de pr&#233;sentation</label>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">texte</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill>
+      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
       <display_mode type="str">plain</display_mode>
       <id type="str">51</id>
@@ -128,17 +112,14 @@
     <field>
       <type>string</type>
       <label type="str">Lien pour la participation en ligne</label>
-      <required type="bool">False</required>
-      <hint type="str">Lien pour participer en ligne</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien pour participer en ligne&lt;/p&gt;</hint>
       <varname type="str">participation</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
       <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -150,17 +131,14 @@
     <field>
       <type>string</type>
       <label type="str">Billeterie</label>
-      <required type="bool">False</required>
-      <hint type="str">Lien de la billeterie pour s'inscrire &#224; cet &#233;v&#233;nement</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien de la billeterie pour s'inscrire &#224; cet &#233;v&#233;nement&lt;/p&gt;</hint>
       <varname type="str">billeterie</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
       <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
@@ -172,190 +150,219 @@
     <field>
       <type>string</type>
       <label type="str">Vid&#233;o</label>
-      <required type="bool">False</required>
-      <hint type="str">Lien vers une vid&#233;o Youtube ou Vimeo</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien vers une vid&#233;o Youtube ou Vimeo&lt;/p&gt;</hint>
       <varname type="str">video</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
+      </validation>
       <id type="str">17</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Facebook</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Lien Facebook pour cet &#233;v&#233;nement</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien Facebook pour cet &#233;v&#233;nement&lt;/p&gt;</hint>
       <varname type="str">facebook</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
+      </validation>
       <id type="str">5</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">X</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Lien X pour cet &#233;v&#233;nement</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien X pour cet &#233;v&#233;nement&lt;/p&gt;</hint>
       <varname type="str">X</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">newline grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
+      </validation>
       <id type="str">6</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Instagram</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Lien Instagram pour cet &#233;v&#233;nement</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien Instagram pour cet &#233;v&#233;nement&lt;/p&gt;</hint>
       <varname type="str">instagram</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><validation>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
+      </validation>
       <id type="str">7</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">URL de l'&#233;v&#233;nement</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Veuillez saisir un lien (https://...)</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Veuillez saisir un lien (https://...)&lt;/p&gt;</hint>
       <varname type="str">url_event</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><validation>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
         <error_message>Veuillez saisir une URL (https://...)</error_message>
         <type>regex</type>
         <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
+      </validation>
       <id type="str">30</id>
-    </field><field>
+    </field>
+    <field>
+      <type>file</type>
       <label type="str">Image principale ( sans texte )</label>
-      <type type="str">file</type>
-      <required type="bool">True</required>
-      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233; ; merci de t&#233;l&#233;verser une image sans texte.</hint>
+      <required type="str">required</required>
+      <hint type="str">&lt;p&gt;Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233; ; merci de t&#233;l&#233;verser une image sans texte.&lt;/p&gt;</hint>
       <varname type="str">image</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><document_type>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
         <mimetypes>image/*</mimetypes>
-      </document_type><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      </document_type>
+      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
       <automatic_image_resize type="bool">False</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">8</id>
-    </field><field>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Je certifie que les images fournies respectent les droits d&#8217;auteur, qu&#8217;elles sont libres de droits ou d&#251;ment autoris&#233;es, et j&#8217;en assume l&#8217;enti&#232;re responsabilit&#233; en cas d&#8217;utilisation illicite.</label>
+      <required type="str">required</required>
+      <varname type="str">je_certifie_que_les_images_fournies_respectent_les_droits_d_auteur_qu_elles_sont_libres_de_droits_ou_dument_autorisees_et_j_en_assume_l_entiere_responsabilite_en_cas_d_utilisation_illicite</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">dc9eff1b-a7c2-4f51-9a32-11ee4e30eaae</id>
+    </field>
+    <field>
+      <type>bool</type>
       <label type="str">Gratuit</label>
-      <type type="str">bool</type>
-      <required type="bool">False</required>
-      <hint type="str">Cochez si l'&#233;v&#233;nement est gratuit pour tout le monde</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Cochez si l'&#233;v&#233;nement est gratuit pour tout le monde&lt;/p&gt;</hint>
       <varname type="str">gratuit</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><id type="str">18</id>
-    </field><field>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">18</id>
+    </field>
+    <field>
+      <type>bool</type>
       <label type="str">Accessible aux personnes &#224; mobilit&#233; r&#233;duite</label>
-      <type type="str">bool</type>
-      <required type="bool">False</required>
-      <hint type="str">Cochez si l'&#233;v&#233;nement est accessible aux personnes &#224; mobilit&#233; r&#233;duite</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Cochez si l'&#233;v&#233;nement est accessible aux personnes &#224; mobilit&#233; r&#233;duite&lt;/p&gt;</hint>
       <varname type="str">accessible</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><id type="str">19</id>
-    </field><field>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">19</id>
+    </field>
+    <field>
+      <type>bool</type>
       <label type="str">Journ&#233;e enti&#232;re</label>
-      <type type="str">bool</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">journee_entiere</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <id type="str">25</id>
-    </field><field>
+    </field>
+    <field>
+      <type>bool</type>
       <label type="str">Dur&#233;e ind&#233;termin&#233;e</label>
-      <type type="str">bool</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">duree_indeterminee</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <id type="str">26</id>
-    </field><field>
+    </field>
+    <field>
+      <type>date</type>
       <label type="str">Date de d&#233;but</label>
-      <type type="str">date</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">date_debut</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-2-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><minimum_is_future type="bool">True</minimum_is_future>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-2-3 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <minimum_is_future type="bool">True</minimum_is_future>
       <date_in_the_past type="bool">False</date_in_the_past>
       <date_can_be_today type="bool">True</date_can_be_today>
-      <anonymise type="bool">True</anonymise>
       <id type="str">20</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Horaire d&#233;but</label>
-      <type type="str">string</type>
       <condition>
         <type>django</type>
         <value>not form_var_journee_entiere</value>
       </condition>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <hint type="str">&lt;p&gt;ex: 08:00&lt;/p&gt;</hint>
       <varname type="str">horaire_debut</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-3</extra_css_class>
+      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
       <prefill>
         <locked>False</locked>
         <locked-unless-empty>False</locked-unless-empty>
@@ -366,39 +373,40 @@
       <validation>
         <type>regex</type>
         <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
-      </validation><anonymise type="bool">True</anonymise>
+      </validation>
       <id type="str">22</id>
-    </field><field>
+    </field>
+    <field>
+      <type>date</type>
       <label type="str">Date de fin</label>
-      <type type="str">date</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">date_fin</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-2-3</extra_css_class>
-      <prefill>
-        <type>none</type>
-      </prefill><minimum_is_future type="bool">True</minimum_is_future>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-2-3 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <minimum_is_future type="bool">True</minimum_is_future>
       <date_in_the_past type="bool">False</date_in_the_past>
       <date_can_be_today type="bool">True</date_can_be_today>
-      <anonymise type="bool">True</anonymise>
       <id type="str">23</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Horaire fin</label>
-      <type type="str">string</type>
       <condition>
         <type>django</type>
         <value>not form_var_journee_entiere and not form_var_duree_indeterminee</value>
       </condition>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <hint type="str">&lt;p&gt;ex: 22:00&lt;/p&gt;</hint>
       <varname type="str">horaire_fin</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-3</extra_css_class>
+      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
       <prefill>
         <locked>False</locked>
         <locked-unless-empty>False</locked-unless-empty>
@@ -415,14 +423,16 @@
     <field>
       <type>string</type>
       <label type="str">Nom du contact</label>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">nom_contact</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-2</extra_css_class>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_last_name</value>
       </prefill>
@@ -432,294 +442,379 @@
     <field>
       <type>email</type>
       <label type="str">Courriel du contact</label>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">courriel_contact</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <extra_css_class type="str">newline grid-1-2 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_email</value>
-      </prefill><id type="str">28</id>
-    </field><field>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <id type="str">28</id>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">T&#233;l&#233;phone du contact</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">tel_contact</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_phone</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">29</id>
-    </field><field>
+    </field>
+    <field>
+      <type>map</type>
       <label type="str">G&#233;olocalisation</label>
-      <type type="str">map</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">carte</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><initial_zoom type="str">13</initial_zoom>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <initial_zoom type="str">13</initial_zoom>
       <id type="str">31</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Rue ou lieu dit</label>
-      <type type="str">string</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">rue</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-3-4</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-3-4 pk-important</extra_css_class>
       <prefill>
         <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>geolocation</type>
         <value>road</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">33</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Num&#233;ro</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">numero</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-4</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-4 pk-important</extra_css_class>
       <prefill>
         <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>geolocation</type>
         <value>house</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">32</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Code  postal</label>
-      <type type="str">string</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">code_postal</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-6 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>geolocation</type>
         <value>postcode</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">34</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Commune</label>
-      <type type="str">string</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">commune</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-5-6</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-5-6 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>geolocation</type>
         <value>city</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">35</id>
-    </field><field>
+    </field>
+    <field>
+      <type>item</type>
       <label type="str">Cat&#233;gorie</label>
-      <type type="str">item</type>
-      <required type="bool">False</required>
-      <hint type="str">S&#233;lectionnez</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;S&#233;lectionnez&lt;/p&gt;</hint>
       <varname type="str">categorie</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventsCategories</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">False</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
       <id type="str">9</id>
-    </field><field>
+    </field>
+    <field>
+      <type>item</type>
       <label type="str">Cat&#233;gorie sp&#233;cifique</label>
-      <type type="str">item</type>
       <condition>
         <type>django</type>
         <value>False</value>
-      </condition><required type="bool">False</required>
+      </condition>
+      <required type="str">optional</required>
       <varname type="str">categorie_specifique</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventsLocalCategories</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">False</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
       <id type="str">37</id>
-    </field><field>
+    </field>
+    <field>
+      <type>items</type>
       <label type="str">Public cible</label>
-      <type type="str">items</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">public_cible</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><items />
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=collective.taxonomy.event_public</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">True</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
       <id type="str">38</id>
-    </field><field>
+    </field>
+    <field>
+      <type>items</type>
       <label type="str">Th&#233;matiques</label>
-      <type type="str">items</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">thematiques</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><items />
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.smartweb.vocabulary.Topics</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">True</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
       <id type="str">39</id>
-    </field><field>
+    </field>
+    <field>
+      <type>items</type>
       <label type="str">Je suis ( mon public )</label>
-      <type type="str">items</type>
-      <required type="bool">False</required>
-      <hint type="str">Merci d'indiquer &#224; quel public s'adresse directement votre publication.</hint>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Merci d'indiquer &#224; quel public s'adresse directement votre publication.&lt;/p&gt;</hint>
       <varname type="str">je_suis</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><items />
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.smartweb.vocabulary.IAm</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">True</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
       <id type="str">40</id>
-    </field><field>
+    </field>
+    <field>
+      <type>item</type>
       <label type="str">Langue</label>
-      <type type="str">item</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <varname type="str">langue</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><display_mode type="str">list</display_mode>
-      <items />
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">list</display_mode>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=plone.app.vocabularies.SupportedContentLanguages</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">False</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
       <initial_zoom type="str">13</initial_zoom>
       <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
       <id type="str">42</id>
-    </field><field>
+    </field>
+    <field>
+      <type>bool</type>
       <label type="str">Exclure de la navigation</label>
-      <type type="str">bool</type>
       <condition>
         <type>django</type>
         <value>is_in_backoffice</value>
-      </condition><required type="bool">False</required>
+      </condition>
+      <required type="str">optional</required>
       <varname type="str">exclure</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <type>none</type>
-      </prefill><id type="str">15</id>
-    </field><field>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">15</id>
+    </field>
+    <field>
+      <type>page</type>
       <label type="str">Vos coordonn&#233;es</label>
-      <type type="str">page</type>
       <id type="str">47</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Nom</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_last_name</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">48</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Pr&#233;nom</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_first_name</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">49</id>
-    </field><field>
+    </field>
+    <field>
+      <type>email</type>
       <label type="str">Adresse e-mail</label>
-      <type type="str">email</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">mail</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
+        <locked>False</locked>
+        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_email</value>
-      </prefill><id type="str">50</id>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <id type="str">50</id>
     </field>
   </fields>
+  <user-roles>
+    <role role_id="logged-users">logged-users</role>
+  </user-roles>
+  <backoffice-submission-roles>
+    <role slug="agents-traitants-informatique" role_id="dcc1e1a25e01457aa06ac7347640a854">Agents traitants - Informatique</role>
+  </backoffice-submission-roles>
+  <roles>
+    <role slug="agents-traitants-informatique" role_id="dcc1e1a25e01457aa06ac7347640a854" role_key="_editor">Agents traitants - Informatique</role>
+  </roles>
   <options>
-    <option varname="plone_folder">belleville/citoyens</option>
+    <option varname="plone_folder">rochefort/citoyens</option>
     <option varname="type">&#201;v&#233;nement</option>
     <option varname="type_display">&#201;v&#233;nement</option>
     <option varname="type_structured" />
     <option varname="uri_plone" />
-  </options><custom_views>
+  </options>
+  <custom_views>
     <custom_view>
       <title>Vue par d&#233;faut des demandes de publication citoyennes (&#201;v&#233;nements)</title>
       <slug>vue-par-defaut-des-demandes-de-publication-citoyennes-evenements</slug>
@@ -740,7 +835,9 @@
         <filter-9-operator>eq</filter-9-operator>
         <filter-operator>eq</filter-operator>
         <filter-status>on</filter-status>
-      </filters><columns>
+      </filters>
+      <is_default>False</is_default>
+      <columns>
         <id>id</id>
         <id>time</id>
         <id>last_update_time</id>
@@ -749,9 +846,17 @@
         <id>status</id>
         <id>1</id>
         <id>9</id>
-      </columns><order_by>-receipt_time</order_by>
+      </columns>
+      <order_by>-receipt_time</order_by>
     </custom_view>
-  </custom_views><geolocations />
+  </custom_views>
+  <geolocations />
+  <management_sidebar_items>
+    <item>__default__</item>
+  </management_sidebar_items>
+  <submission_sidebar_items>
+    <item>__default__</item>
+  </submission_sidebar_items>
   <digest_templates>
     <template key="default">{{ form_var_titre }}</template>
   </digest_templates>
