@@ -44,6 +44,12 @@ JSON_CELL_TYPES.update(
             "name": "Événements",
             "log_errors": False,
             "url": "{{ passerelle_url }}plone-restapi/{{ connector }}/q/{{ query }}/"
-        }
+        },
+        "pwa": {
+            "name": "Bandeau PWA",
+            "cache_duration": 0,
+            "force_async": False,
+            "log_errors": False,
+        },
     }
 )
