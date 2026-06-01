@@ -40,6 +40,12 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     zip_safe=False,
+    entry_points={
+        "console_scripts": [
+            "create_plone_restapi=teleservices_iacitizen.create_plone_restapi:main",
+            "delete_plone_restapi=teleservices_iacitizen.delete_plone_restapi:main",
+        ],
+    },
     cmdclass={
         "inst": inst,
     },
