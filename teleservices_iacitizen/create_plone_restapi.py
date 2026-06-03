@@ -71,7 +71,10 @@ def _resolve_tenant(base_dir, service_name, logger, env_override=None, exclude_p
         return env_override
 
     try:
-        tenants = [t for t in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, t))]
+        tenants = [
+            t for t in os.listdir(base_dir)
+            if os.path.isdir(os.path.join(base_dir, t)) and ".invalid" not in t
+        ]
     except Exception as e:
         logger.error("Error listing %s tenants: %s", service_name, e)
         return None
