@@ -120,8 +120,12 @@ def main():
         logger.error(script_not_working_message)
         return
 
-    slug = slug_candidates[0]
-    if not verify_slug_validity(slug, logger):
+    slug = None
+    for candidate in slug_candidates:
+        if verify_slug_validity(candidate, logger):
+            slug = candidate
+            break
+    if slug is None:
         logger.error(script_not_working_message)
         return
 
@@ -242,21 +246,6 @@ def main():
     except subprocess.CalledProcessError as e:
         logger.error("Error running hobo_variables_updater.py: %s", e)
         return
-
-    # Ensure required WCS roles exist
-    wcs_tenant = _resolve_tenant("/var/lib/wcs/tenants", "WCS", logger)
-    roles_file = os.path.join(script_dir, "roles", "roles.json")
-    wcs_roles_script = os.path.join(script_dir, "wcs_roles_setup.py")
-    if wcs_tenant and os.path.exists(roles_file) and os.path.exists(wcs_roles_script):
-        try:
-            subprocess.run(
-                ["sudo", "-u", "wcs", "python3", wcs_roles_script, wcs_tenant, roles_file],
-                check=True,
-            )
-            logger.info("WCS roles setup completed.")
-        except subprocess.CalledProcessError as e:
-            logger.error("Error during WCS roles setup: %s", e)
-            return
 
     # Deploy
     try:
