@@ -61,7 +61,7 @@ def _slug_candidates(logger):
     return candidates
 
 
-def _resolve_tenant(base_dir, service_name, logger, env_override=None, exclude_prefix=None):
+def _resolve_tenant(base_dir, service_name, logger, env_override=None, exclude_prefix=None, exclude_contains=None):
     """Generic auto-detection of a single tenant directory."""
     if env_override:
         path = os.path.join(base_dir, env_override)
@@ -84,8 +84,12 @@ def _resolve_tenant(base_dir, service_name, logger, env_override=None, exclude_p
         logger.info("Auto-selected %s tenant: %s", service_name, tenants[0])
         return tenants[0]
 
-    if exclude_prefix:
-        filtered = [t for t in tenants if not t.startswith(exclude_prefix)]
+    if exclude_prefix or exclude_contains:
+        filtered = tenants
+        if exclude_prefix:
+            filtered = [t for t in filtered if not t.startswith(exclude_prefix)]
+        if exclude_contains:
+            filtered = [t for t in filtered if exclude_contains not in t]
         if len(filtered) == 1:
             logger.info("Auto-selected %s tenant: %s", service_name, filtered[0])
             return filtered[0]
@@ -210,6 +214,7 @@ def main():
         "/var/lib/combo/tenants", "combo", logger,
         env_override=os.environ.get("COMBO_TENANT", "").strip() or None,
         exclude_prefix="agent-",
+        exclude_contains="portail-agent",
     )
     if not chosen_combo_tenant:
         logger.error("No combo tenant resolved.")
