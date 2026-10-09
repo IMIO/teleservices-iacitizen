@@ -2,307 +2,442 @@
 <formdef id="323" url="https://demo-formulaires.guichet-citoyen.be/backoffice/forms/323/">
   <name>Actualit&#233;</name>
   <url_name>actualite</url_name>
+  <submission_user_association>any</submission_user_association>
+  <history_pane_default_mode>expanded</history_pane_default_mode>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
   <disabled>false</disabled>
+  <hidden>false</hidden>
   <only_allow_one>false</only_allow_one>
   <enable_tracking_codes>false</enable_tracking_codes>
   <confirmation>true</confirmation>
   <always_advertise>false</always_advertise>
-  <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="publications" category_id="149">Publications</category>
-  <workflow slug="contributions" workflow_id="168">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
-  <max_field_id>25</max_field_id>
+  <category slug="publications" category_id="18">Publications</category>
+  <workflow slug="contributions" workflow_id="36">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
   <fields>
     <field>
+      <type>page</type>
       <label type="str">Soumettre une actualit&#233;</label>
-      <type type="str">page</type>
       <id type="str">18</id>
-    </field><field>
+    </field>
+    <field>
+      <type>title</type>
       <label type="str">Soumettre une actualit&#233;</label>
-      <type type="str">title</type>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id type="str">24</id>
-    </field><field>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">24</id>
+    </field>
+    <field>
+      <type>comment</type>
+      <label type="str">&lt;p&gt;Proposez une actualit&#233; &#224; publier sur le site. Votre demande sera &lt;strong&gt;relue par nos services&lt;/strong&gt; avant sa mise en ligne.&lt;/p&gt;&lt;p&gt;Les champs marqu&#233;s d&#8217;un ast&#233;risque (*) sont obligatoires.&lt;/p&gt;</label>
+      <display_locations />
+      <id type="str">0d171710-97b9-4916-b66e-de143d766fcd</id>
+    </field>
+    <field>
+      <type>subtitle</type>
       <label type="str">Votre actualit&#233;</label>
-      <type type="str">subtitle</type>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id type="str">25</id>
-    </field><field>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">25</id>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Titre</label>
-      <type type="str">string</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <hint type="str">Titre principal de votre actualit&#233;.</hint>
       <varname type="str">titre</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
-      <anonymise type="bool">True</anonymise>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-1</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <id type="str">1</id>
-    </field><field>
+    </field>
+    <field>
+      <type>text</type>
       <label type="str">Courte description</label>
-      <type type="str">text</type>
-      <required type="bool">True</required>
-      <hint type="str">R&#233;sum&#233; de l'actualit&#233; en quelques phrases et en 700 caract&#232;res, maximum.</hint>
+      <required type="str">required</required>
+      <hint type="str">R&#233;sum&#233; de l&#8217;actualit&#233; en quelques phrases, 700 caract&#232;res maximum.</hint>
       <varname type="str">description</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-1</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <display_mode type="str">plain</display_mode>
       <maxlength type="str">700</maxlength>
-      <anonymise type="bool">True</anonymise>
       <id type="str">2</id>
-    </field><field>
+    </field>
+    <field>
+      <type>text</type>
       <label type="str">Texte de pr&#233;sentation</label>
-      <type type="str">text</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <hint type="str">Contenu descriptif et plus dense que la courte description.</hint>
       <varname type="str">texte</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><display_mode type="str">plain</display_mode>
-      <anonymise type="bool">True</anonymise>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <anonymise type="str">final</anonymise>
+      <display_mode type="str">plain</display_mode>
       <id type="str">23</id>
-    </field><field>
-      <label type="str">Vid&#233;o</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Lien vers une vid&#233;o YouTube ou Vimeo (optionnel).</hint>
-      <varname type="str">video</varname>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">Visuel</label>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <validation>
-        <error_message>Veuillez saisir une URL (https://...)</error_message>
-        <type>regex</type>
-        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
-      <id type="str">3</id>
-    </field><field>
-      <label type="str">Site internet</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Liens d'un site pour l'actualit&#233; (optionnel).</hint>
-      <varname type="str">site_internet</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>string</type>
-      </prefill><validation>
-        <error_message>Veuillez saisir une URL (https://...)</error_message>
-        <type>regex</type>
-        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
-      <id type="str">4</id>
-    </field><field>
-      <label type="str">Facebook</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Lien Facebook pour cette actualit&#233; (optionnel).</hint>
-      <varname type="str">facebook</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
-      <validation>
-        <error_message>Veuillez saisir une URL (https://...)</error_message>
-        <type>regex</type>
-        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
-      <id type="str">5</id>
-    </field><field>
-      <label type="str">X</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Lien X pour cette actualit&#233; (optionnel).</hint>
-      <varname type="str">X</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <validation>
-        <error_message>Veuillez saisir une URL (https://...)</error_message>
-        <type>regex</type>
-        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
-      <id type="str">6</id>
-    </field><field>
-      <label type="str">Instagram</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Lien Instagram pour cette actualit&#233; (optionnel).</hint>
-      <varname type="str">instagram</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
-      <validation>
-        <error_message>Veuillez saisir une URL (https://...)</error_message>
-        <type>regex</type>
-        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation><anonymise type="bool">True</anonymise>
-      <id type="str">7</id>
-    </field><field>
-      <label type="str">Image principale sans texte</label>
-      <type type="str">file</type>
-      <required type="bool">True</required>
-      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;.</hint>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">dc8a2502-f224-44eb-a30f-1a207e3f9d61</id>
+    </field>
+    <field>
+      <type>file</type>
+      <label type="str">Image principale (sans texte)</label>
+      <required type="str">required</required>
+      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;&#160;; merci de t&#233;l&#233;verser une image sans texte. Format paysage conseill&#233;.</hint>
       <varname type="str">image</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>listings</display_location>
-      </display_locations><extra_css_class type="str">grid-1-1</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-1</extra_css_class>
+      <anonymise type="str">final</anonymise>
       <document_type>
         <id>_image</id>
         <label>Fichiers image</label>
         <mimetypes>image/*</mimetypes>
-      </document_type><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      </document_type>
       <automatic_image_resize type="bool">False</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">8</id>
-    </field><field>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">Liens et r&#233;seaux sociaux</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">fc6ce523-67fc-489b-bb45-a4b49f880ebb</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Vid&#233;o</label>
+      <required type="str">optional</required>
+      <hint type="str">Lien vers une vid&#233;o YouTube ou Vimeo (optionnel).</hint>
+      <varname type="str">video</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation>
+      <id type="str">3</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Site internet</label>
+      <required type="str">optional</required>
+      <hint type="str">Lien vers un site internet consacr&#233; &#224; l&#8217;actualit&#233; (optionnel).</hint>
+      <varname type="str">site_internet</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>string</type>
+        <value>None</value>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation>
+      <id type="str">4</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Facebook</label>
+      <required type="str">optional</required>
+      <hint type="str">Lien Facebook pour cette actualit&#233; (optionnel).</hint>
+      <varname type="str">facebook</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation>
+      <id type="str">5</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">X</label>
+      <required type="str">optional</required>
+      <hint type="str">Lien X pour cette actualit&#233; (optionnel).</hint>
+      <varname type="str">X</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation>
+      <id type="str">6</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Instagram</label>
+      <required type="str">optional</required>
+      <hint type="str">Lien Instagram pour cette actualit&#233; (optionnel).</hint>
+      <varname type="str">instagram</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-3</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation>
+      <id type="str">7</id>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">Classement</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">31fc71e0-13ff-45f9-9143-ccc6a25bf692</id>
+    </field>
+    <field>
+      <type>item</type>
+      <label type="str">Cat&#233;gorie</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;S&#233;lectionnez&lt;/p&gt;</hint>
+      <varname type="str">categorie</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">list</display_mode>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.news.vocabulary.NewsCategories</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <initial_zoom type="str">13</initial_zoom>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
+      <id type="str">9</id>
+    </field>
+    <field>
+      <type>item</type>
+      <label type="str">Cat&#233;gorie sp&#233;cifique</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;S&#233;lectionnez&lt;/p&gt;</hint>
+      <varname type="str">categorie_specifique</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">list</display_mode>
+      <data_source>
+        <type>json</type>
+        <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.news.vocabulary.NewsLocalCategories</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">auto</radio_orientation>
+      <id type="str">6937756a-8a67-45df-9990-f409636365d5</id>
+    </field>
+    <field>
+      <type>items</type>
       <label type="str">Th&#233;matiques</label>
-      <type type="str">items</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <hint type="str">Cochez une ou plusieurs th&#233;matiques pour cette actualit&#233; (optionnel).</hint>
       <varname type="str">thematiques</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.smartweb.vocabulary.Topics</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">True</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
       <id type="str">17</id>
-    </field><field>
-      <label type="str">Cat&#233;gorie</label>
-      <type type="str">item</type>
-      <required type="bool">False</required>
-      <hint type="str">S&#233;lectionnez (optionnel)</hint>
-      <varname type="str">categorie</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
-      <display_mode type="str">list</display_mode>
-      <data_source>
-        <type>json</type>
-        <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.news.vocabulary.NewsCategories</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">False</anonymise>
-      <display_disabled_items type="bool">False</display_disabled_items>
-      <initial_zoom type="str">13</initial_zoom>
-      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
-      <id type="str">9</id>
-    </field><field>
+    </field>
+    <field>
+      <type>items</type>
       <label type="str">Public cible</label>
-      <type type="str">items</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <hint type="str">Cochez une ou plusieurs cibles pour cette actualit&#233; (optionnel).</hint>
       <varname type="str">je_suis</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.smartweb.vocabulary.IAm</value>
-      </data_source><in_filters type="bool">False</in_filters>
-      <anonymise type="bool">True</anonymise>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
       <display_disabled_items type="bool">False</display_disabled_items>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
       <id type="str">12</id>
-    </field><field>
+    </field>
+    <field>
+      <type>bool</type>
       <label type="str">Exclure de la navigation</label>
-      <type type="str">bool</type>
       <condition>
         <type>django</type>
         <value>is_in_backoffice</value>
-      </condition><required type="bool">False</required>
+      </condition>
+      <required type="str">optional</required>
       <varname type="str">exclure</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <prefill>
         <type>none</type>
-      </prefill><id type="str">15</id>
-    </field><field>
+      </prefill>
+      <anonymise type="str">no</anonymise>
+      <id type="str">15</id>
+    </field>
+    <field>
+      <type>subtitle</type>
       <label type="str">Vos coordonn&#233;es</label>
-      <type type="str">page</type>
-      <id type="str">19</id>
-    </field><field>
-      <label type="str">Nom</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">9206dc43-b52a-436b-a008-a3d4352f8f76</id>
+    </field>
+    <field>
+      <type>comment</type>
+      <label type="str">&lt;p&gt;Ces informations nous permettent de vous recontacter au sujet de votre demande. Elles &lt;strong&gt;ne seront pas publi&#233;es&lt;/strong&gt;.&lt;/p&gt;</label>
+      <display_locations />
+      <id type="str">df2e0bb9-c913-4200-afdf-f3e616cc25ee</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Nom</label>
+      <required type="str">optional</required>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>user</type>
         <value>_last_name</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">20</id>
-    </field><field>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Pr&#233;nom</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
+      <required type="str">optional</required>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>user</type>
         <value>_first_name</value>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill>
+      <anonymise type="str">final</anonymise>
       <id type="str">21</id>
-    </field><field>
+    </field>
+    <field>
+      <type>email</type>
       <label type="str">Adresse e-mail</label>
-      <type type="str">email</type>
-      <required type="bool">True</required>
+      <required type="str">required</required>
       <varname type="str">mail</varname>
       <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <type>user</type>
         <value>_email</value>
-      </prefill><id type="str">22</id>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <id type="str">22</id>
     </field>
-  </fields><backoffice-submission-roles>
-    <role slug="agent" role_id="b9b15c5c29134ccfb9d3d2dd90f18225">Agent</role>
-  </backoffice-submission-roles><roles>
-    <role slug="agents-de-test-iacitizen" role_id="aaf3f8f504ae4361b71c82a288d4d9f8" role_key="_editor">Agents de test iA.Citizen</role>
-  </roles><options>
+  </fields>
+  <user-roles>
+    <role slug="citoyen-test" role_id="45d1eb0a941f44f68289eb1586be448e">Citoyen (test)</role>
+  </user-roles>
+  <roles>
+    <role slug="debug" role_id="6d2c55fe2ea44e41b7f8111b93f1930a" role_key="_editor">Debug</role>
+  </roles>
+  <options>
     <option varname="plone_folder">belleville/citoyens</option>
     <option varname="type">Actualit&#233;</option>
     <option varname="type_display">Actualit&#233;</option>
     <option varname="type_structured" />
-    <option varname="uri_plone" />
-  </options><custom_views>
+  </options>
+  <custom_views>
     <custom_view>
       <title>Vue par d&#233;faut des demandes de publication citoyennes (Actualit&#233;s)</title>
       <slug>vue-par-defaut-des-demandes-de-publication-citoyennes-actualites</slug>
@@ -319,7 +454,9 @@
         <filter-9-operator>eq</filter-9-operator>
         <filter-operator>eq</filter-operator>
         <filter-status>on</filter-status>
-      </filters><columns>
+      </filters>
+      <is_default>False</is_default>
+      <columns>
         <id>id</id>
         <id>time</id>
         <id>last_update_time</id>

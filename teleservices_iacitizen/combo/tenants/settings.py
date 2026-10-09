@@ -45,6 +45,14 @@ JSON_CELL_TYPES.update(
             "log_errors": False,
             "url": "{{ passerelle_url }}plone-restapi/{{ connector }}/q/{{ query }}/"
         },
+        "pp_smartweb_messages": {
+            "name": "Smartweb - Messages du site communal",
+            "cache_duration": 300,
+            "timeout": 3,
+            "force_async": False,
+            "log_errors": False,
+            "url": "https://{{ commune_site|cut:'https://'|cut:'http://'|cut:'/' }}/++api++/@messages"
+        },
         "pwa": {
             "name": "Bandeau PWA",
             "cache_duration": 0,
