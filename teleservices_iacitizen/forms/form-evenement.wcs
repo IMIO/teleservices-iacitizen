@@ -2,20 +2,20 @@
 <formdef id="106" url="https://rochefort-formulaires.guichet-citoyen.be/backoffice/forms/106/">
   <name>&#201;v&#233;nement</name>
   <url_name>evenement</url_name>
-  <description>&lt;p&gt;&lt;strong&gt;Vous &#234;tes une association, une asbl et vous organisez un &#233;v&#232;nement&amp;nbsp;&#224; Rochefort... Vous souhaitez le diffuser dans le bulletin communal et&amp;nbsp;sur le site internet de la Ville... &amp;nbsp;Dans ce cas, n'h&#233;sitez pas... Compl&#233;tez le formulaire accessible ici afin de nous soumettre cette information, voire d'en modifier une d&#233;j&#224; r&#233;f&#233;renc&#233;e.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Vos donn&#233;es restent sous votre enti&#232;re responsabilit&#233;. Nous d&#233;clinons toute responsabilit&#233; pour les informations erron&#233;es que vous pourriez envoyer par ce formulaire en ligne. La Ville se r&#233;serve le droit de ne pas publier ou de ne publier qu'une partie des informations transmises. L'agenda est r&#233;serv&#233; aux annonces non commerciales pour des manifestations se d&#233;roulant sur la commune de Rochefort.&lt;/p&gt;</description>
   <submission_user_association>any</submission_user_association>
   <history_pane_default_mode>expanded</history_pane_default_mode>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
+  <hidden>false</hidden>
   <only_allow_one>false</only_allow_one>
   <enable_tracking_codes>false</enable_tracking_codes>
   <confirmation>true</confirmation>
-  <always_advertise>true</always_advertise>
+  <always_advertise>false</always_advertise>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <category slug="publications" category_id="31">Publications</category>
-  <workflow slug="contributions" workflow_id="50">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
+  <category slug="publications" category_id="18">Publications</category>
+  <workflow slug="contributions" workflow_id="36">iA.Citizen - Publications (actualit&#233;s, &#233;v&#233;nements, fiches annuaires)</workflow>
   <fields>
     <field>
       <type>page</type>
@@ -27,6 +27,13 @@
             <value>form_var_date_debut|add:" "|add:form_var_horaire_debut|datetime &lt;= form_var_date_fin|add:" "|add:form_var_horaire_fin|datetime or not form_var_horaire_debut and not form_var_horaire_fin</value>
           </condition>
           <error_message>La date de d&#233;but doit &#234;tre avant la date de fin</error_message>
+        </post_condition>
+        <post_condition>
+          <condition>
+            <type>django</type>
+            <value>not form_var_recurrent or form_var_rrule_fin_raw != "until" or form_var_rrule_until|date:"Y-m-d" &gt;= form_var_date_debut|date:"Y-m-d"</value>
+          </condition>
+          <error_message>La date de fin de r&#233;currence doit &#234;tre post&#233;rieure ou &#233;gale &#224; la date de d&#233;but</error_message>
         </post_condition>
       </post_conditions>
       <id type="str">46</id>
@@ -41,6 +48,21 @@
       <id type="str">52</id>
     </field>
     <field>
+      <type>comment</type>
+      <label type="str">&lt;p&gt;Proposez un &#233;v&#233;nement &#224; publier dans l&#8217;agenda. Votre demande sera relue par nos services avant sa mise en ligne.&lt;/p&gt;&lt;p&gt;Les champs marqu&#233;s d&#8217;un ast&#233;risque (*) sont obligatoires.&lt;/p&gt;</label>
+      <display_locations />
+      <id type="str">fd26d649-d018-4eea-95bf-a9bf8880a02e</id>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">L&#8217;&#233;v&#233;nement</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">9fb2f407-7bc8-4dbb-a875-ab95b8e7e947</id>
+    </field>
+    <field>
       <type>item</type>
       <label type="str">Type d'&#233;v&#233;nement</label>
       <required type="str">required</required>
@@ -53,6 +75,7 @@
       <extra_css_class type="str">pk-important</extra_css_class>
       <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventTypes</value>
@@ -77,6 +100,7 @@
       </display_locations>
       <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
+      <maxlength type="str">150</maxlength>
       <id type="str">1</id>
     </field>
     <field>
@@ -110,29 +134,616 @@
       <id type="str">51</id>
     </field>
     <field>
-      <type>string</type>
-      <label type="str">Lien pour la participation en ligne</label>
+      <type>subtitle</type>
+      <label type="str">Visuel et document</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">b6d1e954-47b2-4213-b7cf-197f34e606b1</id>
+    </field>
+    <field>
+      <type>file</type>
+      <label type="str">Image principale (sans texte)</label>
+      <required type="str">required</required>
+      <hint type="str">&lt;p&gt;Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;&amp;nbsp;; merci de t&#233;l&#233;verser une image sans texte.&lt;/p&gt;</hint>
+      <varname type="str">image</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+        <item>listings</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">8</id>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Je certifie que les images fournies respectent les droits d&#8217;auteur, qu&#8217;elles sont libres de droits ou d&#251;ment autoris&#233;es, et j&#8217;en assume l&#8217;enti&#232;re responsabilit&#233; en cas d&#8217;utilisation illicite.</label>
+      <required type="str">required</required>
+      <varname type="str">je_certifie_que_les_images_fournies_respectent_les_droits_d_auteur_qu_elles_sont_libres_de_droits_ou_dument_autorisees_et_j_en_assume_l_entiere_responsabilite_en_cas_d_utilisation_illicite</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">dc9eff1b-a7c2-4f51-9a32-11ee4e30eaae</id>
+    </field>
+    <field>
+      <type>file</type>
+      <label type="str">Document</label>
+      <condition>
+        <type>django</type>
+        <value>false</value>
+      </condition>
       <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;Lien pour participer en ligne&lt;/p&gt;</hint>
-      <varname type="str">participation</varname>
+      <hint type="str">&lt;p&gt;Programme, affiche, plan d&#8217;acc&#232;s&#8230;&lt;/p&gt;</hint>
+      <varname type="str">document</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <max_file_size type="str">10 Mo</max_file_size>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">05003ff7-5b1b-4cce-9f54-c80cfa9f8600</id>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">Date et horaires</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">a20f8e42-d621-4b17-8e8a-5bccad626f31</id>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Journ&#233;e enti&#232;re</label>
+      <required type="str">optional</required>
+      <varname type="str">journee_entiere</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
       <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">25</id>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Dur&#233;e ind&#233;termin&#233;e</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Cochez si l&#8217;heure de fin n&#8217;est pas connue.&lt;/p&gt;</hint>
+      <varname type="str">duree_indeterminee</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">26</id>
+    </field>
+    <field>
+      <type>date</type>
+      <label type="str">Date de d&#233;but</label>
+      <required type="str">required</required>
+      <varname type="str">date_debut</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-2-3 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
-      <validation>
-        <error_message>Veuillez saisir une URL (https://...)</error_message>
-        <type>regex</type>
-        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation>
-      <id type="str">4</id>
+      <minimum_is_future type="bool">True</minimum_is_future>
+      <date_in_the_past type="bool">False</date_in_the_past>
+      <date_can_be_today type="bool">True</date_can_be_today>
+      <id type="str">20</id>
     </field>
     <field>
       <type>string</type>
-      <label type="str">Billeterie</label>
+      <label type="str">Horaire d&#233;but</label>
+      <condition>
+        <type>django</type>
+        <value>not form_var_journee_entiere</value>
+      </condition>
       <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;Lien de la billeterie pour s'inscrire &#224; cet &#233;v&#233;nement&lt;/p&gt;</hint>
+      <hint type="str">&lt;p&gt;Ex.&#160;: 08:00&lt;/p&gt;</hint>
+      <varname type="str">horaire_debut</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
+      <prefill>
+        <type>string</type>
+        <value>00:00</value>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation>
+      <id type="str">22</id>
+    </field>
+    <field>
+      <type>date</type>
+      <label type="str">Date de fin</label>
+      <required type="str">required</required>
+      <varname type="str">date_fin</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-2-3 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <minimum_is_future type="bool">True</minimum_is_future>
+      <date_in_the_past type="bool">False</date_in_the_past>
+      <date_can_be_today type="bool">True</date_can_be_today>
+      <id type="str">23</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Horaire fin</label>
+      <condition>
+        <type>django</type>
+        <value>not form_var_journee_entiere and not form_var_duree_indeterminee</value>
+      </condition>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Ex.&#160;: 22:00&lt;/p&gt;</hint>
+      <varname type="str">horaire_fin</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
+      <prefill>
+        <type>string</type>
+        <value>23:59</value>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <type>regex</type>
+        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
+      </validation>
+      <id type="str">24</id>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">R&#233;currence de l'&#233;v&#233;nement</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">c7e09d5d-dad9-480b-9039-b45dce74004b</id>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Cet &#233;v&#233;nement est-il r&#233;current ?</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Si oui, les dates et horaires ci-dessus correspondent &#224; la premi&#232;re occurrence de l'&#233;v&#233;nement.&lt;/p&gt;</hint>
+      <varname type="str">recurrent</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">a1f0c001-0000-4000-8000-000000000001</id>
+    </field>
+    <field>
+      <type>item</type>
+      <label type="str">Fr&#233;quence de l'&#233;v&#233;nement</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent</value>
+      </condition>
+      <required type="str">required</required>
+      <varname type="str">rrule_freq</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">radio</display_mode>
+      <items />
+      <data_source>
+        <type>jsonvalue</type>
+        <value>[{"id": "DAILY", "text": "Quotidienne"}, {"id": "WEEKLY", "text": "Hebdomadaire"}, {"id": "MONTHLY", "text": "Mensuelle"}, {"id": "YEARLY", "text": "Annuelle"}]</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="str">150</image_desktop_size>
+      <image_mobile_size type="str">75</image_mobile_size>
+      <radio_orientation type="str">horizontal</radio_orientation>
+      <id type="str">a1f0c001-0000-4000-8000-000000000002</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">R&#233;p&#233;ter tous les</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent</value>
+      </condition>
+      <required type="str">required</required>
+      <hint type="str">&lt;p&gt;ex : 2 = un(e) jour/semaine/mois/an sur deux&lt;/p&gt;</hint>
+      <varname type="str">rrule_interval</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
+      <prefill>
+        <type>string</type>
+        <value>1</value>
+      </prefill>
+      <anonymise type="str">no</anonymise>
+      <validation>
+        <error_message>Veuillez saisir un nombre entre 1 et 99</error_message>
+        <type>regex</type>
+        <value>^[1-9][0-9]?$</value>
+      </validation>
+      <id type="str">a1f0c001-0000-4000-8000-000000000003</id>
+    </field>
+    <field>
+      <type>items</type>
+      <label type="str">Jours de la semaine</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent and form_var_rrule_freq_raw == "WEEKLY"</value>
+      </condition>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Si aucun jour n'est coch&#233;, le jour de la date de d&#233;but est utilis&#233;.&lt;/p&gt;</hint>
+      <varname type="str">rrule_byday</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <items />
+      <display_mode type="str">checkboxes</display_mode>
+      <min_choices type="int">0</min_choices>
+      <max_choices type="int">0</max_choices>
+      <data_source>
+        <type>jsonvalue</type>
+        <value>[{"id": "MO", "text": "Lundi"}, {"id": "TU", "text": "Mardi"}, {"id": "WE", "text": "Mercredi"}, {"id": "TH", "text": "Jeudi"}, {"id": "FR", "text": "Vendredi"}, {"id": "SA", "text": "Samedi"}, {"id": "SU", "text": "Dimanche"}]</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
+      <id type="str">a1f0c001-0000-4000-8000-000000000004</id>
+    </field>
+    <field>
+      <type>item</type>
+      <label type="str">R&#233;p&#233;tition mensuelle</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent and form_var_rrule_freq_raw == "MONTHLY"</value>
+      </condition>
+      <required type="str">required</required>
+      <varname type="str">rrule_mois_mode</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <prefill>
+        <type>string</type>
+        <value>date</value>
+      </prefill>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">radio</display_mode>
+      <items />
+      <data_source>
+        <type>jsonvalue</type>
+        <value>[{"id": "date", "text": "Le m&#234;me jour du mois (ex : le 15)"}, {"id": "weekday", "text": "Un jour de semaine pr&#233;cis (ex : le 2e mardi)"}]</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
+      <radio_orientation type="str">horizontal</radio_orientation>
+      <id type="str">a1f0c001-0000-4000-8000-000000000005</id>
+    </field>
+    <field>
+      <type>item</type>
+      <label type="str">Position dans le mois</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent and form_var_rrule_freq_raw == "MONTHLY" and form_var_rrule_mois_mode_raw == "weekday"</value>
+      </condition>
+      <required type="str">required</required>
+      <varname type="str">rrule_mois_position</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">list</display_mode>
+      <items />
+      <data_source>
+        <type>jsonvalue</type>
+        <value>[{"id": "1", "text": "1er"}, {"id": "2", "text": "2e"}, {"id": "3", "text": "3e"}, {"id": "4", "text": "4e"}, {"id": "-1", "text": "Dernier"}]</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
+      <radio_orientation type="str">horizontal</radio_orientation>
+      <id type="str">a1f0c001-0000-4000-8000-000000000006</id>
+    </field>
+    <field>
+      <type>item</type>
+      <label type="str">Jour</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent and form_var_rrule_freq_raw == "MONTHLY" and form_var_rrule_mois_mode_raw == "weekday"</value>
+      </condition>
+      <required type="str">required</required>
+      <varname type="str">rrule_mois_jour</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">list</display_mode>
+      <items />
+      <data_source>
+        <type>jsonvalue</type>
+        <value>[{"id": "MO", "text": "Lundi"}, {"id": "TU", "text": "Mardi"}, {"id": "WE", "text": "Mercredi"}, {"id": "TH", "text": "Jeudi"}, {"id": "FR", "text": "Vendredi"}, {"id": "SA", "text": "Samedi"}, {"id": "SU", "text": "Dimanche"}]</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
+      <radio_orientation type="str">horizontal</radio_orientation>
+      <id type="str">a1f0c001-0000-4000-8000-000000000007</id>
+    </field>
+    <field>
+      <type>item</type>
+      <label type="str">Fin de la r&#233;currence</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent</value>
+      </condition>
+      <required type="str">required</required>
+      <varname type="str">rrule_fin</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <display_mode type="str">radio</display_mode>
+      <items />
+      <data_source>
+        <type>jsonvalue</type>
+        <value>[{"id": "count", "text": "Apr&#232;s un nombre d'occurrences"}, {"id": "until", "text": "&#192; une date"}]</value>
+      </data_source>
+      <in_filters type="bool">False</in_filters>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <use_hint_as_first_option type="bool">True</use_hint_as_first_option>
+      <image_desktop_size type="int">150</image_desktop_size>
+      <image_mobile_size type="int">75</image_mobile_size>
+      <radio_orientation type="str">horizontal</radio_orientation>
+      <id type="str">a1f0c001-0000-4000-8000-000000000008</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Nombre d'occurrences</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent and form_var_rrule_fin_raw == "count"</value>
+      </condition>
+      <required type="str">required</required>
+      <hint type="str">&lt;p&gt;Premi&#232;re occurrence comprise&lt;/p&gt;</hint>
+      <varname type="str">rrule_count</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <validation>
+        <error_message>Veuillez saisir un nombre entre 1 et 999</error_message>
+        <type>regex</type>
+        <value>^[1-9][0-9]{0,2}$</value>
+      </validation>
+      <id type="str">a1f0c001-0000-4000-8000-000000000009</id>
+    </field>
+    <field>
+      <type>date</type>
+      <label type="str">Jusqu'au (inclus)</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent and form_var_rrule_fin_raw == "until"</value>
+      </condition>
+      <required type="str">required</required>
+      <varname type="str">rrule_until</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <minimum_is_future type="bool">True</minimum_is_future>
+      <date_in_the_past type="bool">False</date_in_the_past>
+      <date_can_be_today type="bool">True</date_can_be_today>
+      <id type="str">a1f0c001-0000-4000-8000-00000000000a</id>
+    </field>
+    <field>
+      <type>comment</type>
+      <label type="str">&lt;div class="infonotice"&gt;{% with i=form_var_rrule_interval|default:"1"|add:0 freq=form_var_rrule_freq_raw j=form_var_date_debut|date:"j" u=form_var_rrule_until|date:"j" %}
+&lt;p&gt;Votre &#233;v&#233;nement aura lieu
+{% if freq == "DAILY" %}{% if i == 1 %}tous les jours,{% elif i == 2 %}un jour sur deux,{% else %}tous les {{ i }} jours,{% endif %}
+{% elif freq == "WEEKLY" %}{% if i == 1 %}toutes les semaines{% elif i == 2 %}une semaine sur deux{% else %}toutes les {{ i }} semaines{% endif %}, {% if form_var_rrule_byday %}{% for d in form_var_rrule_byday|split:", " %}{% if not forloop.first %}{% if forloop.last %} et {% else %}, {% endif %}{% endif %}le {{ d|lower }}{% endfor %}{% else %}le {{ form_var_date_debut|date:"l" }}{% endif %},
+{% elif freq == "MONTHLY" %}{% if i == 1 %}tous les mois{% elif i == 2 %}un mois sur deux{% else %}tous les {{ i }} mois{% endif %}, {% if form_var_rrule_mois_mode_raw == "weekday" %}{% if form_var_rrule_mois_position and form_var_rrule_mois_jour %}le {{ form_var_rrule_mois_position|lower }} {{ form_var_rrule_mois_jour|lower }} du mois,{% else %}&#224; un jour &#224; pr&#233;ciser,{% endif %}{% else %}le {% if j == "1" %}1er{% else %}{{ j }}{% endif %} du mois,{% endif %}
+{% elif freq == "YEARLY" %}{% if i == 1 %}tous les ans{% elif i == 2 %}un an sur deux{% else %}tous les {{ i }} ans{% endif %}, le {% if j == "1" %}1er{% else %}{{ j }}{% endif %} {{ form_var_date_debut|date:"F" }},
+{% endif %}
+&#224; partir du {% if j == "1" %}1er{% else %}{{ j }}{% endif %} {{ form_var_date_debut|date:"F Y" }}{% if form_var_rrule_fin_raw == "count" and form_var_rrule_count %}{% if form_var_rrule_count|add:0 == 1 %}, pour une seule occurrence{% else %}, pour un total de {{ form_var_rrule_count }} occurrences{% endif %}{% elif form_var_rrule_fin_raw == "until" and form_var_rrule_until %}, jusqu'au {% if u == "1" %}1er{% else %}{{ u }}{% endif %} {{ form_var_rrule_until|date:"F Y" }} inclus{% endif %}.&lt;/p&gt;
+{% if freq == "MONTHLY" and form_var_rrule_mois_mode_raw != "weekday" and j|add:0 &gt;= 29 %}&lt;p&gt;&lt;strong&gt;Attention :&lt;/strong&gt; les mois qui ne comptent pas de {{ j }} ne seront pas concern&#233;s.&lt;/p&gt;{% endif %}
+{% if freq == "YEARLY" and form_var_date_debut|date:"d/m" == "29/02" %}&lt;p&gt;&lt;strong&gt;Attention :&lt;/strong&gt; l'&#233;v&#233;nement n'aura lieu que les ann&#233;es bissextiles.&lt;/p&gt;{% endif %}
+{% endwith %}&lt;/div&gt;
+</label>
+      <condition>
+        <type>django</type>
+        <value>form_var_recurrent and form_var_rrule_freq_raw and form_var_date_debut</value>
+      </condition>
+      <display_locations />
+      <id type="str">a72d93f5-dd3c-471e-ab59-061b8aab61f4</id>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">Lieu</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">fb48bb59-3719-429c-8343-7fa7b8c4a80e</id>
+    </field>
+    <field>
+      <type>map</type>
+      <label type="str">G&#233;olocalisation</label>
+      <required type="str">required</required>
+      <varname type="str">carte</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <initial_zoom type="str">13</initial_zoom>
+      <id type="str">31</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Rue ou lieu dit</label>
+      <required type="str">required</required>
+      <varname type="str">rue</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-3-4 pk-important</extra_css_class>
+      <prefill>
+        <type>geolocation</type>
+        <value>road</value>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <id type="str">33</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Num&#233;ro</label>
+      <required type="str">optional</required>
+      <varname type="str">numero</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-4 pk-important</extra_css_class>
+      <prefill>
+        <type>geolocation</type>
+        <value>house</value>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <id type="str">32</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Code postal</label>
+      <required type="str">required</required>
+      <varname type="str">code_postal</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-6 pk-important</extra_css_class>
+      <prefill>
+        <type>geolocation</type>
+        <value>postcode</value>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir un code postal belge (4 chiffres)</error_message>
+        <type>regex</type>
+        <value>^[0-9]{4}$</value>
+      </validation>
+      <id type="str">34</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Commune</label>
+      <required type="str">required</required>
+      <varname type="str">commune</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-5-6 pk-important</extra_css_class>
+      <prefill>
+        <type>geolocation</type>
+        <value>city</value>
+      </prefill>
+      <anonymise type="str">final</anonymise>
+      <id type="str">35</id>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">Infos pratiques</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">600e857e-07d4-4674-80fb-0dc541ad1c20</id>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Gratuit</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Cochez si l'&#233;v&#233;nement est gratuit pour tout le monde&lt;/p&gt;</hint>
+      <varname type="str">gratuit</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">18</id>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Accessible aux personnes &#224; mobilit&#233; r&#233;duite</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Cochez si l'&#233;v&#233;nement est accessible aux personnes &#224; mobilit&#233; r&#233;duite&lt;/p&gt;</hint>
+      <varname type="str">accessible</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">no</anonymise>
+      <id type="str">19</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">Billetterie</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien de la billetterie pour s&#8217;inscrire &#224; cet &#233;v&#233;nement&lt;/p&gt;</hint>
       <varname type="str">billeterie</varname>
       <display_locations>
         <item>validation</item>
@@ -149,9 +760,56 @@
     </field>
     <field>
       <type>string</type>
+      <label type="str">Lien pour la participation en ligne</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Lien de visioconf&#233;rence ou de diffusion en direct, si l&#8217;&#233;v&#233;nement peut &#234;tre suivi en ligne&lt;/p&gt;</hint>
+      <varname type="str">participation</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation>
+      <id type="str">4</id>
+    </field>
+    <field>
+      <type>string</type>
+      <label type="str">URL de l'&#233;v&#233;nement</label>
+      <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;Page web officielle de l&#8217;&#233;v&#233;nement (https://&#8230;)&lt;/p&gt;</hint>
+      <varname type="str">url_event</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <extra_css_class type="str">pk-important</extra_css_class>
+      <anonymise type="str">final</anonymise>
+      <validation>
+        <error_message>Veuillez saisir une URL (https://...)</error_message>
+        <type>regex</type>
+        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
+      </validation>
+      <id type="str">30</id>
+    </field>
+    <field>
+      <type>subtitle</type>
+      <label type="str">Liens et r&#233;seaux sociaux</label>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">b1d20f2b-56c4-4846-8278-9099012dae84</id>
+    </field>
+    <field>
+      <type>string</type>
       <label type="str">Vid&#233;o</label>
       <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;Lien vers une vid&#233;o Youtube ou Vimeo&lt;/p&gt;</hint>
+      <hint type="str">&lt;p&gt;Lien vers une vid&#233;o YouTube ou Vimeo&lt;/p&gt;</hint>
       <varname type="str">video</varname>
       <display_locations>
         <item>validation</item>
@@ -224,201 +882,19 @@
       <id type="str">7</id>
     </field>
     <field>
-      <type>string</type>
-      <label type="str">URL de l'&#233;v&#233;nement</label>
-      <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;Veuillez saisir un lien (https://...)&lt;/p&gt;</hint>
-      <varname type="str">url_event</varname>
+      <type>subtitle</type>
+      <label type="str">Contact pour le public</label>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">pk-important</extra_css_class>
-      <anonymise type="str">final</anonymise>
-      <validation>
-        <error_message>Veuillez saisir une URL (https://...)</error_message>
-        <type>regex</type>
-        <value>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+</value>
-      </validation>
-      <id type="str">30</id>
+      <id type="str">d9d901c3-a265-4f22-bad6-716a0c190ae2</id>
     </field>
     <field>
-      <type>file</type>
-      <label type="str">Image principale ( sans texte )</label>
-      <required type="str">required</required>
-      <hint type="str">&lt;p&gt;Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233; ; merci de t&#233;l&#233;verser une image sans texte.&lt;/p&gt;</hint>
-      <varname type="str">image</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-        <item>listings</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
-      <anonymise type="str">final</anonymise>
-      <document_type>
-        <id>_image</id>
-        <label>Fichiers image</label>
-        <mimetypes>image/*</mimetypes>
-      </document_type>
-      <allow_portfolio_picking type="bool">False</allow_portfolio_picking>
-      <automatic_image_resize type="bool">False</automatic_image_resize>
-      <storage type="str">default</storage>
-      <id type="str">8</id>
-    </field>
-    <field>
-      <type>bool</type>
-      <label type="str">Je certifie que les images fournies respectent les droits d&#8217;auteur, qu&#8217;elles sont libres de droits ou d&#251;ment autoris&#233;es, et j&#8217;en assume l&#8217;enti&#232;re responsabilit&#233; en cas d&#8217;utilisation illicite.</label>
-      <required type="str">required</required>
-      <varname type="str">je_certifie_que_les_images_fournies_respectent_les_droits_d_auteur_qu_elles_sont_libres_de_droits_ou_dument_autorisees_et_j_en_assume_l_entiere_responsabilite_en_cas_d_utilisation_illicite</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">pk-important</extra_css_class>
-      <anonymise type="str">no</anonymise>
-      <id type="str">dc9eff1b-a7c2-4f51-9a32-11ee4e30eaae</id>
-    </field>
-    <field>
-      <type>bool</type>
-      <label type="str">Gratuit</label>
-      <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;Cochez si l'&#233;v&#233;nement est gratuit pour tout le monde&lt;/p&gt;</hint>
-      <varname type="str">gratuit</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
-      <anonymise type="str">no</anonymise>
-      <id type="str">18</id>
-    </field>
-    <field>
-      <type>bool</type>
-      <label type="str">Accessible aux personnes &#224; mobilit&#233; r&#233;duite</label>
-      <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;Cochez si l'&#233;v&#233;nement est accessible aux personnes &#224; mobilit&#233; r&#233;duite&lt;/p&gt;</hint>
-      <varname type="str">accessible</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
-      <anonymise type="str">no</anonymise>
-      <id type="str">19</id>
-    </field>
-    <field>
-      <type>bool</type>
-      <label type="str">Journ&#233;e enti&#232;re</label>
-      <required type="str">optional</required>
-      <varname type="str">journee_entiere</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
-      <anonymise type="str">no</anonymise>
-      <id type="str">25</id>
-    </field>
-    <field>
-      <type>bool</type>
-      <label type="str">Dur&#233;e ind&#233;termin&#233;e</label>
-      <required type="str">optional</required>
-      <varname type="str">duree_indeterminee</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
-      <anonymise type="str">no</anonymise>
-      <id type="str">26</id>
-    </field>
-    <field>
-      <type>date</type>
-      <label type="str">Date de d&#233;but</label>
-      <required type="str">required</required>
-      <varname type="str">date_debut</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-2-3 pk-important</extra_css_class>
-      <anonymise type="str">final</anonymise>
-      <minimum_is_future type="bool">True</minimum_is_future>
-      <date_in_the_past type="bool">False</date_in_the_past>
-      <date_can_be_today type="bool">True</date_can_be_today>
-      <id type="str">20</id>
-    </field>
-    <field>
-      <type>string</type>
-      <label type="str">Horaire d&#233;but</label>
-      <condition>
-        <type>django</type>
-        <value>not form_var_journee_entiere</value>
-      </condition>
-      <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;ex: 08:00&lt;/p&gt;</hint>
-      <varname type="str">horaire_debut</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
-        <type>string</type>
-        <value>00:00</value>
-      </prefill>
-      <anonymise type="str">final</anonymise>
-      <validation>
-        <type>regex</type>
-        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
-      </validation>
-      <id type="str">22</id>
-    </field>
-    <field>
-      <type>date</type>
-      <label type="str">Date de fin</label>
-      <required type="str">required</required>
-      <varname type="str">date_fin</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-2-3 pk-important</extra_css_class>
-      <anonymise type="str">final</anonymise>
-      <minimum_is_future type="bool">True</minimum_is_future>
-      <date_in_the_past type="bool">False</date_in_the_past>
-      <date_can_be_today type="bool">True</date_can_be_today>
-      <id type="str">23</id>
-    </field>
-    <field>
-      <type>string</type>
-      <label type="str">Horaire fin</label>
-      <condition>
-        <type>django</type>
-        <value>not form_var_journee_entiere and not form_var_duree_indeterminee</value>
-      </condition>
-      <required type="str">optional</required>
-      <hint type="str">&lt;p&gt;ex: 22:00&lt;/p&gt;</hint>
-      <varname type="str">horaire_fin</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-3 pk-important</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
-        <type>string</type>
-        <value>23:59</value>
-      </prefill>
-      <anonymise type="str">final</anonymise>
-      <validation>
-        <type>regex</type>
-        <value>^([0-1][0-9]|2[0-3]):[0-5][0-9]$</value>
-      </validation>
-      <id type="str">24</id>
+      <type>comment</type>
+      <label type="str">&lt;p&gt;Ces coordonn&#233;es seront affich&#233;es publiquement avec l&#8217;&#233;v&#233;nement. Si elles ont &#233;t&#233; pr&#233;-remplies avec les donn&#233;es de votre compte, modifiez-les ou effacez-les si vous ne souhaitez pas les publier.&lt;/p&gt;</label>
+      <display_locations />
+      <id type="str">6ecc756d-b991-42f5-9f65-75db3e54080c</id>
     </field>
     <field>
       <type>string</type>
@@ -429,10 +905,8 @@
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
+      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
       <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_last_name</value>
       </prefill>
@@ -448,10 +922,8 @@
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">newline grid-1-2 pk-important</extra_css_class>
+      <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_email</value>
       </prefill>
@@ -469,8 +941,6 @@
       </display_locations>
       <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_phone</value>
       </prefill>
@@ -478,94 +948,13 @@
       <id type="str">29</id>
     </field>
     <field>
-      <type>map</type>
-      <label type="str">G&#233;olocalisation</label>
-      <required type="str">required</required>
-      <varname type="str">carte</varname>
+      <type>subtitle</type>
+      <label type="str">Classement</label>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
       </display_locations>
-      <extra_css_class type="str">pk-important</extra_css_class>
-      <anonymise type="str">final</anonymise>
-      <initial_zoom type="str">13</initial_zoom>
-      <id type="str">31</id>
-    </field>
-    <field>
-      <type>string</type>
-      <label type="str">Rue ou lieu dit</label>
-      <required type="str">required</required>
-      <varname type="str">rue</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-3-4 pk-important</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
-        <type>geolocation</type>
-        <value>road</value>
-      </prefill>
-      <anonymise type="str">final</anonymise>
-      <id type="str">33</id>
-    </field>
-    <field>
-      <type>string</type>
-      <label type="str">Num&#233;ro</label>
-      <required type="str">optional</required>
-      <varname type="str">numero</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-4 pk-important</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
-        <type>geolocation</type>
-        <value>house</value>
-      </prefill>
-      <anonymise type="str">final</anonymise>
-      <id type="str">32</id>
-    </field>
-    <field>
-      <type>string</type>
-      <label type="str">Code  postal</label>
-      <required type="str">required</required>
-      <varname type="str">code_postal</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-1-6 pk-important</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
-        <type>geolocation</type>
-        <value>postcode</value>
-      </prefill>
-      <anonymise type="str">final</anonymise>
-      <id type="str">34</id>
-    </field>
-    <field>
-      <type>string</type>
-      <label type="str">Commune</label>
-      <required type="str">required</required>
-      <varname type="str">commune</varname>
-      <display_locations>
-        <item>validation</item>
-        <item>summary</item>
-      </display_locations>
-      <extra_css_class type="str">grid-5-6 pk-important</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
-        <type>geolocation</type>
-        <value>city</value>
-      </prefill>
-      <anonymise type="str">final</anonymise>
-      <id type="str">35</id>
+      <id type="str">74f9faf1-b631-4b3f-a812-297611eeb7e7</id>
     </field>
     <field>
       <type>item</type>
@@ -580,6 +969,7 @@
       <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventsCategories</value>
@@ -596,11 +986,8 @@
     <field>
       <type>item</type>
       <label type="str">Cat&#233;gorie sp&#233;cifique</label>
-      <condition>
-        <type>django</type>
-        <value>False</value>
-      </condition>
       <required type="str">optional</required>
+      <hint type="str">&lt;p&gt;S&#233;lectionnez&lt;/p&gt;</hint>
       <varname type="str">categorie_specifique</varname>
       <display_locations>
         <item>validation</item>
@@ -609,6 +996,7 @@
       <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=imio.events.vocabulary.EventsLocalCategories</value>
@@ -633,6 +1021,7 @@
       </display_locations>
       <extra_css_class type="str">pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
+      <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -657,6 +1046,7 @@
       </display_locations>
       <extra_css_class type="str">pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
+      <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -672,7 +1062,7 @@
     </field>
     <field>
       <type>items</type>
-      <label type="str">Je suis ( mon public )</label>
+      <label type="str">Je suis (mon public)</label>
       <required type="str">optional</required>
       <hint type="str">&lt;p&gt;Merci d'indiquer &#224; quel public s'adresse directement votre publication.&lt;/p&gt;</hint>
       <varname type="str">je_suis</varname>
@@ -682,6 +1072,7 @@
       </display_locations>
       <extra_css_class type="str">pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
+      <items />
       <display_mode type="str">checkboxes</display_mode>
       <min_choices type="int">0</min_choices>
       <max_choices type="int">0</max_choices>
@@ -707,6 +1098,7 @@
       <extra_css_class type="str">pk-important</extra_css_class>
       <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/evenements/get_field_choices?id=plone.app.vocabularies.SupportedContentLanguages</value>
@@ -738,9 +1130,19 @@
       <id type="str">15</id>
     </field>
     <field>
-      <type>page</type>
+      <type>subtitle</type>
       <label type="str">Vos coordonn&#233;es</label>
-      <id type="str">47</id>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <id type="str">de2ac482-caca-43cf-adc7-1f597cb46b76</id>
+    </field>
+    <field>
+      <type>comment</type>
+      <label type="str">&lt;p&gt;Ces informations nous permettent de vous recontacter au sujet de votre demande. Elles ne seront pas publi&#233;es.&lt;/p&gt;</label>
+      <display_locations />
+      <id type="str">740a718b-5064-4ab9-afcf-0e99c28f2929</id>
     </field>
     <field>
       <type>string</type>
@@ -752,8 +1154,6 @@
       </display_locations>
       <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_last_name</value>
       </prefill>
@@ -770,8 +1170,6 @@
       </display_locations>
       <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_first_name</value>
       </prefill>
@@ -789,13 +1187,19 @@
       </display_locations>
       <extra_css_class type="str">grid-1-2 pk-important</extra_css_class>
       <prefill>
-        <locked>False</locked>
-        <locked-unless-empty>False</locked-unless-empty>
         <type>user</type>
         <value>_email</value>
       </prefill>
       <anonymise type="str">final</anonymise>
       <id type="str">50</id>
+    </field>
+    <field>
+      <type>computed</type>
+      <label type="str">R&#232;gle de r&#233;currence (RRULE)</label>
+      <varname type="str">recurrence</varname>
+      <value_template type="str">{% if form_var_recurrent %}RRULE:FREQ={{ form_var_rrule_freq_raw }}{% if form_var_rrule_interval and form_var_rrule_interval != "1" %};INTERVAL={{ form_var_rrule_interval }}{% endif %}{% if form_var_rrule_freq_raw == "WEEKLY" and form_var_rrule_byday_raw %};BYDAY={% for d in form_var_rrule_byday_raw %}{{ d }}{% if not forloop.last %},{% endif %}{% endfor %}{% elif form_var_rrule_freq_raw == "MONTHLY" and form_var_rrule_mois_mode_raw == "weekday" %};BYDAY={{ form_var_rrule_mois_position_raw }}{{ form_var_rrule_mois_jour_raw }}{% endif %}{% if form_var_rrule_fin_raw == "count" %};COUNT={{ form_var_rrule_count }}{% elif form_var_rrule_fin_raw == "until" %};UNTIL={{ form_var_rrule_until|date:"Ymd" }}T235959Z{% endif %}{% endif %}</value_template>
+      <freeze_on_initial_value type="bool">False</freeze_on_initial_value>
+      <id type="str">a1f0c001-0000-4000-8000-00000000000b</id>
     </field>
   </fields>
   <user-roles>
@@ -812,7 +1216,6 @@
     <option varname="type">&#201;v&#233;nement</option>
     <option varname="type_display">&#201;v&#233;nement</option>
     <option varname="type_structured" />
-    <option varname="uri_plone" />
   </options>
   <custom_views>
     <custom_view>
