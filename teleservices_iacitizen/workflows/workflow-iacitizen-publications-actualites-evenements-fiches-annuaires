@@ -473,7 +473,7 @@ Bien &#224; vous,</body>
             </item>
             <item>
               <name>recurrence</name>
-              <value>{% if form_var_recurrent %}RRULE:FREQ={{ form_var_rrule_freq_raw }}{% if form_var_rrule_interval and form_var_rrule_interval != "1" %};INTERVAL={{ form_var_rrule_interval }}{% endif %}{% if form_var_rrule_freq_raw == "WEEKLY" and form_var_rrule_byday_raw %};BYDAY={% for d in form_var_rrule_byday_raw %}{{ d }}{% if not forloop.last %},{% endif %}{% endfor %}{% elif form_var_rrule_freq_raw == "MONTHLY" and form_var_rrule_mois_mode_raw == "weekday" %};BYDAY={{ form_var_rrule_mois_position_raw }}{{ form_var_rrule_mois_jour_raw }}{% endif %}{% if form_var_rrule_fin_raw == "count" %};COUNT={{ form_var_rrule_count }}{% elif form_var_rrule_fin_raw == "until" %};UNTIL={{ form_var_rrule_until|date:"Ymd" }}T000000{% endif %}{% endif %}</value>
+              <value>{{ form_var_recurrence }}</value>
             </item>
           </post_data>
           <response_type>json</response_type>
@@ -1149,7 +1149,7 @@ Bien &#224; vous,</body>
             </item>
             <item>
               <name>recurrence</name>
-              <value>{% if form_var_recurrent %}RRULE:FREQ={{ form_var_rrule_freq_raw }}{% if form_var_rrule_interval and form_var_rrule_interval != "1" %};INTERVAL={{ form_var_rrule_interval }}{% endif %}{% if form_var_rrule_freq_raw == "WEEKLY" and form_var_rrule_byday_raw %};BYDAY={% for d in form_var_rrule_byday_raw %}{{ d }}{% if not forloop.last %},{% endif %}{% endfor %}{% elif form_var_rrule_freq_raw == "MONTHLY" and form_var_rrule_mois_mode_raw == "weekday" %};BYDAY={{ form_var_rrule_mois_position_raw }}{{ form_var_rrule_mois_jour_raw }}{% endif %}{% if form_var_rrule_fin_raw == "count" %};COUNT={{ form_var_rrule_count }}{% elif form_var_rrule_fin_raw == "until" %};UNTIL={{ form_var_rrule_until|date:"Ymd" }}T000000{% endif %}{% endif %}</value>
+              <value>{{ form_var_recurrence }}</value>
             </item>
             <item>
               <name>local_category</name>
