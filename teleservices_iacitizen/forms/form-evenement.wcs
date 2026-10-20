@@ -130,7 +130,7 @@
       </display_locations>
       <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
-      <display_mode type="str">plain</display_mode>
+      <display_mode type="str">rich</display_mode>
       <id type="str">51</id>
     </field>
     <field>

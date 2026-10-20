@@ -87,7 +87,7 @@
         <item>summary</item>
       </display_locations>
       <anonymise type="str">final</anonymise>
-      <display_mode type="str">plain</display_mode>
+      <display_mode type="str">rich</display_mode>
       <id type="str">23</id>
     </field>
     <field>
