@@ -6,7 +6,7 @@
   <history_pane_default_mode>expanded</history_pane_default_mode>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <hidden>false</hidden>
   <only_allow_one>false</only_allow_one>
   <enable_tracking_codes>false</enable_tracking_codes>
@@ -130,7 +130,7 @@
       </display_locations>
       <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
-      <display_mode type="str">rich</display_mode>
+      <display_mode type="str">plain</display_mode>
       <id type="str">51</id>
     </field>
     <field>
@@ -144,18 +144,23 @@
     </field>
     <field>
       <type>file</type>
-      <label type="str">Image principale (sans texte)</label>
+      <label type="str">Image principale</label>
       <required type="str">required</required>
-      <hint type="str">&lt;p&gt;Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;&amp;nbsp;; merci de t&#233;l&#233;verser une image sans texte.&lt;/p&gt;</hint>
+      <hint type="str">&lt;p&gt;Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;.&lt;/p&gt;</hint>
       <varname type="str">image</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
         <item>listings</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-1 pk-important</extra_css_class>
+      <extra_css_class type="str">pk-important</extra_css_class>
       <anonymise type="str">final</anonymise>
-      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <document_type>
+        <id>_image</id>
+        <label>Fichiers image (jpeg, png, ...)</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">8</id>
     </field>
@@ -1202,12 +1207,6 @@
       <id type="str">a1f0c001-0000-4000-8000-00000000000b</id>
     </field>
   </fields>
-  <user-roles>
-    <role role_id="logged-users">logged-users</role>
-  </user-roles>
-  <backoffice-submission-roles>
-    <role slug="agents-traitants-informatique" role_id="dcc1e1a25e01457aa06ac7347640a854">Agents traitants - Informatique</role>
-  </backoffice-submission-roles>
   <roles>
     <role slug="agents-traitants-informatique" role_id="dcc1e1a25e01457aa06ac7347640a854" role_key="_editor">Agents traitants - Informatique</role>
   </roles>

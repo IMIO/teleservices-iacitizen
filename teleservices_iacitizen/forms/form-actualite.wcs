@@ -87,12 +87,12 @@
         <item>summary</item>
       </display_locations>
       <anonymise type="str">final</anonymise>
-      <display_mode type="str">rich</display_mode>
+      <display_mode type="str">plain</display_mode>
       <id type="str">23</id>
     </field>
     <field>
       <type>subtitle</type>
-      <label type="str">Visuel</label>
+      <label type="str">Visuel et fichier</label>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
@@ -101,25 +101,50 @@
     </field>
     <field>
       <type>file</type>
-      <label type="str">Image principale (sans texte)</label>
+      <label type="str">Image principale</label>
       <required type="str">required</required>
-      <hint type="str">Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;&#160;; merci de t&#233;l&#233;verser une image sans texte. Format paysage conseill&#233;.</hint>
+      <hint type="str">&lt;p&gt;Les images comportant du texte ne sont pas visibles dans leur enti&#232;ret&#233;&amp;nbsp;; merci de t&#233;l&#233;verser une image sans texte. Format paysage conseill&#233;.&lt;/p&gt;</hint>
       <varname type="str">image</varname>
       <display_locations>
         <item>validation</item>
         <item>summary</item>
         <item>listings</item>
       </display_locations>
-      <extra_css_class type="str">grid-1-1</extra_css_class>
       <anonymise type="str">final</anonymise>
       <document_type>
         <id>_image</id>
-        <label>Fichiers image</label>
+        <label>Fichiers image (jpeg, png, ...)</label>
         <mimetypes>image/*</mimetypes>
       </document_type>
-      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
       <storage type="str">default</storage>
       <id type="str">8</id>
+    </field>
+    <field>
+      <type>file</type>
+      <label type="str">Fichier</label>
+      <required type="str">optional</required>
+      <varname type="str">fichier</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <anonymise type="str">final</anonymise>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">a612bb8f-6159-4792-9934-689682ad736d</id>
+    </field>
+    <field>
+      <type>bool</type>
+      <label type="str">Je certifie que les images fournies respectent les droits d&#8217;auteur, qu&#8217;elles sont libres de droits ou d&#251;ment autoris&#233;es, et j&#8217;en assume l&#8217;enti&#232;re responsabilit&#233; en cas d&#8217;utilisation illicite.</label>
+      <required type="str">optional</required>
+      <varname type="str">je_certifie_que_les_images_fournies_respectent_les_droits_d_auteur_qu_elles_sont_libres_de_droits_ou_dument_autorisees_et_j_en_assume_l_entiere_responsabilite_en_cas_d_utilisation_illicite</varname>
+      <display_locations>
+        <item>validation</item>
+        <item>summary</item>
+      </display_locations>
+      <anonymise type="str">no</anonymise>
+      <id type="str">2f150b28-a559-4e07-b636-cfa63068e342</id>
     </field>
     <field>
       <type>subtitle</type>
@@ -251,6 +276,7 @@
       <extra_css_class type="str">grid-1-2</extra_css_class>
       <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.news.vocabulary.NewsCategories</value>
@@ -277,6 +303,7 @@
       <extra_css_class type="str">grid-1-2</extra_css_class>
       <anonymise type="str">no</anonymise>
       <display_mode type="str">list</display_mode>
+      <items />
       <data_source>
         <type>json</type>
         <value>{{ passerelle_url }}plone-restapi/actualites/get_field_choices?id=imio.news.vocabulary.NewsLocalCategories</value>
@@ -468,9 +495,17 @@
         <id>17</id>
         <id>9</id>
         <id>12</id>
-      </columns><order_by>-receipt_time</order_by>
+      </columns>
+      <order_by>-receipt_time</order_by>
     </custom_view>
-  </custom_views><geolocations />
+  </custom_views>
+  <geolocations />
+  <management_sidebar_items>
+    <item>__default__</item>
+  </management_sidebar_items>
+  <submission_sidebar_items>
+    <item>__default__</item>
+  </submission_sidebar_items>
   <digest_templates>
     <template key="default">{{ form_var_titre }}</template>
   </digest_templates>
